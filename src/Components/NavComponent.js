@@ -11,11 +11,11 @@ function NavComponent(props) {
 				<Link to="/home"><img src="/logo200x100.png" alt="logo"/></Link>
 			</div>
 			<Link to="/home"><button>Home</button></Link>
-			{props.user ? null : <Link to="/signup"><button>Sign Up</button></Link>}
-			{props.user ? null : <Link to="/login"><button>Log In</button></Link>}
-			{props.user ? <Link to="/home"><button onClick={() => props.logOutUser()}>Log Out</button></Link> : null}
-			{props.user ? <Link to="/quizzes"><button>Saved Quizzes</button></Link> : null}
-			{props.user ? <Link to="/quizzes/create"><button>Create Quiz</button></Link> : null}
+			{props.user ? props.user.id ? null : <Link to="/signup"><button>Sign Up</button></Link> : <Link to="/signup"><button>Sign Up</button></Link>}
+			{props.user ? props.user.id ? null : <Link to="/login"><button>Log In</button></Link> : <Link to="/login"><button>Log In</button></Link>}
+			{props.user ? props.user.id ? <Link to="/home"><button onClick={() => props.logOutUser()}>Log Out</button></Link> : null : null}
+			{props.user ? props.user.id ? <Link to="/quizzes"><button>Saved Quizzes</button></Link> : null : null}
+			{props.user ? props.user.id ? <Link to="/quizzes/create"><button>Create Quiz</button></Link> : null : null}
 		</div>
 	)
 }

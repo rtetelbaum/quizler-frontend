@@ -48,7 +48,7 @@ class SignUpComponent extends React.Component {
 					<input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.changeHandler} /><br />
 					<button type="submit">Sign Up</button>
 				</form>
-				{this.props.user ? <Redirect to="/quizzes/create" /> : null }
+				{this.props.user ? this.props.user.id ? <Redirect to="/quizzes/create" /> : null : null }
 			</div>
 		)
 	}

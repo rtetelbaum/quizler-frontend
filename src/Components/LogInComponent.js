@@ -45,7 +45,7 @@ class LogInComponent extends React.Component {
 					<input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.changeHandler} /><br />
 					<button type="submit">Log In</button>
 				</form>
-				{this.props.user ? <Redirect to="/quizzes" /> : null }
+				{this.props.user ? this.props.user.id ? <Redirect to="/quizzes" /> : null : null }
 			</div>
 		)
 	}

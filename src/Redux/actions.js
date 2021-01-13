@@ -18,15 +18,11 @@ export function getUsers() {
 }
 
 export function setUser(userObj) {
-	return function (dispatch) {
-		dispatch({ type: SET_USER, payload: userObj })
-	}
+	return ({ type: SET_USER, payload: userObj })
 }
 
 export function logOutUser() {
-	return function (dispatch) {
-		dispatch({ type: LOGOUT_USER })
-	}
+	return ({ type: LOGOUT_USER })
 }
 
 export function postUser(userObj) {
