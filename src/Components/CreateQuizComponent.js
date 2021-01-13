@@ -1,11 +1,23 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-function CreateQuizComponent() {
+function CreateQuizComponent(props) {
 	return (
-		<div>
-			<h1>Create Quiz Component</h1>
-		</div>
+		props.user ?
+			<div>
+				<h3>Create Quiz Component</h3>
+			</div>
+			:
+			<div>
+				<h3>Please log in.</h3>
+			</div>
 	)
 }
 
-export default CreateQuizComponent
+function msp(state) {
+	return {
+		user: state.user
+	}
+}
+
+export default connect(msp)(CreateQuizComponent)

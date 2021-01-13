@@ -1,13 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {setUser} from '../Redux/actions'
+import {getUsers, setUser} from '../Redux/actions'
 import {Redirect} from 'react-router-dom'
 
 class LogInComponent extends React.Component {
 	state = {
 		email: "",
-		password: "",
-		users: []
+		password: ""
 	}
 
 	changeHandler = (e) => {
@@ -18,19 +17,16 @@ class LogInComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
-		this.fetchGetUsers()
+		this.props.getUsers()
+		if (this.props.users) {
+			this.findUser()
+		} else {
+			alert("Something went wrong (async), please try again.")
+		}
 	}
 
-	BASE_URL = "http://localhost:4000"
-
-	fetchGetUsers = () => {
-		fetch(`${this.BASE_URL}/api/v1/users`)
-			.then(r => r.json())
-			.then(data => this.setState({users: data}, () => this.matchUser()))
-	}
-
-	matchUser = () => {
-		const foundUser = this.state.users.find(user => user.email === this.state.email)
+	findUser = () => {
+		const foundUser = this.props.users.find(user => user.email === this.state.email)
 		if (!foundUser) {
 			alert("Email and/or password incorrect. Please try again.")
 		} else if (foundUser.password === this.state.password) {
@@ -57,12 +53,14 @@ class LogInComponent extends React.Component {
 
 function msp(state) {
 	return {
+		users: state.users,
 		user: state.user
 	}
 }
 
 function mdp(dispatch) {
 	return {
+		getUsers: () => dispatch(getUsers()),
 		setUser: userObj => dispatch(setUser(userObj))
 	}
 }
