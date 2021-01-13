@@ -1,13 +1,13 @@
 import {combineReducers} from 'redux'
 
 const defaultState = {
-	user: 1
+	user: null
 }
 
 function userReducer(prevState = defaultState.user, action) {
 	switch (action.type) {
-		case "GET_USER" :
-			return action.payload.user
+		case "SET_USER" :
+			return action.payload
 		case "LOGOUT_USER" :
 			return null
 		case "POST_USER" :
