@@ -3,23 +3,21 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logOutUser} from '../Redux/actions'
 
-class NavComponent extends React.Component {
+function NavComponent(props) {
 
-	render() {
-		return (
-			<div id="nav">
-				<div id="logo">
-				<Link to="/home"><img src="/logo200.png" alt="logo"/></Link>
-				</div>
-				<Link to="/home"><button>Home</button></Link>
-				{this.props.user ? null : <Link to="/signup"><button>Sign Up</button></Link>}
-				{this.props.user ? null : <Link to="/login"><button>Log In</button></Link>}
-				{this.props.user ? <Link to="/home"><button onClick={() => this.props.logOutUser()}>Log Out</button></Link> : null}
-				{this.props.user ? <Link to="/quizzes"><button>Saved Quizzes</button></Link> : null}
-				{this.props.user ? <Link to="/quizzes/create"><button>Create Quiz</button></Link> : null}
+	return (
+		<div id="nav">
+			<div id="logo">
+				<Link to="/home"><img src="/logo200x100.png" alt="logo"/></Link>
 			</div>
-		)
-	}
+			<Link to="/home"><button>Home</button></Link>
+			{props.user ? null : <Link to="/signup"><button>Sign Up</button></Link>}
+			{props.user ? null : <Link to="/login"><button>Log In</button></Link>}
+			{props.user ? <Link to="/home"><button onClick={() => props.logOutUser()}>Log Out</button></Link> : null}
+			{props.user ? <Link to="/quizzes"><button>Saved Quizzes</button></Link> : null}
+			{props.user ? <Link to="/quizzes/create"><button>Create Quiz</button></Link> : null}
+		</div>
+	)
 }
 
 function msp(state) {
