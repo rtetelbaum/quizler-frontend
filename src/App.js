@@ -1,43 +1,33 @@
-import './App.css';
+import './App.css'
+import {Route, Switch, Redirect} from 'react-router-dom'
+import React from 'react'
+import NavComponent from './Components/NavComponent'
+import FooterComponent from './Components/FooterComponent'
+import HomeComponent from './Components/HomeComponent'
+import SignUpComponent from './Components/SignUpComponent'
+import LogInComponent from './Components/LogInComponent'
+import QuizContainer from './Containers/QuizContainer'
 
 function App() {
   return (
     <div id="app">
 
-			<div id="nav">
-				<div id="logo">
-					<img src="/logo200.png" alt="logo"/>
-				</div>
-				<button>Home</button>
-				<button>Sign Up</button>
-				<button>Log In</button>
-				<button>Saved Quizzes</button>
-				<button>Create Quiz</button>
-			</div>
+			<NavComponent />
 
 			<div id="main">
-				<h1>Home Component</h1>
-				<h1>Sign Up Component</h1>
-				<h1>Log In Component</h1>
-				<h1>Quiz Container</h1>
-				<h1>Create Quiz Component</h1>
-				<h1>Quiz Component</h1>
-				<h1>Email Quiz Component</h1>
-				<h1>Submit Quiz Component</h1>
-				<h1>Delete Quiz Component</h1>
-				<h1>Create Question Component</h1>
-				<h1>Question Component</h1>
-				<h1>Edit Question Component</h1>
-				<h1>Delete Question Component</h1>
+				<Switch>
+					<Route path="/home" component={HomeComponent}/>
+					<Route path="/signup" component={SignUpComponent} />
+					<Route path="/login" component={LogInComponent} />
+					<Route path="/quizzes" component={QuizContainer} />
+					<Route path="/"><Redirect to="/home" /></Route>
+				</Switch>
 			</div>
 
-			<div id="footer">
-				<p>Copyright © Quizler {new Date().getFullYear()} A Roman Tetelbaum Project&nbsp;</p>
-				<a href="https://github.com/rtetelbaum/quizler-frontend" target="_blank" rel="noreferrer"><img src="/github.png" alt="github" /></a>
-			</div>
+			<FooterComponent />
 
 		</div>
   );
 }
 
-export default App;
+export default App
