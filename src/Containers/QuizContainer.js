@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 
 function QuizContainer(props) {
 	
@@ -15,25 +15,26 @@ function QuizContainer(props) {
 	}
 
 	return (
-		props.user ? props.user.id ?
+		props.user ?
+			props.user.id ?
 			<div>
 				<h1>Quizmaker {props.user.email}'s Saved Quizzes</h1>
 				{
 					arrayOfQuizzes().length === 0
-					?
-					<p>You have no saved quizzes, please create one.</p>
-					:
-					arrayOfQuizzes()
+						?
+						<p>You have no saved quizzes, please create one.</p>
+						:
+						arrayOfQuizzes()
 				}
 			</div>
 			:
 			<div>
 				<h3>Please log in.</h3>
 			</div>
-			:
-			<div>
-				<h3>Please log in.</h3>
-			</div>
+		:
+		<div>
+			<h3>Please log in.</h3>
+		</div>
 	)
 }
 

@@ -41,6 +41,8 @@ class LogInComponent extends React.Component {
 
 	render() {
 		return (
+			this.props.users
+			?
 			<div>
 				<h3>Log In</h3>
 				<form onSubmit={e => this.submitHandler(e)}>
@@ -50,6 +52,8 @@ class LogInComponent extends React.Component {
 				</form>
 				{this.props.user ? this.props.user.id ? <Redirect to="/quizzes" /> : null : null }
 			</div>
+			:
+			<h3>Loading...</h3>
 		)
 	}
 }
