@@ -21,8 +21,8 @@ function App() {
 					<Route path="/home" component={HomeComponent}/>
 					<Route path="/signup" component={SignUpComponent} />
 					<Route path="/login" component={LogInComponent} />
-					<Route path="/quizzes/:id" component={QuizComponent}/>
 					<Route path="/quizzes/create" component={CreateQuizComponent}/>
+					<Route exact path="/quizzes/:id" component={QuizComponent}/>
 					<Route path="/quizzes" component={QuizContainer} />
 					<Route path="/"><Redirect to="/home" /></Route>
 				</Switch>
