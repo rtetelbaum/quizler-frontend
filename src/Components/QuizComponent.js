@@ -6,7 +6,7 @@ import QuestionComponent from './QuestionComponent'
 class QuizComponent extends React.Component {
 
 	componentDidMount() {
-		this.props.getQuiz(18)
+		this.props.getQuiz(this.props.match.params.id)
 	}
 
 	arrayOfQuestions() {

@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 function QuizContainer(props) {
 	
@@ -8,7 +9,7 @@ function QuizContainer(props) {
 		const sortedQuizzesArray = userQuizzesArray.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
 		return sortedQuizzesArray.map(quiz =>
 			<div key={quiz.id}>
-				<h3>Title: {quiz.title}</h3>
+				<Link to={`/quizzes/${quiz.id}`}><h3>Title: {quiz.title}</h3></Link>
 				<p>Subject: {quiz.subject}</p>
 			</div>
 		)
