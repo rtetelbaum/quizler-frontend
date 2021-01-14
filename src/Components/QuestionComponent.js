@@ -13,7 +13,7 @@ class QuestionComponent extends React.Component {
 		const thisQuestion = this.props.allQuestions.filter(q => q.id === this.props.question.id)
 		const answersArray = thisQuestion[0].answers
 		const sortedAnswers = answersArray.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
-		return sortedAnswers.map(answer => <AnswerComponent key={answer.id} answer={answer} question={this.props.question.question} />)
+		return sortedAnswers.map(answer => <AnswerComponent key={answer.id} answer={answer} question={this.props.question.question} changeHandler={this.props.changeHandler} />)
 	}
 
 	render() {
