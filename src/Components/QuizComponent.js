@@ -24,14 +24,20 @@ class QuizComponent extends React.Component {
 	submitHandler = (e) => {
 		e.preventDefault()
 		// const numberOfQuestions = this.props.quiz.questions.length
-		const thisQuizQA = this.props.allQuestions.filter(q => q.quiz_id === this.props.quiz.id)
-		const arrayOfCorrectQA = thisQuizQA.map(qa => {
+		const quizQA = this.props.allQuestions.filter(q => q.quiz_id === this.props.quiz.id)
+		const sortedQuizQA = quizQA.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
+		const arrayOfCorrectQA = sortedQuizQA.map(qa => {
 			let rObj = {}
 			rObj[qa.question] = qa.answers.filter(a => a.correct)[0].answer
 			return rObj
 		})
-		const arrayOfUserQA = Object.entries(this.state)
-		console.log("thisQuizQA", thisQuizQA)
+		const userQA = Object.entries(this.state)
+		const arrayOfUserQA = userQA.map(qa => {
+			let rObj = {}
+			rObj[qa[0]] = qa[1]
+			return rObj
+		})
+		console.log("quizQA", quizQA)
 		console.log("arrayOfCorrectQA", arrayOfCorrectQA)
 		console.log("arrayOfUserQA", arrayOfUserQA)
 	}
