@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getQuiz} from '../Redux/actions'
 import QuestionComponent from './QuestionComponent'
+import EmailQuizComponent from './EmailQuizComponent'
 
 class QuizComponent extends React.Component {
 
@@ -45,10 +46,10 @@ class QuizComponent extends React.Component {
 		}
 		const score = "Your score: " + ((numCorrectAnswers / numQuestions) * 100).toString() + "%"
 
-		console.log("arrayOfCorrectQA", arrayOfCorrectQA)
-		console.log("arrayOfUserQA", arrayOfUserQA)
-		console.log("number of correct answers: ", numCorrectAnswers)
-		console.log(score)
+		// console.log("arrayOfCorrectQA", arrayOfCorrectQA)
+		// console.log("arrayOfUserQA", arrayOfUserQA)
+		// console.log("number of correct answers: ", numCorrectAnswers)
+		// console.log(score)
 	}
 
 	render() {
@@ -63,8 +64,9 @@ class QuizComponent extends React.Component {
 					<ol>
 						{this.arrayOfQuestions()}
 					</ol>
-					<button type="submit">Submit & Email to Quizmaker</button>
+					{!this.props.user ? <button type="submit">Submit & Email to Quizmaker</button> : null}
 				</form>
+				{this.props.user ? <EmailQuizComponent senderEmail={this.props.user.email} url={this.props.match.url} /> : null}
 			</div>
 			:
 			<h3>Loading quiz...</h3>
@@ -74,6 +76,7 @@ class QuizComponent extends React.Component {
 
 function msp(state) {
 	return {
+		user: state.user,
 		quiz: state.quiz,
 		allQuestions: state.questions
 	}
