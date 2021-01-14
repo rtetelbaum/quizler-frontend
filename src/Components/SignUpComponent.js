@@ -36,7 +36,7 @@ class SignUpComponent extends React.Component {
 
 	submitHandler = async (e) => {
 		e.preventDefault()
-		this.props.postNewUser(this.state)
+		this.props.postUser(this.state)
 	}
 
 	render() {
@@ -62,7 +62,7 @@ function msp(state) {
 
 function mdp(dispatch) {
 	return {
-		postNewUser: userObj => dispatch(postUser(userObj)),
+		postUser: userObj => dispatch(postUser(userObj)),
 		logOutCurrentUser: () => dispatch(logOutUser())
 	}
 }

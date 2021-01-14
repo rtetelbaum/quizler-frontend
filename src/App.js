@@ -8,6 +8,7 @@ import SignUpComponent from './Components/SignUpComponent'
 import LogInComponent from './Components/LogInComponent'
 import QuizContainer from './Containers/QuizContainer'
 import CreateQuizComponent from './Components/CreateQuizComponent'
+import QuizComponent from './Components/QuizComponent'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
 					<Route path="/home" component={HomeComponent}/>
 					<Route path="/signup" component={SignUpComponent} />
 					<Route path="/login" component={LogInComponent} />
+					<Route path="/quizzes/:id" component={QuizComponent}/>
 					<Route path="/quizzes/create" component={CreateQuizComponent}/>
 					<Route path="/quizzes" component={QuizContainer} />
 					<Route path="/"><Redirect to="/home" /></Route>
