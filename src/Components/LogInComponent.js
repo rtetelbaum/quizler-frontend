@@ -9,6 +9,10 @@ class LogInComponent extends React.Component {
 		password: ""
 	}
 
+	componentDidMount() {
+		this.props.getAllUsers()
+	}
+
 	changeHandler = (e) => {
 		this.setState({
 			[e.target.name]: e.target.value
@@ -17,11 +21,10 @@ class LogInComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
-		this.props.getUsers()
 		if (this.props.users) {
 			this.findUser()
 		} else {
-			alert("Something went wrong (async), please try again.")
+			alert("Something went wrong, please try again.")
 		}
 	}
 
@@ -30,7 +33,7 @@ class LogInComponent extends React.Component {
 		if (!foundUser) {
 			alert("Email and/or password incorrect. Please try again.")
 		} else if (foundUser.password === this.state.password) {
-			this.props.setUser(foundUser)
+			this.props.setCurrentUser(foundUser)
 		} else {
 			alert("Email and/or password incorrect. Please try again.")
 		}
@@ -60,8 +63,8 @@ function msp(state) {
 
 function mdp(dispatch) {
 	return {
-		getUsers: () => dispatch(getUsers()),
-		setUser: userObj => dispatch(setUser(userObj))
+		getAllUsers: () => dispatch(getUsers()),
+		setCurrentUser: userObj => dispatch(setUser(userObj))
 	}
 }
 
