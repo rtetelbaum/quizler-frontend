@@ -23,7 +23,7 @@ class QuizComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
-		// const numberOfQuestions = this.props.quiz.questions.length
+		const numQuestions = this.props.quiz.questions.length
 		const quizQA = this.props.allQuestions.filter(q => q.quiz_id === this.props.quiz.id)
 		const sortedQuizQA = quizQA.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
 		const arrayOfCorrectQA = sortedQuizQA.map(qa => {
@@ -37,9 +37,18 @@ class QuizComponent extends React.Component {
 			rObj[qa[0]] = qa[1]
 			return rObj
 		})
-		console.log("quizQA", quizQA)
+		let numCorrectAnswers = 0
+		for (let i = 0,  l = numQuestions; i < l; i++) {
+			if (JSON.stringify(arrayOfCorrectQA[i]) === JSON.stringify(arrayOfUserQA[i])) {
+				numCorrectAnswers++
+			}
+		}
+		const score = "Your score: " + ((numCorrectAnswers / numQuestions) * 100).toString() + "%"
+
 		console.log("arrayOfCorrectQA", arrayOfCorrectQA)
 		console.log("arrayOfUserQA", arrayOfUserQA)
+		console.log("number of correct answers: ", numCorrectAnswers)
+		console.log(score)
 	}
 
 	render() {
