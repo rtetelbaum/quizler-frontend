@@ -71,8 +71,6 @@ class QuizComponent extends React.Component {
 		let quizmaker
 		if (this.props.quiz) {quizmaker = this.props.quiz.quizmaker}
 
-		console.log(quizAnswers)
-
 		emailjs.send('service_fcfonus', 'template_ej9tm39', templateParams, process.env.REACT_APP_EMAILJS_USERID)
 		.then(function(response) {
 			 console.log('SUCCESS!', response.status, response.text)
