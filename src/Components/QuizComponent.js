@@ -54,7 +54,10 @@ class QuizComponent extends React.Component {
 		const quizAnswers = []
 
 		for (let i = 0,  l = arrayOfUserQA.length; i < l; i++) {
-			quizAnswers.push(`<li>Question: ${Object.keys(arrayOfUserQA[i])[0]}<br>Answer: ${Object.values(arrayOfUserQA[i])[0]} </li>`)
+			quizAnswers.push(`<li><b>Question:</b> ${Object.keys(arrayOfUserQA[i])[0]}<br>
+				<b>Quiztaker Answer:</b> ${Object.values(arrayOfUserQA[i])[0]}<br>
+				<b>Correct Answer:</b> ${Object.values(arrayOfCorrectQA[i])[0]}</li>`
+				)
 		}
 
 		const templateParams = {
@@ -67,6 +70,8 @@ class QuizComponent extends React.Component {
 
 		let quizmaker
 		if (this.props.quiz) {quizmaker = this.props.quiz.quizmaker}
+
+		console.log(quizAnswers)
 
 		emailjs.send('service_fcfonus', 'template_ej9tm39', templateParams, process.env.REACT_APP_EMAILJS_USERID)
 		.then(function(response) {
