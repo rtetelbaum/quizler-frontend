@@ -54,22 +54,24 @@ class QuizComponent extends React.Component {
 		const quizAnswers = []
 
 		for (let i = 0,  l = arrayOfUserQA.length; i < l; i++) {
-			quizAnswers.push(`<li>Question: ${Object.keys(arrayOfUserQA[i])[0]}<br>Answer: ${Object.values(arrayOfUserQA[i])[0]}</li>`)
+			quizAnswers.push(`<li>Question: ${Object.keys(arrayOfUserQA[i])[0]}<br>Answer: ${Object.values(arrayOfUserQA[i])[0]} </li>`)
 		}
 
 		const templateParams = {
 			senderEmail: this.props.takerEmail,
-			// recipientEmail: this.props.quiz.quizmaker,
-			recipientEmail: 'rtetelbaum@mailbox.org',
+			recipientEmail: this.props.quiz.quizmaker,
 			title: this.props.quiz.title,
 			score: score,
-			quiz: quizAnswers
+			quiz: quizAnswers.join('')
 		}
+
+		let quizmaker
+		if (this.props.quiz) {quizmaker = this.props.quiz.quizmaker}
 
 		emailjs.send('service_fcfonus', 'template_ej9tm39', templateParams, process.env.REACT_APP_EMAILJS_USERID)
 		.then(function(response) {
 			 console.log('SUCCESS!', response.status, response.text)
-			 alert(`Quiz results successfully sent to ${this.props.quiz.quizmaker}!`)
+			 alert(`Quiz results successfully sent to ${quizmaker}!`)
 		}, function(error) {
 			 console.log('FAILED...', error)
 			 alert('Oops... something went wrong. Please try again.')
