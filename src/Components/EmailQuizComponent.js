@@ -23,11 +23,14 @@ class EmailQuizComponent extends React.Component {
 			recipientEmail: this.state.email,
 			link: `${this.BASE_URL}${this.props.url}`
 		}
+
+		let quiztakerEmail
+		if (this.state.email) {quiztakerEmail = this.state.email}
 		
 		emailjs.send('service_fcfonus', 'template_3cu6wee', templateParams, process.env.REACT_APP_EMAILJS_USERID)
     .then(function(response) {
 			 console.log('SUCCESS!', response.status, response.text)
-			 alert(`Quiz invitation successfully sent to ${this.state.email}!`)
+			 alert(`Quiz invitation successfully sent to ${quiztakerEmail}!`)
     }, function(error) {
 			 console.log('FAILED...', error)
 			 alert('Oops... something went wrong. Please try again.')
