@@ -4,7 +4,8 @@ const defaultState = {
 	users: null,
 	user: null,
 	quiz: null,
-	questions: null
+	questions: null,
+	takerEmail: null
 }
 
 function usersReducer(prevState = defaultState.user, action) {
@@ -47,11 +48,21 @@ function questionsReducer(prevState = defaultState.questions, action) {
 	}
 }
 
+function takerEmailReducer(prevState = defaultState.takerEmail, action) {
+	switch (action.type) {
+		case "SET_TAKER_EMAIL" :
+			return action.payload
+		default :
+			return prevState
+	}
+}
+
 const rootReducer = combineReducers({
 	users: usersReducer,
 	user: userReducer,
 	quiz: quizReducer,
-	questions: questionsReducer
+	questions: questionsReducer,
+	takerEmail: takerEmailReducer
 })
 
 export default rootReducer

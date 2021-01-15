@@ -17,11 +17,13 @@ class EmailQuizComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
+		
 		const templateParams = {
 			senderEmail: this.props.senderEmail,
 			recipientEmail: this.state.email,
 			link: `${this.BASE_URL}${this.props.url}`
 		}
+		
 		emailjs.send('service_fcfonus', 'template_3cu6wee', templateParams, process.env.REACT_APP_EMAILJS_USERID)
     .then(function(response) {
 			 console.log('SUCCESS!', response.status, response.text)

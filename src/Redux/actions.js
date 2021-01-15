@@ -4,7 +4,8 @@ import {
 	LOGOUT_USER,
 	POST_USER,
 	GET_QUIZ,
-	GET_QUESTIONS
+	GET_QUESTIONS,
+	SET_TAKER_EMAIL
 } from './actionTypes'
 
 const BASE_URL = "http://localhost:4000"
@@ -61,4 +62,8 @@ export function getQuestions() {
 				dispatch({ type: GET_QUESTIONS, payload: data})
 			})
 	}
+}
+
+export function setTakerEmail(takerEmail) {
+	return ({ type: SET_TAKER_EMAIL, payload: takerEmail })
 }
