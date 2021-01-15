@@ -90,7 +90,7 @@ class QuizComponent extends React.Component {
 				<h3>Title: {this.props.quiz.title}</h3>
 				<p>Subject: {this.props.quiz.subject}</p>
 				{!this.props.user ? <TakerEmailComponent /> : null}
-				<form onSubmit={e => this.submitHandler(e)}>
+				<form onSubmit={this.submitHandler}>
 					<ol>
 						{this.arrayOfQuestions()}
 					</ol>

@@ -20,6 +20,7 @@ function QuizContainer(props) {
 			props.user.id ?
 			<div>
 				<h1>Quizmaker {props.user.email}'s Saved Quizzes</h1>
+				<Link to={'/quizzes/create'}><button>Create a Quiz</button></Link>
 				{
 					arrayOfQuizzes().length === 0
 						?
