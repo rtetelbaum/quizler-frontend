@@ -54,7 +54,7 @@ class QuizComponent extends React.Component {
 		const quizAnswers = []
 
 		for (let i = 0,  l = arrayOfUserQA.length; i < l; i++) {
-			quizAnswers.push(`<li>Question: ${Object.keys(arrayOfUserQA[i])[0]}, Answer: ${Object.values(arrayOfUserQA[i])[0]}</li>`)
+			quizAnswers.push(`<li>Question: ${Object.keys(arrayOfUserQA[i])[0]}<br>Answer: ${Object.values(arrayOfUserQA[i])[0]}</li>`)
 		}
 
 		const templateParams = {
@@ -69,8 +69,10 @@ class QuizComponent extends React.Component {
 		emailjs.send('service_fcfonus', 'template_ej9tm39', templateParams, process.env.REACT_APP_EMAILJS_USERID)
 		.then(function(response) {
 			 console.log('SUCCESS!', response.status, response.text)
+			 alert(`Quiz results successfully sent to ${this.props.quiz.quizmaker}!`)
 		}, function(error) {
 			 console.log('FAILED...', error)
+			 alert('Oops... something went wrong. Please try again.')
 		})
 	}
 	

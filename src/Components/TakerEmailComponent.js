@@ -16,8 +16,8 @@ class TakerEmailComponent extends React.Component {
 	render() {
 		return (
 			<div>
-				<p>What is your email?</p>
-				<input type="email" name="email" value={this.state.email} onChange={this.changeHandler} required />
+				<label htmlFor="Quiztaker Email">What is your email?</label><br />
+				<input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.changeHandler} />
 			</div>
 		)
 	}

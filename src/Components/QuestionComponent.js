@@ -21,8 +21,9 @@ class QuestionComponent extends React.Component {
 			this.props.allQuestions
 			?
 			<li>
-				<p>{this.props.question.question}</p>
+				{this.props.question.question}
 				{this.arrayOfAnswers()}
+				<br />
 			</li>
 			:
 			<h3>Loading questions...</h3>

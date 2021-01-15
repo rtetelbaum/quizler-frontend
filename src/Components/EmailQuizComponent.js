@@ -30,7 +30,7 @@ class EmailQuizComponent extends React.Component {
 			 alert(`Quiz invitation successfully sent to ${this.state.email}!`)
     }, function(error) {
 			 console.log('FAILED...', error)
-			 alert(`Oops... something went wrong. Please try again.`)
+			 alert('Oops... something went wrong. Please try again.')
     })
 	}
 
