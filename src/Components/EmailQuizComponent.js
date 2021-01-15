@@ -7,8 +7,6 @@ class EmailQuizComponent extends React.Component {
 		email: ""
 	}
 
-	BASE_URL = "http://localhost:3000"
-
 	changeHandler = (e) => {
 		this.setState({
 			[e.target.name]: e.target.value
@@ -18,10 +16,12 @@ class EmailQuizComponent extends React.Component {
 	submitHandler = (e) => {
 		e.preventDefault()
 		
+		const BASE_URL = "http://localhost:3000"
+
 		const templateParams = {
 			senderEmail: this.props.senderEmail,
 			recipientEmail: this.state.email,
-			link: `${this.BASE_URL}${this.props.url}`
+			link: `${BASE_URL}${this.props.url}`
 		}
 
 		let quiztakerEmail

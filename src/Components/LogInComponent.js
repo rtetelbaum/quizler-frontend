@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getUsers, setUser} from '../Redux/actions'
+import {setUser} from '../Redux/actions'
 import {Redirect} from 'react-router-dom'
 
 class LogInComponent extends React.Component {
@@ -9,8 +9,18 @@ class LogInComponent extends React.Component {
 		password: ""
 	}
 
+	BASE_URL = "http://localhost:4000"
+
+	allUsers = []
+
 	componentDidMount() {
-		this.props.getUsers()
+		if (!this.props.user) {
+			fetch(`${this.BASE_URL}/api/v1/users`)
+				.then(r => r.json())
+				.then(users => {
+					this.allUsers = users
+				})
+		}
 	}
 
 	changeHandler = (e) => {
@@ -21,7 +31,7 @@ class LogInComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
-		if (this.props.users) {
+		if (this.allUsers) {
 			this.findUser()
 		} else {
 			alert("Something went wrong, please try again.")
@@ -29,10 +39,11 @@ class LogInComponent extends React.Component {
 	}
 
 	findUser = () => {
-		const foundUser = this.props.users.find(user => user.email === this.state.email)
+		const foundUser = this.allUsers.find(user => user.email === this.state.email)
 		if (!foundUser) {
 			alert("Email and/or password incorrect. Please try again.")
 		} else if (foundUser.password === this.state.password) {
+			localStorage.setItem('userID', foundUser.id)
 			this.props.setUser(foundUser)
 		} else {
 			alert("Email and/or password incorrect. Please try again.")
@@ -41,33 +52,34 @@ class LogInComponent extends React.Component {
 
 	render() {
 		return (
-			this.props.users
+			this.props.user
 			?
-			<div>
-				<h3>Log In</h3>
-				<form onSubmit={this.submitHandler}>
-					<input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.changeHandler} /><br />
-					<input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.changeHandler} /><br />
-					<button type="submit">Log In</button>
-				</form>
-				{this.props.user ? this.props.user.id ? <Redirect to="/quizzes" /> : null : null }
-			</div>
+			<Redirect to="/quizzes" />
 			:
-			<h3>Loading...</h3>
+				this.allUsers
+				?
+				<div>
+					<h3>Log In</h3>
+					<form onSubmit={this.submitHandler}>
+						<input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.changeHandler} /><br />
+						<input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.changeHandler} /><br />
+						<button type="submit">Log In</button>
+					</form>
+				</div>
+				:
+				<h3>Loading...</h3>
 		)
 	}
 }
 
 function msp(state) {
 	return {
-		users: state.users,
 		user: state.user
 	}
 }
 
 function mdp(dispatch) {
 	return {
-		getUsers: () => dispatch(getUsers()),
 		setUser: userObj => dispatch(setUser(userObj))
 	}
 }
