@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import { addUserQuiz } from '../Redux/actions'
 
 class CreateQuizComponent extends React.Component {
 
@@ -35,6 +36,7 @@ class CreateQuizComponent extends React.Component {
 			.then(r => r.json())
 			.then(data => {
 				if (data.id) {
+					this.props.addUserQuiz(data)
 					alert("Quiz created!")
 					this.props.history.push('/quizzes')
 				} else {
@@ -45,7 +47,9 @@ class CreateQuizComponent extends React.Component {
 
 	render() {
 		return (
-			this.props.user ? this.props.user.id ?
+			this.props.user
+			? 
+				this.props.user.id ?
 				<div>
 					<h3>Create Quiz</h3>
 					<form onSubmit={this.submitHandler}>
@@ -58,10 +62,10 @@ class CreateQuizComponent extends React.Component {
 				<div>
 					<h3>Please log in.</h3>
 				</div>
-				:
-				<div>
-					<h3>Please log in.</h3>
-				</div>
+			:
+			<div>
+				<h3>Please log in.</h3>
+			</div>
 		)
 	}
 }
@@ -72,4 +76,10 @@ function msp(state) {
 	}
 }
 
-export default connect(msp)(withRouter(CreateQuizComponent))
+function mdp(dispatch) {
+	return {
+		addUserQuiz: quizObj => dispatch(addUserQuiz(quizObj))
+	}
+}
+
+export default connect(msp, mdp)(withRouter(CreateQuizComponent))

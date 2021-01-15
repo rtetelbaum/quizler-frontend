@@ -1,6 +1,7 @@
 import {
 	SET_USER,
 	LOGOUT_USER,
+	ADD_USER_QUIZ,
 	GET_QUIZ,
 	GET_QUESTIONS,
 	SET_TAKER_EMAIL
@@ -15,6 +16,10 @@ export function setUser(userObj) {
 export function logOutUser() {
 	localStorage.removeItem('userID')
 	return ({ type: LOGOUT_USER })
+}
+
+export function addUserQuiz(quizObj) {
+	return ({ type: ADD_USER_QUIZ, payload: quizObj})
 }
 
 export function getQuiz(quizId) {

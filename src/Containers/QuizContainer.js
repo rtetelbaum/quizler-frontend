@@ -16,8 +16,10 @@ function QuizContainer(props) {
 	}
 
 	return (
-		props.user ?
-			props.user.id ?
+		props.user
+		?
+			props.user.id
+			?
 			<div>
 				<h1>Quizmaker {props.user.email}'s Saved Quizzes</h1>
 				<Link to={'/quizzes/create'}><button>Create a Quiz</button></Link>

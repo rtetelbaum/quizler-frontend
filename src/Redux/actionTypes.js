@@ -1,5 +1,6 @@
 export const SET_USER = "SET_USER"
 export const LOGOUT_USER = "LOGOUT_USER"
+export const ADD_USER_QUIZ = "ADD_USER_QUIZ"
 export const GET_QUIZ = "GET_QUIZ"
 export const GET_QUESTIONS = "GET_QUESTIONS"
 export const SET_TAKER_EMAIL = "SET_TAKER_EMAIL"

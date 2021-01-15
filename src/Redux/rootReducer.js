@@ -13,6 +13,8 @@ function userReducer(prevState = defaultState.user, action) {
 			return action.payload
 		case "LOGOUT_USER" :
 			return null
+		case "ADD_USER_QUIZ" :
+			return {...prevState, quizzes: [...prevState.quizzes, action.payload]}
 		default :
 			return prevState
 	}
