@@ -1,6 +1,6 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {getQuiz} from '../Redux/actions'
+import { connect } from 'react-redux'
+import { getQuiz } from '../Redux/actions'
 import QuestionComponent from './QuestionComponent'
 import EmailQuizComponent from './EmailQuizComponent'
 import TakerEmailComponent from './TakerEmailComponent'
@@ -28,7 +28,7 @@ class QuizComponent extends React.Component {
 		e.preventDefault()
 		
 		const numQuestions = this.props.quiz.questions.length
-		const quizQA = this.props.allQuestions.filter(q => q.quiz_id === this.props.quiz.id)
+		const quizQA = this.props.quiz.questions
 		const sortedQuizQA = quizQA.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
 		const arrayOfCorrectQA = sortedQuizQA.map(qa => {
 			let rObj = {}
@@ -74,7 +74,7 @@ class QuizComponent extends React.Component {
 		emailjs.send('service_fcfonus', 'template_ej9tm39', templateParams, process.env.REACT_APP_EMAILJS_USERID)
 		.then(function(response) {
 			 console.log('SUCCESS!', response.status, response.text)
-			 alert(`Quiz results successfully sent to ${quizmaker}!`)
+			 alert(`Quiz results successfully sent to ${quizmaker}.`)
 		}, function(error) {
 			 console.log('FAILED...', error)
 			 alert('Oops... something went wrong. Please try again.')
@@ -108,7 +108,6 @@ function msp(state) {
 	return {
 		user: state.user,
 		quiz: state.quiz,
-		allQuestions: state.questions,
 		takerEmail: state.takerEmail
 	}
 }

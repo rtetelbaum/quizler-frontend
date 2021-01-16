@@ -7,7 +7,6 @@ import {
 	POST_USER_QUIZ,
 	DELETE_USER_QUIZ,
 	GET_QUIZ,
-	GET_QUESTIONS,
 	SET_TAKER_EMAIL
 } from './actionTypes'
 
@@ -119,18 +118,8 @@ export function getQuiz(quizId) {
 	return function (dispatch) {
 		fetch(`${BASE_URL}/api/v1/quizzes/${quizId}`)
 			.then(r => r.json())
-			.then(data => {
-				dispatch({ type: GET_QUIZ, payload: data })
-			})
-	}
-}
-
-export function getQuestions() {
-	return function (dispatch) {
-		fetch(`${BASE_URL}/api/v1/questions`)
-			.then(r => r.json())
-			.then(data => {
-				dispatch({ type: GET_QUESTIONS, payload: data })
+			.then(quizObj => {
+				dispatch({ type: GET_QUIZ, payload: quizObj })
 			})
 	}
 }

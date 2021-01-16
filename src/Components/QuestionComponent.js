@@ -1,24 +1,18 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {getQuestions} from '../Redux/actions'
 import AnswerComponent from './AnswerComponent'
 
 class QuestionComponent extends React.Component {
 
-	componentDidMount() {
-		this.props.getQuestions()
-	}
-
 	arrayOfAnswers() {
-		const thisQuestion = this.props.allQuestions.filter(q => q.id === this.props.question.id)
-		const answersArray = thisQuestion[0].answers
+		const thisQuestion = this.props.question
+		const answersArray = thisQuestion.answers
 		const sortedAnswers = answersArray.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
-		return sortedAnswers.map(answer => <AnswerComponent key={answer.id} answer={answer} question={this.props.question.question} changeHandler={this.props.changeHandler} />)
+		return sortedAnswers.map(answer => <AnswerComponent key={answer.id} answer={answer} question={thisQuestion} changeHandler={this.props.changeHandler} />)
 	}
 
 	render() {
 		return (
-			this.props.allQuestions
+			this.props.question
 			?
 			<li>
 				{this.props.question.question}
@@ -31,16 +25,4 @@ class QuestionComponent extends React.Component {
 	}
 }
 
-function msp(state) {
-	return {
-		allQuestions: state.questions
-	}
-}
-
-function mdp(dispatch) {
-	return {
-		getQuestions: () => dispatch(getQuestions())
-	}
-}
-
-export default connect(msp, mdp)(QuestionComponent)
+export default QuestionComponent
