@@ -1,27 +1,12 @@
 import React from 'react'
-import {removeUserQuiz} from '../Redux/actions'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import { deleteUserQuiz } from '../Redux/actions'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 function QuizContainer(props) {
 
-	const BASE_URL = "http://localhost:4000"
-
 	const deleteQuizHandler = (quizID) => {
-		if (window.confirm("Are you sure you want to delete this quiz?")) {
-			fetch(`${BASE_URL}/api/v1/quizzes/${quizID}`, {
-				method: 'DELETE',
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			})
-				.then(r => r.json())
-				.then(data => {
-					if (Object.keys(data).length === 0) {
-						props.removeUserQuiz(quizID)
-					}
-				})
-		}
+		if (window.confirm("Are you sure you want to delete this quiz?")) {props.deleteQuiz(quizID)}
 	}
 	
 	const arrayOfQuizzes = () => {
@@ -43,7 +28,6 @@ function QuizContainer(props) {
 			?
 			<div>
 				<h1>Quizmaker {props.user.email}'s Saved Quizzes</h1>
-				<Link to={'/quizzes/create'}><button>Create a Quiz</button></Link>
 				{
 					arrayOfQuizzes().length === 0
 						?
@@ -71,7 +55,7 @@ function msp(state) {
 
 function mdp(dispatch) {
 	return {
-		removeUserQuiz: (quizID) => dispatch(removeUserQuiz(quizID))
+		deleteQuiz: (quizID) => dispatch(deleteUserQuiz(quizID))
 	}
 }
 

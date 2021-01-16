@@ -16,11 +16,11 @@ function userReducer(prevState = defaultState.user, action) {
 			return action.payload
 		case "SET_USER" :
 			return action.payload
-		case "LOGOUT_USER" :
+		case "LOG_OUT_USER" :
 			return null
-		case "ADD_USER_QUIZ" :
+		case "POST_USER_QUIZ" :
 			return {...prevState, quizzes: [...prevState.quizzes, action.payload]}
-		case "REMOVE_USER_QUIZ" :
+		case "DELETE_USER_QUIZ" :
 			return {...prevState, quizzes: [...prevState.quizzes.filter(quiz => quiz.id !== action.payload)]}
 		default :
 			return prevState

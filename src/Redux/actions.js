@@ -3,9 +3,9 @@ import {
 	GET_USER,
 	GET_USERS,
 	SET_USER,
-	LOGOUT_USER,
-	ADD_USER_QUIZ,
-	REMOVE_USER_QUIZ,
+	LOG_OUT_USER,
+	POST_USER_QUIZ,
+	DELETE_USER_QUIZ,
 	GET_QUIZ,
 	GET_QUESTIONS,
 	SET_TAKER_EMAIL
@@ -32,7 +32,7 @@ export function postUser(userObj, ownProps) {
 					if (userObj.exception.includes("Email has already been taken")) {
 						alert("Email has already been taken.")
 					} else if (userObj.exception.includes("Email can't be blank")) {
-						alert("Email can't be blank")
+						alert("Email can't be blank.")
 					} else if (userObj.exception.includes("Password can't be blank")) {
 						alert("Password can't be blank.")
 					}
@@ -46,7 +46,7 @@ export function getUser(userID) {
 		fetch(`${BASE_URL}/api/v1/users/${userID}`)
 			.then(r => r.json())
 			.then(userObj => {
-				dispatch({ type: GET_USER, payload: userObj})
+				dispatch({ type: GET_USER, payload: userObj })
 			})
 	}
 }
@@ -56,7 +56,7 @@ export function getUsers() {
 		fetch(`${BASE_URL}/api/v1/users`)
 			.then(r => r.json())
 			.then(userObjs => {
-				dispatch({ type: GET_USERS, payload: userObjs})
+				dispatch({ type: GET_USERS, payload: userObjs })
 			})
 	}
 }
@@ -70,19 +70,48 @@ export function setUser(userObj) {
 export function logOutUser() {
 	return function (dispatch) {
 		localStorage.removeItem('userID')
-		dispatch({ type: LOGOUT_USER })
+		dispatch({ type: LOG_OUT_USER })
+		alert("Logged out.")
 	}
 }
 
-export function addUserQuiz(quizObj) {
+export function postUserQuiz(quizObj,ownProps) {
 	return function (dispatch) {
-		dispatch({ type: ADD_USER_QUIZ, payload: quizObj })
+		fetch(`${BASE_URL}/api/v1/quizzes`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(quizObj),
+		})
+			.then(r => r.json())
+			.then(quizObj => {
+				if (quizObj.id) {
+					dispatch({ type: POST_USER_QUIZ, payload: quizObj })
+					alert("Quiz created.")
+					ownProps.history.push('/quizzes')
+				} else {
+					alert('Oops... something went wrong. Please try again.')
+				}
+			})
 	}
 }
 
-export function removeUserQuiz(quizID) {
+export function deleteUserQuiz(quizID) {
 	return function (dispatch) {
-		dispatch({ type: REMOVE_USER_QUIZ, payload: quizID })
+		fetch(`${BASE_URL}/api/v1/quizzes/${quizID}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+			.then(r => r.json())
+			.then(data => {
+				if (Object.keys(data).length === 0) {
+					dispatch({ type: DELETE_USER_QUIZ, payload: quizID })
+					alert("Quiz deleted.")
+				}
+			})
 	}
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
-import { addUserQuiz } from '../Redux/actions'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { postUserQuiz } from '../Redux/actions'
 
 class CreateQuizComponent extends React.Component {
 
@@ -14,35 +14,13 @@ class CreateQuizComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
-		this.postQuiz(this.state)
+		this.props.postQuiz(this.state)
 	}
 
 	changeHandler = (e) => {
 		this.setState({
 			[e.target.name]: e.target.value
 		})
-	}
-
-	BASE_URL = "http://localhost:4000"
-
-	postQuiz = (quizObj) => {
-		fetch(`${this.BASE_URL}/api/v1/quizzes`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(quizObj),
-		})
-			.then(r => r.json())
-			.then(data => {
-				if (data.id) {
-					this.props.addUserQuiz(data)
-					alert("Quiz created!")
-					this.props.history.push('/quizzes')
-				} else {
-					alert('Oops... something went wrong. Please try again.')
-				}
-			})
 	}
 
 	render() {
@@ -76,9 +54,9 @@ function msp(state) {
 	}
 }
 
-function mdp(dispatch) {
+function mdp(dispatch, ownProps) {
 	return {
-		addUserQuiz: quizObj => dispatch(addUserQuiz(quizObj))
+		postQuiz: quizObj => dispatch(postUserQuiz(quizObj, ownProps))
 	}
 }
 
