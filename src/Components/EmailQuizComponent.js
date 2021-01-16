@@ -43,7 +43,7 @@ class EmailQuizComponent extends React.Component {
 	render() {
 		return (
 			<div>
-				<p>To send to more than one recipient, separate addresses with a commma, e.g. 'john@doe.com, jane@doe.com'</p>
+				<p>To send to more than one recipient, separate addresses with a comma, e.g. 'john@doe.com, jane@doe.com'</p>
 				<form onSubmit={this.submitHandler}>
 					<input type="text" name="email" placeholder="Quiz Recipient Email" value={this.state.email} onChange={this.changeHandler} required />
 					<button type="submit">Email Quiz</button>
