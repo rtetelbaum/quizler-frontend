@@ -10,7 +10,7 @@ class LogInComponent extends React.Component {
 	}
 
 	componentDidMount() {
-		if (!this.props.user.id) {this.props.getUsers()}
+		if (!this.props.user) {this.props.getUsers()}
 	}
 
 	changeHandler = (e) => {
@@ -42,22 +42,30 @@ class LogInComponent extends React.Component {
 
 	render() {
 		return (
-			this.props.user.id
-			?
-			<Redirect to="/quizzes" />
-			:
-				Object.keys(this.props.users).length > 0
+			this.props.user
 				?
-				<div>
-					<h3>Log In</h3>
-					<form onSubmit={this.submitHandler}>
-						<input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.changeHandler} /><br />
-						<input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.changeHandler} /><br />
-						<button type="submit">Log In</button>
-					</form>
-				</div>
+				this.props.user.id
+					?
+					<Redirect to="/quizzes" />
+					:
+					<h3>Loading...</h3>
 				:
-				<h3>Loading...</h3>
+				this.props.users
+					?
+					Object.keys(this.props.users).length > 0
+						?
+						<div>
+							<h3>Log In</h3>
+							<form onSubmit={this.submitHandler}>
+								<input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.changeHandler} /><br />
+								<input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.changeHandler} /><br />
+								<button type="submit">Log In</button>
+							</form>
+						</div>
+						:
+						<h3>Loading...</h3>
+					:
+					<h3>Loading...</h3>	
 		)
 	}
 }

@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 
 const defaultState = {
-	user: {},
-	users: {},
-	quiz: {},
-	questions: {},
-	takerEmail: ""
+	user: null,
+	users: null,
+	quiz: null,
+	questions: null,
+	takerEmail: null
 }
 
 function userReducer(prevState = defaultState.user, action) {

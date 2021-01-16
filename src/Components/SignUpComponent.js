@@ -24,7 +24,7 @@ class SignUpComponent extends React.Component {
 	render() {
 		return (
 			<div>
-				{this.props.user.id ? <Redirect to="/quizzes" /> : null }
+				{this.props.user ? this.props.user.id ? <Redirect to="/quizzes" /> : null : null}
 				<h3>Sign Up</h3>
 				<form onSubmit={this.submitHandler}>
 					<input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.changeHandler} /><br />
