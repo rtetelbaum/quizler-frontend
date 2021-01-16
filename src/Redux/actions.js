@@ -9,7 +9,8 @@ import {
 	GET_QUIZ,
 	POST_QUIZ_QUESTION,
 	SET_TAKER_EMAIL,
-	DELETE_QUIZ_QUESTION
+	DELETE_QUIZ_QUESTION,
+	PATCH_QUIZ_QUESTION
 } from './actionTypes'
 
 const BASE_URL = "http://localhost:4000"
@@ -160,6 +161,27 @@ export function deleteQuizQuestion(questionID) {
 				if (Object.keys(data).length === 0) {
 					dispatch({ type: DELETE_QUIZ_QUESTION, payload: questionID })
 					alert("Question deleted.")
+				}
+			})
+	}
+}
+
+export function patchQuizQuestion(questionObj, questionID) {
+	return function (dispatch) {
+		fetch(`${BASE_URL}/api/v1/questions/${questionID}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(questionObj),
+		})
+			.then(r => r.json())
+			.then(questionObj => {
+				if (questionObj.id) {
+					dispatch({ type: PATCH_QUIZ_QUESTION, payload: questionObj })
+					alert("Question edited.")
+				} else {
+					alert('Oops... something went wrong. Please try again.')
 				}
 			})
 	}

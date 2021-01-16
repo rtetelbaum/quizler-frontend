@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-import { postQuizQuestion } from './actions'
 
 const defaultState = {
 	user: null,
@@ -44,6 +43,9 @@ function quizReducer(prevState = defaultState.quiz, action) {
 			return {...prevState, questions: [...prevState.questions, action.payload]}
 		case "DELETE_QUIZ_QUESTION" :
 			return {...prevState, questions: [...prevState.questions.filter(question => question.id !== action.payload)]}
+		case "PATCH_QUIZ_QUESTION" :
+			const questions = prevState.questions.map(questionObj => questionObj.id === action.payload.id ? {...questionObj, question: action.payload.question} : questionObj)
+			return {...prevState, questions: questions}
 		default :
 			return prevState
 	}

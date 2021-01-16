@@ -1,9 +1,14 @@
 import React from 'react'
 import AnswerComponent from './AnswerComponent'
+import EditQuestionComponent from './EditQuestionComponent'
 import { deleteQuizQuestion } from '../Redux/actions'
 import { connect } from 'react-redux'
 
 class QuestionComponent extends React.Component {
+
+	state = {
+		editClicked: false
+	}
 
 	arrayOfAnswers() {
 		const thisQuestion = this.props.question
@@ -24,7 +29,11 @@ class QuestionComponent extends React.Component {
 				{this.props.question.question}
 				{this.props.user
 				?
-				<button type="button" onClick={() => this.deleteQuestionHandler(this.props.question.id)}>Delete Question</button>
+				<div>
+					{this.state.editClicked ? <div><EditQuestionComponent questionObj={this.props.question} /><br /></div> : null}
+					<button type="button" onClick={() => this.setState({editClicked: !this.state.editClicked})}>Edit Question</button>
+					<button type="button" onClick={() => this.deleteQuestionHandler(this.props.question.id)}>Delete Question</button>
+				</div>
 				:
 				null
 				}
