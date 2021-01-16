@@ -4,8 +4,7 @@ import { postQuizQuestion } from '../Redux/actions'
 
 class CreateQuestionComponent extends React.Component {
 	state = {
-		question: "",
-		quiz_id: this.props.quiz.id
+		question: ""
 	}
 
 	changeHandler = (e) => {
@@ -16,7 +15,11 @@ class CreateQuestionComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
-		this.props.postQuizQuestion(this.state)
+		const questionObj = {
+			question: this.state.question,
+			quiz_id: this.props.quiz.id
+		}
+		this.props.postQuizQuestion(questionObj)
 	}
 
 	render() {
