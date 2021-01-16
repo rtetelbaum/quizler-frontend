@@ -15,7 +15,10 @@ class EmailQuizComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
-		
+		this.emailQuiz()
+	}
+
+	emailQuiz = () => {
 		const BASE_URL = "http://localhost:3000"
 
 		const templateParams = {

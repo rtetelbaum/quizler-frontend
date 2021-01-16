@@ -5,6 +5,7 @@ import QuestionComponent from './QuestionComponent'
 import EmailQuizComponent from './EmailQuizComponent'
 import TakerEmailComponent from './TakerEmailComponent'
 import emailjs from 'emailjs-com'
+import { withRouter } from 'react-router-dom'
 
 class QuizComponent extends React.Component {
 
@@ -26,7 +27,10 @@ class QuizComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
-		
+		this.emailQuizResults()
+	}
+
+	emailQuizResults = () => {
 		const numQuestions = this.props.quiz.questions.length
 		const quizQA = this.props.quiz.questions
 		const sortedQuizQA = quizQA.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
@@ -71,10 +75,13 @@ class QuizComponent extends React.Component {
 		let quizmaker
 		if (this.props.quiz) {quizmaker = this.props.quiz.quizmaker}
 
+		const pushHome = () => {this.props.history.push('/home')}
+
 		emailjs.send('service_fcfonus', 'template_ej9tm39', templateParams, process.env.REACT_APP_EMAILJS_USERID)
 		.then(function(response) {
 			 console.log('SUCCESS!', response.status, response.text)
 			 alert(`Quiz results successfully sent to ${quizmaker}.`)
+			 pushHome()
 		}, function(error) {
 			 console.log('FAILED...', error)
 			 alert('Oops... something went wrong. Please try again.')
@@ -118,4 +125,4 @@ function mdp(dispatch) {
 	}
 }
 
-export default connect(msp, mdp)(QuizComponent)
+export default connect(msp, mdp) (withRouter(QuizComponent))

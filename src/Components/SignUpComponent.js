@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { postUser, logOutUser } from '../Redux/actions'
-import { Redirect, withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 class SignUpComponent extends React.Component {
 	
@@ -49,4 +49,4 @@ function mdp(dispatch, ownProps) {
 	}
 }
 
-export default connect(msp, mdp) (withRouter(SignUpComponent))
+export default connect(msp, mdp) (SignUpComponent)
