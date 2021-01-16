@@ -59,4 +59,4 @@ function mdp(dispatch) {
 	}
 }
 
-export default connect(msp, mdp)(QuizContainer)
+export default connect(msp, mdp) (QuizContainer)

@@ -1,12 +1,25 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 function AnswerComponent(props) {
+
 	return (
 		<div>
-			<input type="radio" name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} required />
+			{props.user
+				?
+				<input type="radio" name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} />
+				:
+				<input type="radio" name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} required />
+			}
 			<label htmlFor={props.answer.answer}>{props.answer.answer}</label>
 		</div>
 	)
 }
 
-export default AnswerComponent
+function msp(state) {
+	return {
+		user: state.user
+	}
+}
+
+export default connect(msp)(AnswerComponent)

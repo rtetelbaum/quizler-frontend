@@ -4,6 +4,7 @@ import { getQuiz } from '../Redux/actions'
 import QuestionComponent from './QuestionComponent'
 import EmailQuizComponent from './EmailQuizComponent'
 import TakerEmailComponent from './TakerEmailComponent'
+import CreateQuestionComponent from './CreateQuestionComponent'
 import emailjs from 'emailjs-com'
 import { withRouter } from 'react-router-dom'
 
@@ -36,7 +37,9 @@ class QuizComponent extends React.Component {
 		const sortedQuizQA = quizQA.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
 		const arrayOfCorrectQA = sortedQuizQA.map(qa => {
 			let rObj = {}
-			rObj[qa.question] = qa.answers.filter(a => a.correct)[0].answer
+			if (qa.answers.length > 1) {
+				rObj[qa.question] = qa.answers.filter(a => a.correct)[0].answer
+			}
 			return rObj
 		})
 		const userQA = Object.entries(this.state)
@@ -98,6 +101,7 @@ class QuizComponent extends React.Component {
 				<p>Subject: {this.props.quiz.subject}</p>
 				{!this.props.user ? <TakerEmailComponent /> : null}
 				{this.props.user ? <EmailQuizComponent senderEmail={this.props.user.email} url={this.props.match.url} /> : null}
+				{this.props.user ? <CreateQuestionComponent  /> : null}
 				<form onSubmit={this.submitHandler}>
 					<ol>
 						{this.arrayOfQuestions()}

@@ -7,7 +7,9 @@ import {
 	POST_USER_QUIZ,
 	DELETE_USER_QUIZ,
 	GET_QUIZ,
-	SET_TAKER_EMAIL
+	POST_QUIZ_QUESTION,
+	SET_TAKER_EMAIL,
+	DELETE_QUIZ_QUESTION
 } from './actionTypes'
 
 const BASE_URL = "http://localhost:4000"
@@ -120,6 +122,45 @@ export function getQuiz(quizId) {
 			.then(r => r.json())
 			.then(quizObj => {
 				dispatch({ type: GET_QUIZ, payload: quizObj })
+			})
+	}
+}
+
+export function postQuizQuestion(questionObj) {
+	return function (dispatch) {
+		fetch(`${BASE_URL}/api/v1/questions`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(questionObj),
+		})
+			.then(r => r.json())
+			.then(questionObj => {
+				if (questionObj.id) {
+					dispatch({ type: POST_QUIZ_QUESTION, payload: questionObj })
+					alert("Question added.")
+				} else {
+					alert('Oops... something went wrong. Please try again.')
+				}
+			})
+	}
+}
+
+export function deleteQuizQuestion(questionID) {
+	return function (dispatch) {
+		fetch(`${BASE_URL}/api/v1/questions/${questionID}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+			.then(r => r.json())
+			.then(data => {
+				if (Object.keys(data).length === 0) {
+					dispatch({ type: DELETE_QUIZ_QUESTION, payload: questionID })
+					alert("Question deleted.")
+				}
 			})
 	}
 }
