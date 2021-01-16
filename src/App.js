@@ -1,8 +1,8 @@
 import './App.css'
 import React from 'react'
-import {Route, Switch, Redirect} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {setUser} from './Redux/actions'
+import { Route, Switch, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { getUser } from './Redux/actions'
 import NavComponent from './Components/NavComponent'
 import FooterComponent from './Components/FooterComponent'
 import HomeComponent from './Components/HomeComponent'
@@ -14,17 +14,9 @@ import QuizComponent from './Components/QuizComponent'
 
 class App extends React.Component {
 
-	BASE_URL = "http://localhost:4000"
-
 	componentDidMount() {
 		const userID = localStorage.getItem("userID")
-		if (userID) {
-			fetch(`${this.BASE_URL}/api/v1/users/${userID}`)
-				.then(r => r.json())
-				.then(userObj => {
-					this.props.setUser(userObj)
-				})
-		}
+		if (userID) {this.props.getUser(userID)}
 	}
 
 	render() {
@@ -54,7 +46,7 @@ class App extends React.Component {
 
 function mdp(dispatch) {
 	return {
-		setUser: userObj => dispatch(setUser(userObj))
+		getUser: userID => dispatch(getUser(userID))
 	}
 }
 

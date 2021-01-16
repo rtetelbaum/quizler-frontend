@@ -6,10 +6,10 @@ import { addUserQuiz } from '../Redux/actions'
 class CreateQuizComponent extends React.Component {
 
 	state = {
-		quizmaker: this.props.user.email,
+		quizmaker: this.props.user ? this.props.user.email : null,
 		title: "",
 		subject: "",
-		user_id: this.props.user.id
+		user_id: this.props.user ? this.props.user.id : null
 	}
 
 	submitHandler = (e) => {

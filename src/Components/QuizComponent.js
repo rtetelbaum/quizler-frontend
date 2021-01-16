@@ -90,13 +90,13 @@ class QuizComponent extends React.Component {
 				<h3>Title: {this.props.quiz.title}</h3>
 				<p>Subject: {this.props.quiz.subject}</p>
 				{!this.props.user ? <TakerEmailComponent /> : null}
+				{this.props.user ? <EmailQuizComponent senderEmail={this.props.user.email} url={this.props.match.url} /> : null}
 				<form onSubmit={this.submitHandler}>
 					<ol>
 						{this.arrayOfQuestions()}
 					</ol>
 					{!this.props.user ? <button type="submit">Submit & Email to Quizmaker</button> : null}
 				</form>
-				{this.props.user ? <EmailQuizComponent senderEmail={this.props.user.email} url={this.props.match.url} /> : null}
 			</div>
 			:
 			<h3>Loading quiz...</h3>

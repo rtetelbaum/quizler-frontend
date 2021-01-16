@@ -1,7 +1,7 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {setUser} from '../Redux/actions'
-import {Redirect} from 'react-router-dom'
+import { connect } from 'react-redux'
+import { getUsers, setUser } from '../Redux/actions'
+import { Redirect } from 'react-router-dom'
 
 class LogInComponent extends React.Component {
 	state = {
@@ -9,18 +9,8 @@ class LogInComponent extends React.Component {
 		password: ""
 	}
 
-	BASE_URL = "http://localhost:4000"
-
-	allUsers = []
-
 	componentDidMount() {
-		if (!this.props.user) {
-			fetch(`${this.BASE_URL}/api/v1/users`)
-				.then(r => r.json())
-				.then(users => {
-					this.allUsers = users
-				})
-		}
+		if (!this.props.user.id) {this.props.getUsers()}
 	}
 
 	changeHandler = (e) => {
@@ -31,7 +21,7 @@ class LogInComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
-		if (this.allUsers) {
+		if (Object.keys(this.props.users).length > 0) {
 			this.findUser()
 		} else {
 			alert("Something went wrong, please try again.")
@@ -39,7 +29,7 @@ class LogInComponent extends React.Component {
 	}
 
 	findUser = () => {
-		const foundUser = this.allUsers.find(user => user.email === this.state.email)
+		const foundUser = this.props.users.find(user => user.email === this.state.email)
 		if (!foundUser) {
 			alert("Email and/or password incorrect. Please try again.")
 		} else if (foundUser.password === this.state.password) {
@@ -52,11 +42,11 @@ class LogInComponent extends React.Component {
 
 	render() {
 		return (
-			this.props.user
+			this.props.user.id
 			?
 			<Redirect to="/quizzes" />
 			:
-				this.allUsers
+				Object.keys(this.props.users).length > 0
 				?
 				<div>
 					<h3>Log In</h3>
@@ -74,12 +64,14 @@ class LogInComponent extends React.Component {
 
 function msp(state) {
 	return {
-		user: state.user
+		user: state.user,
+		users: state.users
 	}
 }
 
 function mdp(dispatch) {
 	return {
+		getUsers: () => dispatch(getUsers()),
 		setUser: userObj => dispatch(setUser(userObj))
 	}
 }
