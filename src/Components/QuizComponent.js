@@ -93,7 +93,7 @@ class QuizComponent extends React.Component {
 			this.props.quiz
 			?
 			<div>
-				<h1>Quiz by Quizmaker {this.props.quiz.quizmaker}</h1>
+				<h1>Quiz by Quizmaker: {this.props.quiz.quizmaker}</h1>
 				<h3>Title: {this.props.quiz.title}</h3>
 				<p>Subject: {this.props.quiz.subject}</p>
 				{!this.props.user ? <TakerEmailComponent /> : null}
