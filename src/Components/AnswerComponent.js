@@ -9,9 +9,11 @@ function AnswerComponent(props) {
 				?
 				<input type="radio" name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} />
 				:
-				<input type="radio" name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} required />
+				<input type="radio" name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} />
 			}
+
 			<label htmlFor={props.answer.answer}>{props.answer.answer}</label>
+
 		</div>
 	)
 }

@@ -10,7 +10,7 @@ class LogInComponent extends React.Component {
 	}
 
 	componentDidMount() {
-		if (!this.props.user) {this.props.getUsers()}
+		if (!this.props.user) { this.props.getUsers() }
 	}
 
 	changeHandler = (e) => {
@@ -21,15 +21,22 @@ class LogInComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
+
 		if (Object.keys(this.props.users).length > 0) {
 			this.findUser()
 		} else {
 			alert("Something went wrong, please try again.")
 		}
+
+		this.setState({
+			email: "",
+			password: ""
+		})
 	}
 
 	findUser = () => {
 		const foundUser = this.props.users.find(user => user.email === this.state.email)
+
 		if (!foundUser) {
 			alert("Email and/or password incorrect. Please try again.")
 		} else if (foundUser.password === this.state.password) {
@@ -56,16 +63,18 @@ class LogInComponent extends React.Component {
 						?
 						<div>
 							<h3>Log In</h3>
+
 							<form onSubmit={this.submitHandler}>
-								<input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.changeHandler} /><br />
-								<input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.changeHandler} /><br />
+								<input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.changeHandler} required /><br />
+								<input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.changeHandler} required /><br />
 								<button type="submit">Log In</button>
 							</form>
+
 						</div>
 						:
 						<h3>Loading...</h3>
 					:
-					<h3>Loading...</h3>	
+					<h3>Loading...</h3>
 		)
 	}
 }
@@ -84,4 +93,4 @@ function mdp(dispatch) {
 	}
 }
 
-export default connect(msp, mdp) (LogInComponent)
+export default connect(msp, mdp)(LogInComponent)

@@ -15,12 +15,15 @@ class CreateQuestionComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
+		
 		const questionObj = {
 			question: this.state.question,
 			quiz_id: this.props.quiz.id
 		}
+		
 		this.props.postQuizQuestion(questionObj)
-		this.setState({question: ""})
+		
+		this.setState({ question: "" })
 	}
 
 	render() {
@@ -45,4 +48,4 @@ function mdp(dispatch) {
 	}
 }
 
-export default connect(msp, mdp) (CreateQuestionComponent)
+export default connect(msp, mdp)(CreateQuestionComponent)

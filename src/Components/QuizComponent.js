@@ -23,18 +23,16 @@ class QuizComponent extends React.Component {
 	}
 
 	changeHandler = (e) => {
-		this.setState({[e.target.name]: e.target.value})
-	}
-
-	submitHandler = (e) => {
-		e.preventDefault()
-		this.emailQuizResults()
+		this.setState({ [e.target.name]: e.target.value })
 	}
 
 	emailQuizResults = () => {
 		const numQuestions = this.props.quiz.questions.length
+		
 		const quizQA = this.props.quiz.questions
+		
 		const sortedQuizQA = quizQA.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
+		
 		const arrayOfCorrectQA = sortedQuizQA.map(qa => {
 			let rObj = {}
 			if (qa.answers.length > 1) {
@@ -42,29 +40,31 @@ class QuizComponent extends React.Component {
 			}
 			return rObj
 		})
+		
 		const userQA = Object.entries(this.state)
+		
 		const arrayOfUserQA = userQA.map(qa => {
 			let rObj = {}
 			rObj[qa[0]] = qa[1]
 			return rObj
 		})
-		
+
 		let numCorrectAnswers = 0
-		for (let i = 0,  l = numQuestions; i < l; i++) {
+		for (let i = 0, l = numQuestions; i < l; i++) {
 			if (JSON.stringify(arrayOfCorrectQA[i]) === JSON.stringify(arrayOfUserQA[i])) {
 				numCorrectAnswers++
 			}
 		}
-		
+
 		const score = Math.round((numCorrectAnswers / numQuestions) * 100).toString() + "%"
 
 		const quizAnswers = []
 
-		for (let i = 0,  l = arrayOfUserQA.length; i < l; i++) {
+		for (let i = 0, l = arrayOfUserQA.length; i < l; i++) {
 			quizAnswers.push(`<li><b>Question:</b> ${Object.keys(arrayOfUserQA[i])[0]}<br>
 				<b>Quiztaker Answer:</b> ${Object.values(arrayOfUserQA[i])[0]}<br>
 				<b>Correct Answer:</b> ${Object.values(arrayOfCorrectQA[i])[0]}</li>`
-				)
+			)
 		}
 
 		const templateParams = {
@@ -76,41 +76,40 @@ class QuizComponent extends React.Component {
 		}
 
 		let quizmaker
-		if (this.props.quiz) {quizmaker = this.props.quiz.quizmaker}
+		if (this.props.quiz) { quizmaker = this.props.quiz.quizmaker }
 
-		const pushHome = () => {this.props.history.push('/home')}
+		const pushHome = () => { this.props.history.push('/home') }
 
 		emailjs.send('service_fcfonus', 'template_ej9tm39', templateParams, process.env.REACT_APP_EMAILJS_USERID)
-		.then(function(response) {
-			 console.log('SUCCESS!', response.status, response.text)
-			 alert(`Quiz results successfully sent to ${quizmaker}.`)
-			 pushHome()
-		}, function(error) {
-			 console.log('FAILED...', error)
-			 alert('Oops... something went wrong. Please try again.')
-		})
+			.then(function (response) {
+				console.log('SUCCESS!', response.status, response.text)
+				alert(`Quiz results successfully sent to ${quizmaker}.`)
+				pushHome()
+			}, function (error) {
+				console.log('FAILED...', error)
+				alert('Oops... something went wrong. Please try again.')
+			})
+
 	}
-	
+
 	render() {
 		return (
 			this.props.quiz
-			?
-			<div>
-				<h1>Quiz by Quizmaker: {this.props.quiz.quizmaker}</h1>
-				<h3>Title: {this.props.quiz.title}</h3>
-				<p>Subject: {this.props.quiz.subject}</p>
-				{!this.props.user ? <TakerEmailComponent /> : null}
-				{this.props.user ? <EmailQuizComponent senderEmail={this.props.user.email} url={this.props.match.url} /> : null}
-				{this.props.user ? <CreateQuestionComponent  /> : null}
-				<form onSubmit={this.submitHandler}>
+				?
+				<div>
+					<h1>Quiz by Quizmaker: {this.props.quiz.quizmaker}</h1>
+					<h3>Title: {this.props.quiz.title}</h3>
+					<p>Subject: {this.props.quiz.subject}</p>
+					{!this.props.user ? <TakerEmailComponent /> : null}
+					{this.props.user ? <EmailQuizComponent senderEmail={this.props.user.email} url={this.props.match.url} /> : null}
+					{this.props.user ? <CreateQuestionComponent /> : null}
 					<ol>
 						{this.arrayOfQuestions()}
 					</ol>
-					{!this.props.user ? <button type="submit">Submit & Email to Quizmaker</button> : null}
-				</form>
-			</div>
-			:
-			<h3>Loading quiz...</h3>
+					{!this.props.user ? <button type="button" onClick={() => this.emailQuizResults()}>Submit & Email to Quizmaker</button> : null}
+				</div>
+				:
+				<h3>Loading quiz...</h3>
 		)
 	}
 }
@@ -129,4 +128,4 @@ function mdp(dispatch) {
 	}
 }
 
-export default connect(msp, mdp) (withRouter(QuizComponent))
+export default connect(msp, mdp)(withRouter(QuizComponent))

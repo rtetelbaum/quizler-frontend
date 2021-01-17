@@ -9,7 +9,7 @@ class EditQuestionComponent extends React.Component {
 	}
 
 	changeHandler = (e) => {
-		this.setState({[e.target.name]: e.target.value})
+		this.setState({ [e.target.name]: e.target.value })
 	}
 
 	editQuestionHandler = () => {
@@ -20,7 +20,9 @@ class EditQuestionComponent extends React.Component {
 				question: this.state.question,
 				quiz_id: this.props.questionObj.quiz_id
 			}
+			
 			this.props.patchQuestion(questionObj, this.props.questionObj.id)
+			
 			this.props.setEditQClicked(false)
 		}
 	}
@@ -42,4 +44,4 @@ function mdp(dispatch) {
 	}
 }
 
-export default connect(null, mdp) (EditQuestionComponent)
+export default connect(null, mdp)(EditQuestionComponent)

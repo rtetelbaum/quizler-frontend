@@ -18,9 +18,11 @@ class QuestionComponent extends React.Component {
 	}
 
 	editQHandler = () => {
+
 		if (!this.props.editQClicked) {
 			this.props.setEditQClicked(true)
 		}
+
 		this.props.setEditQID(this.props.question.id)
 	}
 

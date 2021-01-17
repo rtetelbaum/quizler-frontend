@@ -9,7 +9,7 @@ class TakerEmailComponent extends React.Component {
 	}
 
 	changeHandler = (e) => {
-		this.setState({[e.target.name]: e.target.value})
+		this.setState({ [e.target.name]: e.target.value })
 		this.props.setTakerEmail(e.target.value)
 	}
 
@@ -17,7 +17,7 @@ class TakerEmailComponent extends React.Component {
 		return (
 			<div>
 				<label htmlFor="Quiztaker Email">What is your email?</label><br />
-				<input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.changeHandler} required />
+				<input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.changeHandler} />
 			</div>
 		)
 	}

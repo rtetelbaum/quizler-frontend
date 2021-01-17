@@ -4,7 +4,7 @@ import { postUser, logOutUser } from '../Redux/actions'
 import { Redirect } from 'react-router-dom'
 
 class SignUpComponent extends React.Component {
-	
+
 	state = {
 		email: "",
 		password: ""
@@ -19,18 +19,26 @@ class SignUpComponent extends React.Component {
 	submitHandler = (e) => {
 		e.preventDefault()
 		this.props.postUser(this.state)
+		this.setState({
+			email: "",
+			password: ""
+		})
 	}
 
 	render() {
 		return (
 			<div>
+
 				{this.props.user ? this.props.user.id ? <Redirect to="/quizzes" /> : null : null}
+
 				<h3>Sign Up</h3>
+
 				<form onSubmit={this.submitHandler}>
-					<input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.changeHandler} /><br />
-					<input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.changeHandler} /><br />
+					<input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.changeHandler} required /><br />
+					<input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.changeHandler} required /><br />
 					<button type="submit">Sign Up</button>
 				</form>
+
 			</div>
 		)
 	}
@@ -49,4 +57,4 @@ function mdp(dispatch, ownProps) {
 	}
 }
 
-export default connect(msp, mdp) (SignUpComponent)
+export default connect(msp, mdp)(SignUpComponent)

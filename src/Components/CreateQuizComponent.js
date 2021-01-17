@@ -14,7 +14,13 @@ class CreateQuizComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
+		
 		this.props.postQuiz(this.state)
+		
+		this.setState({
+			title: "",
+			subject: ""
+		})
 	}
 
 	changeHandler = (e) => {
@@ -26,24 +32,24 @@ class CreateQuizComponent extends React.Component {
 	render() {
 		return (
 			this.props.user
-			? 
+				?
 				this.props.user.id ?
-				<div>
-					<h3>Create Quiz</h3>
-					<form onSubmit={this.submitHandler}>
-						<input type="text" name="title" placeholder="title" value={this.state.title} onChange={this.changeHandler} required></input><br />
-						<input type="text" name="subject" placeholder="subject" value={this.state.subject} onChange={this.changeHandler} required></input><br />
-						<button type="submit">Create Quiz</button>
-					</form>
-				</div>
+					<div>
+						<h3>Create Quiz</h3>
+						<form onSubmit={this.submitHandler}>
+							<input type="text" name="title" placeholder="title" value={this.state.title} onChange={this.changeHandler} required></input><br />
+							<input type="text" name="subject" placeholder="subject" value={this.state.subject} onChange={this.changeHandler} required></input><br />
+							<button type="submit">Create Quiz</button>
+						</form>
+					</div>
+					:
+					<div>
+						<h3>Please log in.</h3>
+					</div>
 				:
 				<div>
 					<h3>Please log in.</h3>
 				</div>
-			:
-			<div>
-				<h3>Please log in.</h3>
-			</div>
 		)
 	}
 }

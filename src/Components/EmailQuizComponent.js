@@ -15,7 +15,10 @@ class EmailQuizComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
+		
 		this.emailQuiz()
+		
+		this.setState({ email: "" })
 	}
 
 	emailQuiz = () => {
@@ -28,26 +31,29 @@ class EmailQuizComponent extends React.Component {
 		}
 
 		let quiztakerEmail
-		if (this.state.email) {quiztakerEmail = this.state.email}
 		
+		if (this.state.email) { quiztakerEmail = this.state.email }
+
 		emailjs.send('service_fcfonus', 'template_3cu6wee', templateParams, process.env.REACT_APP_EMAILJS_USERID)
-    .then(function(response) {
-			 console.log('SUCCESS!', response.status, response.text)
-			 alert(`Quiz invitation successfully sent to ${quiztakerEmail}.`)
-    }, function(error) {
-			 console.log('FAILED...', error)
-			 alert('Oops... something went wrong. Please try again.')
-    })
+			.then(function (response) {
+				console.log('SUCCESS!', response.status, response.text)
+				alert(`Quiz invitation successfully sent to ${quiztakerEmail}.`)
+			}, function (error) {
+				console.log('FAILED...', error)
+				alert('Oops... something went wrong. Please try again.')
+			})
 	}
 
 	render() {
 		return (
 			<div>
 				<p>To send to more than one recipient, separate addresses with a comma, e.g. 'john@doe.com, jane@doe.com'</p>
+				
 				<form onSubmit={this.submitHandler}>
 					<input type="text" name="email" placeholder="Quiz Recipient Email(s)" value={this.state.email} onChange={this.changeHandler} required />
 					<button type="submit">Email Quiz</button>
 				</form>
+			
 			</div>
 		)
 	}

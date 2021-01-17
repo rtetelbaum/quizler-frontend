@@ -16,29 +16,29 @@ class App extends React.Component {
 
 	componentDidMount() {
 		const userID = localStorage.getItem("userID")
-		if (userID) {this.props.getUser(userID)}
+		if (userID) { this.props.getUser(userID) }
 	}
 
 	render() {
 		return (
 			<div id="app">
-	
+
 				<NavComponent />
-	
+
 				<div id="main">
 					<Switch>
-						<Route path="/home" component={HomeComponent}/>
+						<Route path="/home" component={HomeComponent} />
 						<Route path="/signup" component={SignUpComponent} />
 						<Route path="/login" component={LogInComponent} />
-						<Route path="/quizzes/create" component={CreateQuizComponent}/>
-						<Route exact path="/quizzes/:id" component={QuizComponent}/>
+						<Route path="/quizzes/create" component={CreateQuizComponent} />
+						<Route exact path="/quizzes/:id" component={QuizComponent} />
 						<Route path="/quizzes" component={QuizContainer} />
 						<Route path="/"><Redirect to="/home" /></Route>
 					</Switch>
 				</div>
-	
+
 				<FooterComponent />
-	
+
 			</div>
 		)
 	}
@@ -50,4 +50,4 @@ function mdp(dispatch) {
 	}
 }
 
-export default connect(null, mdp) (App)
+export default connect(null, mdp)(App)
