@@ -10,7 +10,8 @@ import {
 	POST_QUIZ_QUESTION,
 	SET_TAKER_EMAIL,
 	DELETE_QUIZ_QUESTION,
-	PATCH_QUIZ_QUESTION
+	PATCH_QUIZ_QUESTION,
+	SET_EDIT_Q_CLICKED
 } from './actionTypes'
 
 const BASE_URL = "http://localhost:4000"
@@ -77,7 +78,7 @@ export function logOutUser() {
 	}
 }
 
-export function postUserQuiz(quizObj,ownProps) {
+export function postUserQuiz(quizObj, ownProps) {
 	return function (dispatch) {
 		fetch(`${BASE_URL}/api/v1/quizzes`, {
 			method: 'POST',
@@ -190,5 +191,11 @@ export function patchQuizQuestion(questionObj, questionID) {
 export function setTakerEmail(takerEmail) {
 	return function (dispatch) {
 		dispatch({ type: SET_TAKER_EMAIL, payload: takerEmail })
+	}
+}
+
+export function setEditQClicked(isClicked) {
+	return function (dispatch) {
+		dispatch({ type: SET_EDIT_Q_CLICKED, payload: isClicked })
 	}
 }

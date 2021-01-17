@@ -1,14 +1,10 @@
 import React from 'react'
 import AnswerComponent from './AnswerComponent'
 import EditQuestionComponent from './EditQuestionComponent'
-import { deleteQuizQuestion } from '../Redux/actions'
+import { deleteQuizQuestion, setEditQClicked } from '../Redux/actions'
 import { connect } from 'react-redux'
 
 class QuestionComponent extends React.Component {
-
-	state = {
-		editClicked: false
-	}
 
 	arrayOfAnswers() {
 		const thisQuestion = this.props.question
@@ -30,8 +26,8 @@ class QuestionComponent extends React.Component {
 				{this.props.user
 				?
 				<div>
-					{this.state.editClicked ? <div><EditQuestionComponent questionObj={this.props.question} /><br /></div> : null}
-					<button type="button" onClick={() => this.setState({editClicked: !this.state.editClicked})}>Edit Question</button>
+					{this.props.editQClicked ? <div><EditQuestionComponent questionObj={this.props.question} /><br /></div> : null}
+					<button type="button" onClick={() => this.props.setEditQClicked(!this.props.editQClicked)}>Edit Question</button>
 					<button type="button" onClick={() => this.deleteQuestionHandler(this.props.question.id)}>Delete Question</button>
 				</div>
 				:
@@ -48,13 +44,15 @@ class QuestionComponent extends React.Component {
 
 function msp(state) {
 	return {
-		user: state.user
+		user: state.user,
+		editQClicked: state.editQClicked
 	}
 }
 
 function mdp(dispatch) {
 	return {
-		deleteQuestion: (questionID) => dispatch(deleteQuizQuestion(questionID))
+		deleteQuestion: (questionID) => dispatch(deleteQuizQuestion(questionID)),
+		setEditQClicked: (isClicked) => dispatch(setEditQClicked(isClicked))
 	}
 }
 

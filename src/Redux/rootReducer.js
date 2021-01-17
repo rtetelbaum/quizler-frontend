@@ -4,7 +4,8 @@ const defaultState = {
 	user: null,
 	users: null,
 	quiz: null,
-	takerEmail: null
+	takerEmail: null,
+	editQClicked: false
 }
 
 function userReducer(prevState = defaultState.user, action) {
@@ -60,11 +61,21 @@ function takerEmailReducer(prevState = defaultState.takerEmail, action) {
 	}
 }
 
+function editQClickedReducer(prevState = defaultState.editQClicked, action) {
+	switch (action.type) {
+		case "SET_EDIT_Q_CLICKED" :
+			return action.payload
+		default :
+			return prevState
+	}
+}
+
 const rootReducer = combineReducers({
 	user: userReducer,
 	users: usersReducer,
 	quiz: quizReducer,
-	takerEmail: takerEmailReducer
+	takerEmail: takerEmailReducer,
+	editQClicked: editQClickedReducer
 })
 
 export default rootReducer

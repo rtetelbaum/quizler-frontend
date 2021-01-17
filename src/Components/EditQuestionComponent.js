@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { patchQuizQuestion } from '../Redux/actions'
+import { patchQuizQuestion, setEditQClicked } from '../Redux/actions'
 
 class EditQuestionComponent extends React.Component {
 
@@ -13,17 +13,22 @@ class EditQuestionComponent extends React.Component {
 	}
 
 	editQuestionHandler = () => {
-		const questionObj = {
-			question: this.state.question,
-			quiz_id: this.props.questionObj.quiz_id
+		if (this.state.question === "") {
+			alert("Question cannot be blank.")
+		} else {
+			const questionObj = {
+				question: this.state.question,
+				quiz_id: this.props.questionObj.quiz_id
+			}
+			this.props.patchQuestion(questionObj, this.props.questionObj.id)
+			this.props.setEditQClicked(false)
 		}
-		this.props.patchQuestion(questionObj, this.props.questionObj.id)
 	}
 
 	render() {
 		return (
 			<div>
-				<input type="text" name="question" placeholder={this.props.questionObj.question} value={this.state.question} onChange={this.changeHandler} required />
+				<input type="text" name="question" placeholder={this.props.questionObj.question} value={this.state.question} onChange={this.changeHandler} />
 				<button type="button" onClick={() => this.editQuestionHandler()}>Submit Edit</button>
 			</div>
 		)
@@ -32,7 +37,8 @@ class EditQuestionComponent extends React.Component {
 
 function mdp(dispatch) {
 	return {
-		patchQuestion: (questionObj, questionID) => dispatch(patchQuizQuestion(questionObj, questionID))
+		patchQuestion: (questionObj, questionID) => dispatch(patchQuizQuestion(questionObj, questionID)),
+		setEditQClicked: (isClicked) => dispatch(setEditQClicked(isClicked))
 	}
 }
 
