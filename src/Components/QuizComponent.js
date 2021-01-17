@@ -26,6 +26,15 @@ class QuizComponent extends React.Component {
 		this.setState({ [e.target.name]: e.target.value })
 	}
 
+	validateEmail = (takerEmail) => {
+		var mailformat = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+		if (takerEmail.match(mailformat)) {
+			this.emailQuizResults()
+		} else {
+			alert("You have entered an invalid email address.")
+		}
+	}
+
 	emailQuizResults = () => {
 		const numQuestions = this.props.quiz.questions.length
 		
@@ -106,7 +115,8 @@ class QuizComponent extends React.Component {
 					<ol>
 						{this.arrayOfQuestions()}
 					</ol>
-					{!this.props.user ? <button type="button" onClick={() => this.emailQuizResults()}>Submit & Email to Quizmaker</button> : null}
+					{/* {!this.props.user ? <button type="button" onClick={() => this.emailQuizResults()}>Submit & Email to Quizmaker</button> : null} */}
+					{!this.props.user ? <button type="button" onClick={() => this.validateEmail(this.props.takerEmail)}>Submit & Email to Quizmaker</button> : null}
 				</div>
 				:
 				<h3>Loading quiz...</h3>

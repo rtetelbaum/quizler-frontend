@@ -22,7 +22,8 @@ function NavComponent(props) {
 						null
 						:
 						<Link to="/signup"><button type="button">Sign Up</button></Link>
-					: <Link to="/signup"><button type="button">Sign Up</button></Link>
+					:
+					<Link to="/signup"><button type="button">Sign Up</button></Link>
 			}
 
 			{
@@ -33,7 +34,8 @@ function NavComponent(props) {
 						null
 						:
 						<Link to="/login"><button type="button">Log In</button></Link>
-					: <Link to="/login"><button type="button">Log In</button></Link>
+					:
+					<Link to="/login"><button type="button">Log In</button></Link>
 			}
 
 			{
@@ -43,7 +45,8 @@ function NavComponent(props) {
 						?
 						<Link to="/home"><button type="button" onClick={() => props.logOutUser()}>Log Out</button></Link>
 						: null
-					: null
+					:
+					null
 			}
 
 			{
@@ -52,7 +55,8 @@ function NavComponent(props) {
 						? <Link to="/quizzes"><button type="button">Saved Quizzes</button></Link>
 						:
 						null
-					: null
+					:
+					null
 			}
 
 			{
@@ -63,7 +67,8 @@ function NavComponent(props) {
 						<Link to="/quizzes/create"><button type="button">Create Quiz</button></Link>
 						:
 						null
-					: null
+					:
+					null
 			}
 
 		</div>

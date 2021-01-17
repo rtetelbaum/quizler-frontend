@@ -40,7 +40,7 @@ class EmailQuizComponent extends React.Component {
 				alert(`Quiz invitation successfully sent to ${quiztakerEmail}.`)
 			}, function (error) {
 				console.log('FAILED...', error)
-				alert('Oops... something went wrong. Please try again.')
+				alert('Oops... something went wrong. Please try again. Make sure you entered email address(es) correctly.')
 			})
 	}
 
