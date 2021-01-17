@@ -46,8 +46,11 @@ function quizReducer(prevState = defaultState.quiz, action) {
 		case "DELETE_QUIZ_QUESTION":
 			return { ...prevState, questions: [...prevState.questions.filter(question => question.id !== action.payload)] }
 		case "PATCH_QUIZ_QUESTION":
-			const questions = prevState.questions.map(questionObj => questionObj.id === action.payload.id ? { ...questionObj, question: action.payload.question } : questionObj)
-			return { ...prevState, questions: questions }
+			const questionsPatchQ = prevState.questions.map(questionObj => questionObj.id === action.payload.id ? { ...questionObj, question: action.payload.question } : questionObj)
+			return { ...prevState, questions: questionsPatchQ }
+		case "POST_QUIZ_ANSWER":
+			const questionsPostA = prevState.questions.map(questionObj => questionObj.id === action.payload.question_id ? { ...questionObj, answers: [...questionObj.answers, action.payload] } : questionObj)
+			return { ...prevState, questions: questionsPostA }
 		default:
 			return prevState
 	}

@@ -12,7 +12,8 @@ import {
 	DELETE_QUIZ_QUESTION,
 	PATCH_QUIZ_QUESTION,
 	SET_EDIT_Q_CLICKED,
-	SET_EDIT_Q_ID
+	SET_EDIT_Q_ID,
+	POST_QUIZ_ANSWER
 } from './actionTypes'
 
 const BASE_URL = "http://localhost:4000"
@@ -204,5 +205,26 @@ export function setEditQClicked(isClicked) {
 export function setEditQID(questionID) {
 	return function (dispatch) {
 		dispatch({ type: SET_EDIT_Q_ID, payload: questionID })
+	}
+}
+
+export function postQuizAnswer(answerObj) {
+	return function (dispatch) {
+		fetch(`${BASE_URL}/api/v1/answers`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(answerObj),
+		})
+			.then(r => r.json())
+			.then(answerObj => {
+				if (answerObj.id) {
+					dispatch({ type: POST_QUIZ_ANSWER, payload: answerObj })
+					alert("Answer added.")
+				} else {
+					alert('Oops... something went wrong. Please try again.')
+				}
+			})
 	}
 }

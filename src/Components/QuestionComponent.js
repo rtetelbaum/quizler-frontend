@@ -1,6 +1,7 @@
 import React from 'react'
 import AnswerComponent from './AnswerComponent'
 import EditQuestionComponent from './EditQuestionComponent'
+import CreateAnswerComponent from './CreateAnswerComponent'
 import { deleteQuizQuestion, setEditQClicked, setEditQID } from '../Redux/actions'
 import { connect } from 'react-redux'
 
@@ -47,6 +48,8 @@ class QuestionComponent extends React.Component {
 							}
 							<button type="button" onClick={() => this.editQHandler()}>Edit Question</button>
 							<button type="button" onClick={() => this.deleteQuestionHandler(this.props.question.id)}>Delete Question</button>
+							<br />
+							<CreateAnswerComponent question={this.props.question} />
 						</div>
 						:
 						null
