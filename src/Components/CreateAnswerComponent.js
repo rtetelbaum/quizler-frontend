@@ -42,8 +42,17 @@ class CreateAnswerComponent extends React.Component {
 			<div>
 				<form onSubmit={this.submitHandler}>
 					<input type="text" name="answer" placeholder="New Answer" value={this.state.answer} onChange={this.answerChangeHandler} required />
-					<input type="checkbox" name="correct" value="correct" onChange={this.checkboxChangeHandler} />
-					<label htmlFor="correct">Correct?</label>
+
+					{this.props.question.answers.find(answer => answer.correct === true)
+						?
+						null
+						:
+						<>
+							<input type="checkbox" name="correct" value="correct" onChange={this.checkboxChangeHandler} />
+							<label htmlFor="correct">Correct?</label>
+						</>
+					}
+
 					<button type="submit">Add Answer</button>
 				</form>
 			</div>

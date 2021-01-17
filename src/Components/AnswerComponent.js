@@ -45,9 +45,7 @@ function msp(state) {
 
 function mdp(dispatch) {
 	return {
-		deleteAnswer: (answerID, questionID) => dispatch(deleteQuizAnswer(answerID, questionID)),
-		// setEditQClicked: (isClicked) => dispatch(setEditQClicked(isClicked)),
-		// setEditQID: (questionID) => dispatch(setEditQID(questionID))
+		deleteAnswer: (answerID, questionID) => dispatch(deleteQuizAnswer(answerID, questionID))
 	}
 }
 
