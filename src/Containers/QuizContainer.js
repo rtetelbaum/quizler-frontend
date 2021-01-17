@@ -26,7 +26,6 @@ function QuizContainer(props) {
 	}
 
 	return (
-		
 		props.user
 			?
 			props.user.id
