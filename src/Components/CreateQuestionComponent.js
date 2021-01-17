@@ -20,6 +20,7 @@ class CreateQuestionComponent extends React.Component {
 			quiz_id: this.props.quiz.id
 		}
 		this.props.postQuizQuestion(questionObj)
+		this.setState({question: ""})
 	}
 
 	render() {
