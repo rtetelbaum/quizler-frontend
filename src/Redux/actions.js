@@ -11,7 +11,8 @@ import {
 	SET_TAKER_EMAIL,
 	DELETE_QUIZ_QUESTION,
 	PATCH_QUIZ_QUESTION,
-	SET_EDIT_Q_CLICKED
+	SET_EDIT_Q_CLICKED,
+	SET_EDIT_Q_ID
 } from './actionTypes'
 
 const BASE_URL = "http://localhost:4000"
@@ -197,5 +198,11 @@ export function setTakerEmail(takerEmail) {
 export function setEditQClicked(isClicked) {
 	return function (dispatch) {
 		dispatch({ type: SET_EDIT_Q_CLICKED, payload: isClicked })
+	}
+}
+
+export function setEditQID(questionID) {
+	return function (dispatch) {
+		dispatch({ type: SET_EDIT_Q_ID, payload: questionID })
 	}
 }

@@ -5,7 +5,8 @@ const defaultState = {
 	users: null,
 	quiz: null,
 	takerEmail: null,
-	editQClicked: false
+	editQClicked: false,
+	editQID: null
 }
 
 function userReducer(prevState = defaultState.user, action) {
@@ -70,12 +71,22 @@ function editQClickedReducer(prevState = defaultState.editQClicked, action) {
 	}
 }
 
+function editQIDReducer(prevState = defaultState.editQID, action) {
+	switch (action.type) {
+		case "SET_EDIT_Q_ID" :
+			return action.payload
+		default :
+			return prevState
+	}
+}
+
 const rootReducer = combineReducers({
 	user: userReducer,
 	users: usersReducer,
 	quiz: quizReducer,
 	takerEmail: takerEmailReducer,
-	editQClicked: editQClickedReducer
+	editQClicked: editQClickedReducer,
+	editQID: editQIDReducer
 })
 
 export default rootReducer
