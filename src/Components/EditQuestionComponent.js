@@ -12,27 +12,25 @@ class EditQuestionComponent extends React.Component {
 		this.setState({ [e.target.name]: e.target.value })
 	}
 
-	editQuestionHandler = () => {
-		if (this.state.question === "") {
-			alert("Question cannot be blank.")
-		} else {
-			const questionObj = {
-				question: this.state.question,
-				quiz_id: this.props.questionObj.quiz_id
-			}
-			
-			this.props.patchQuestion(questionObj, this.props.questionObj.id)
-			
-			this.props.setEditQClicked(false)
+	submitHandler = (e) => {
+		e.preventDefault()
+		
+		const questionObj = {
+			question: this.state.question,
+			quiz_id: this.props.questionObj.quiz_id
 		}
+
+		this.props.patchQuestion(questionObj, this.props.questionObj.id)
+
+		this.props.setEditQClicked(false)
 	}
 
 	render() {
 		return (
-			<div>
-				<input type="text" name="question" placeholder={this.props.questionObj.question} value={this.state.question} onChange={this.changeHandler} />
-				<button type="button" onClick={() => this.editQuestionHandler()}>Submit Edit</button>
-			</div>
+			<form onSubmit={this.submitHandler}>
+				<input type="text" name="question" placeholder={this.props.questionObj.question} value={this.state.question} onChange={this.changeHandler} required />
+				<button type="button">Submit Edit</button>
+			</form>
 		)
 	}
 }
