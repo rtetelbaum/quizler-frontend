@@ -22,15 +22,15 @@ class CreateAnswerComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
-		
+
 		const answerObj = {
 			answer: this.state.answer,
 			correct: this.state.correct,
 			question_id: this.props.question.id
 		}
-		
+
 		this.props.postQuizAnswer(answerObj)
-		
+
 		this.setState({
 			answer: "",
 			correct: false
@@ -51,16 +51,10 @@ class CreateAnswerComponent extends React.Component {
 	}
 }
 
-function msp(state) {
-	return {
-		quiz: state.quiz
-	}
-}
-
 function mdp(dispatch) {
 	return {
 		postQuizAnswer: (answerObj) => dispatch(postQuizAnswer(answerObj))
 	}
 }
 
-export default connect(msp, mdp)(CreateAnswerComponent)
+export default connect(null, mdp)(CreateAnswerComponent)

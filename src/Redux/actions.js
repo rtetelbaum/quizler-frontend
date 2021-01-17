@@ -13,7 +13,8 @@ import {
 	PATCH_QUIZ_QUESTION,
 	SET_EDIT_Q_CLICKED,
 	SET_EDIT_Q_ID,
-	POST_QUIZ_ANSWER
+	POST_QUIZ_ANSWER,
+	DELETE_QUIZ_ANSWER
 } from './actionTypes'
 
 const BASE_URL = "http://localhost:4000"
@@ -224,6 +225,24 @@ export function postQuizAnswer(answerObj) {
 					alert("Answer added.")
 				} else {
 					alert('Oops... something went wrong. Please try again.')
+				}
+			})
+	}
+}
+
+export function deleteQuizAnswer(questionAnswerID) {
+	return function (dispatch) {
+		fetch(`${BASE_URL}/api/v1/answers/${questionAnswerID.answerID}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+			.then(r => r.json())
+			.then(data => {
+				if (Object.keys(data).length === 0) {
+					dispatch({ type: DELETE_QUIZ_ANSWER, payload: (questionAnswerID) })
+					alert("Answer deleted.")
 				}
 			})
 	}
