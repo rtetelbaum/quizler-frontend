@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { postUserQuiz } from '../Redux/actions'
+import { InputText } from 'primereact/inputtext'
+import { Button } from 'primereact/button'
 
 class CreateQuizComponent extends React.Component {
 
@@ -14,9 +16,9 @@ class CreateQuizComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
-		
+
 		this.props.postQuiz(this.state)
-		
+
 		this.setState({
 			title: "",
 			subject: ""
@@ -34,21 +36,34 @@ class CreateQuizComponent extends React.Component {
 			this.props.user
 				?
 				this.props.user.id ?
-					<div>
-						<h3>Create Quiz</h3>
-						<form onSubmit={this.submitHandler}>
-							<input type="text" name="title" placeholder="title" value={this.state.title} onChange={this.changeHandler} required></input><br />
-							<input type="text" name="subject" placeholder="subject" value={this.state.subject} onChange={this.changeHandler} required></input><br />
-							<button type="submit">Create Quiz</button>
+					<div className="div-aligned">
+
+						<h2 className="p-component">Create Quiz</h2>
+
+						<form className="form-aligned" onSubmit={this.submitHandler}>
+							<span className="p-input-icon-left p-float-label user-form-span-first">
+								<i className="pi pi-bars" />
+								<InputText type="text" name="title" value={this.state.title} onChange={this.changeHandler} required />
+								<label htmlFor="email">Title</label>
+							</span>
+							<br />
+							<span className="p-input-icon-left p-float-label user-form-span-last">
+								<i className="pi pi-bars" />
+								<InputText type="text" name="subject" value={this.state.subject} onChange={this.changeHandler} required />
+								<label htmlFor="subject">Subject</label>
+							</span>
+							<br />
+							<Button className="p-button-raised p-button-rounded user-button" type="submit" label="Create Quiz" icon="pi pi-pencil" />
 						</form>
+
 					</div>
 					:
 					<div>
-						<h3>Please log in.</h3>
+						<h2 className="p-component">Please log in.</h2>
 					</div>
 				:
 				<div>
-					<h3>Please log in.</h3>
+					<h2 className="p-component">Please log in.</h2>
 				</div>
 		)
 	}

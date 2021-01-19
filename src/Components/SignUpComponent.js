@@ -48,7 +48,7 @@ class SignUpComponent extends React.Component {
 						<label htmlFor="password">Password</label>
 					</span>
 					<br />
-					<Button className="p-button-raised p-button-rounded user-button" type="submit" label="Sign Up" icon="pi pi-sign-in" />
+					<Button className="p-button-raised p-button-rounded user-button" type="submit" label="Sign Up" icon="pi pi-user-plus" />
 				</form>
 
 			</div>

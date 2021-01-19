@@ -22,9 +22,9 @@ function NavComponent(props) {
 						?
 						null
 						:
-						<Link to="/signup"><Button type="button" label="Sign Up" icon="pi pi-user-edit" className="p-button-raised p-button-rounded" /></Link>
+						<Link to="/signup"><Button type="button" label="Sign Up" icon="pi pi-user-plus" className="p-button-raised p-button-rounded" /></Link>
 					:
-					<Link to="/signup"><Button type="button" label="Sign Up" icon="pi pi-user-edit" className="p-button-raised p-button-rounded" /></Link>
+					<Link to="/signup"><Button type="button" label="Sign Up" icon="pi pi-user-plus" className="p-button-raised p-button-rounded" /></Link>
 			}
 
 			{
