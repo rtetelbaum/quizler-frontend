@@ -34,9 +34,6 @@ class EmailQuizComponent extends React.Component {
 		
 		if (this.state.email) { quiztakerEmail = this.state.email }
 
-		console.log(this.state.email)
-		console.log(templateParams)
-
 		emailjs.send('service_fcfonus', 'template_3cu6wee', templateParams, process.env.REACT_APP_EMAILJS_USERID)
 			.then(function (response) {
 				console.log('SUCCESS!', response.status, response.text)

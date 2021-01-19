@@ -7,6 +7,7 @@ import TakerEmailComponent from './TakerEmailComponent'
 import CreateQuestionComponent from './CreateQuestionComponent'
 import emailjs from 'emailjs-com'
 import { withRouter } from 'react-router-dom'
+import { Button } from 'primereact/button'
 
 class QuizComponent extends React.Component {
 
@@ -37,11 +38,11 @@ class QuizComponent extends React.Component {
 
 	emailQuizResults = () => {
 		const numQuestions = this.props.quiz.questions.length
-		
+
 		const quizQA = this.props.quiz.questions
-		
+
 		const sortedQuizQA = quizQA.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
-		
+
 		const arrayOfCorrectQA = sortedQuizQA.map(qa => {
 			let rObj = {}
 			if (qa.answers.length > 1) {
@@ -49,9 +50,9 @@ class QuizComponent extends React.Component {
 			}
 			return rObj
 		})
-		
+
 		const userQA = Object.entries(this.state)
-		
+
 		const arrayOfUserQA = userQA.map(qa => {
 			let rObj = {}
 			rObj[qa[0]] = qa[1]
@@ -106,17 +107,22 @@ class QuizComponent extends React.Component {
 			this.props.quiz
 				?
 				<div>
-					<h1>Quiz by Quizmaker: {this.props.quiz.quizmaker}</h1>
-					<h3>Title: {this.props.quiz.title}</h3>
-					<p>Subject: {this.props.quiz.subject}</p>
-					{!this.props.user ? <TakerEmailComponent /> : null}
+					<h1 className="p-component">Quiz by Quizmaker: {this.props.quiz.quizmaker}</h1>
+					<h3 className="p-component">Title: {this.props.quiz.title}</h3>
+					<p className="p-component">Subject: {this.props.quiz.subject}</p>
 					{this.props.user ? <EmailQuizComponent senderEmail={this.props.user.email} url={this.props.match.url} /> : null}
 					{this.props.user ? <CreateQuestionComponent /> : null}
 					<ol>
 						{this.arrayOfQuestions()}
 					</ol>
-					{/* {!this.props.user ? <button type="button" onClick={() => this.emailQuizResults()}>Submit & Email to Quizmaker</button> : null} */}
-					{!this.props.user ? <button type="button" onClick={() => this.validateEmail(this.props.takerEmail)}>Submit & Email to Quizmaker</button> : null}
+					{!this.props.user ? <TakerEmailComponent /> : null}
+					{
+						!this.props.user
+							?
+							<Button className="p-button-raised p-button-rounded" type="button" label="Submit & Email to Quizmaker" onClick={() => this.validateEmail(this.props.takerEmail)} />
+							:
+							null
+					}
 				</div>
 				:
 				<h3>Loading quiz...</h3>
