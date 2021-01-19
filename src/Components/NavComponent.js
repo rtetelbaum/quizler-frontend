@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logOutUser } from '../Redux/actions'
+import { Button } from 'primereact/button'
 
 function NavComponent(props) {
 
@@ -12,7 +13,7 @@ function NavComponent(props) {
 				<Link to="/home"><img src="/logo200x100.png" alt="logo" /></Link>
 			</div>
 
-			<Link to="/home"><button type="button">Home</button></Link>
+			<Link to="/home"><Button type="button" label="Home" icon="pi pi-home" className="p-button-raised p-button-rounded" /></Link>
 
 			{
 				props.user
@@ -21,9 +22,9 @@ function NavComponent(props) {
 						?
 						null
 						:
-						<Link to="/signup"><button type="button">Sign Up</button></Link>
+						<Link to="/signup"><Button type="button" label="Sign Up" icon="pi pi-user-edit" className="p-button-raised p-button-rounded" /></Link>
 					:
-					<Link to="/signup"><button type="button">Sign Up</button></Link>
+					<Link to="/signup"><Button type="button" label="Sign Up" icon="pi pi-user-edit" className="p-button-raised p-button-rounded" /></Link>
 			}
 
 			{
@@ -33,9 +34,9 @@ function NavComponent(props) {
 						?
 						null
 						:
-						<Link to="/login"><button type="button">Log In</button></Link>
+						<Link to="/login"><Button type="button" label="Log In" icon="pi pi-sign-in" className="p-button-raised p-button-rounded" /></Link>
 					:
-					<Link to="/login"><button type="button">Log In</button></Link>
+					<Link to="/login"><Button type="button" label="Log In" icon="pi pi-sign-in" className="p-button-raised p-button-rounded" /></Link>
 			}
 
 			{
@@ -43,7 +44,7 @@ function NavComponent(props) {
 					?
 					props.user.id
 						?
-						<Link to="/home"><button type="button" onClick={() => props.logOutUser()}>Log Out</button></Link>
+						<Link to="/home"><Button type="button" onClick={() => props.logOutUser()} label="Log Out" icon="pi pi-sign-out" className="p-button-raised p-button-rounded" /></Link>
 						: null
 					:
 					null
@@ -52,7 +53,7 @@ function NavComponent(props) {
 			{
 				props.user
 					? props.user.id
-						? <Link to="/quizzes"><button type="button">Saved Quizzes</button></Link>
+						? <Link to="/quizzes"><Button type="button" label="Saved Quizzes" icon="pi pi-save" className="p-button-raised p-button-rounded" /></Link>
 						:
 						null
 					:
@@ -64,7 +65,7 @@ function NavComponent(props) {
 					?
 					props.user.id
 						?
-						<Link to="/quizzes/create"><button type="button">Create Quiz</button></Link>
+						<Link to="/quizzes/create"><Button type="button" label="Create Quiz" icon="pi pi-pencil" className="p-button-raised p-button-rounded" /></Link>
 						:
 						null
 					:

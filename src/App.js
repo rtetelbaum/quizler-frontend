@@ -1,4 +1,8 @@
 import './App.css'
+import 'primereact/resources/themes/arya-blue/theme.css'
+import 'primereact/resources/primereact.min.css'
+import 'primeicons/primeicons.css'
+import PrimeReact from 'primereact/api'
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -20,6 +24,7 @@ class App extends React.Component {
 	}
 
 	render() {
+		PrimeReact.ripple = true
 		return (
 			<div id="app">
 

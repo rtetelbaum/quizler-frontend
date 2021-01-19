@@ -2,6 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getUsers, setUser } from '../Redux/actions'
 import { Redirect } from 'react-router-dom'
+import { InputText } from 'primereact/inputtext'
+import { Button } from 'primereact/button'
+import { ProgressSpinner } from 'primereact/progressspinner'
 
 class LogInComponent extends React.Component {
 	state = {
@@ -61,20 +64,37 @@ class LogInComponent extends React.Component {
 					?
 					Object.keys(this.props.users).length > 0
 						?
-						<div>
-							<h3>Log In</h3>
+						<div className="div-aligned">
 
-							<form onSubmit={this.submitHandler}>
-								<input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.changeHandler} required /><br />
-								<input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.changeHandler} required /><br />
-								<button type="submit">Log In</button>
+							<h2 className="p-component">Log In</h2>
+
+							<form className="form-aligned" onSubmit={this.submitHandler}>
+								<span className="p-input-icon-left p-float-label user-form-span-first">
+									<i className="pi pi-envelope" />
+									<InputText type="email" name="email" value={this.state.email} onChange={this.changeHandler} required />
+									<label htmlFor="email">Email</label>
+								</span>
+								<br />
+								<span className="p-input-icon-left p-float-label user-form-span-last">
+									<i className="pi pi-eye-slash" />
+									<InputText type="password" name="password" value={this.state.password} onChange={this.changeHandler} required />
+									<label htmlFor="password">Password</label>
+								</span>
+								<br />
+								<Button className="p-button-raised p-button-rounded user-button" type="submit" label="Log In" icon="pi pi-sign-in" />
 							</form>
 
 						</div>
 						:
-						<h3>Loading...</h3>
+						<div>
+							<ProgressSpinner />
+							<h2 className="p-component">Loading...</h2>
+						</div>
 					:
-					<h3>Loading...</h3>
+					<div>
+						<ProgressSpinner />
+						<h2 className="p-component">Loading...</h2>
+					</div>
 		)
 	}
 }

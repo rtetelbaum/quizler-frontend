@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { postUser, logOutUser } from '../Redux/actions'
 import { Redirect } from 'react-router-dom'
+import { InputText } from 'primereact/inputtext'
+import { Button } from 'primereact/button'
 
 class SignUpComponent extends React.Component {
 
@@ -27,16 +29,26 @@ class SignUpComponent extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className="div-aligned">
 
 				{this.props.user ? this.props.user.id ? <Redirect to="/quizzes" /> : null : null}
 
-				<h3>Sign Up</h3>
+				<h2 className="p-component">Sign Up</h2>
 
-				<form onSubmit={this.submitHandler}>
-					<input type="email" name="email" placeholder="email" value={this.state.email} onChange={this.changeHandler} required /><br />
-					<input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.changeHandler} required /><br />
-					<button type="submit">Sign Up</button>
+				<form className="form-aligned" onSubmit={this.submitHandler}>
+					<span className="p-input-icon-left p-float-label user-form-span-first">
+						<i className="pi pi-envelope" />
+						<InputText type="email" name="email" value={this.state.email} onChange={this.changeHandler} required />
+						<label htmlFor="email">Email</label>
+					</span>
+					<br />
+					<span className="p-input-icon-left p-float-label user-form-span-last">
+						<i className="pi pi-eye-slash" />
+						<InputText type="password" name="password" value={this.state.password} onChange={this.changeHandler} required />
+						<label htmlFor="password">Password</label>
+					</span>
+					<br />
+					<Button className="p-button-raised p-button-rounded user-button" type="submit" label="Sign Up" icon="pi pi-sign-in" />
 				</form>
 
 			</div>

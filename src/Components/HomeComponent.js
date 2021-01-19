@@ -3,7 +3,7 @@ import React from 'react'
 function HomeComponent() {
 	return (
 		<div>
-			<h3>Welcome to Quizler!</h3>
+			<h1 className="p-component">Welcome to Quizler!</h1>
 		</div>
 	)
 }
