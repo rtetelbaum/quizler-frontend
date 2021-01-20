@@ -15,13 +15,15 @@ function AnswerComponent(props) {
 		if (window.confirm("Are you sure you want to delete this answer?")) { props.deleteAnswer(questionAnswerID) }
 	}
 
+	const selectedAnswer = props.quizState[props.question.question]
+
 	return (
 		<div className="div-aligned-row">
 			{props.user
 				?
 				<>
 					<div className="answer-radio">
-						<RadioButton name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} />
+						<RadioButton name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} checked={props.answer.answer === selectedAnswer} />
 						<label className="answer-margin" htmlFor={props.answer.answer}>{props.answer.answer}</label>
 					</div>
 					<span className="button-margin-left">
@@ -33,7 +35,7 @@ function AnswerComponent(props) {
 				</>
 				:
 				<div className="answer-radio">
-					<RadioButton name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} />
+					<RadioButton name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} checked={props.answer.answer === selectedAnswer} />
 					<label className="answer-margin" htmlFor={props.answer.answer}>{props.answer.answer}</label>
 				</div>
 			}

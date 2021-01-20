@@ -211,3 +211,19 @@ h3 {
 .button-margin-left {
 	margin-left: 15px;
 }
+
+.home-p {
+	width: 600px;
+}
+
+.p-radiobutton .p-radiobutton-box {
+	border: 1px solid rgba(255, 255, 255, 0.87) !important;
+}
+
+.p-radiobutton .p-radiobutton-box .p-radiobutton-icon {
+	background-color: rgb(77, 165, 230) !important;
+}
+
+.p-checkbox .p-checkbox-box {
+	border: 1px solid rgba(255, 255, 255, 0.87) !important;
+}

@@ -17,12 +17,6 @@ class CreateAnswerComponent extends React.Component {
 		})
 	}
 
-	checkboxChangeHandler = (e) => {
-		this.setState({
-			correct: e.target.checked
-		})
-	}
-
 	submitHandler = (e) => {
 		e.preventDefault()
 
@@ -54,7 +48,7 @@ class CreateAnswerComponent extends React.Component {
 						:
 						<>
 							<span className="button-margin-left">
-								<Checkbox type="checkbox" value="correct" name="correct" onChange={this.checkboxChangeHandler}></Checkbox>
+								<Checkbox onChange={e => this.setState({correct: e.checked})} checked={this.state.correct}></Checkbox>
 								<label htmlFor="correct"> Correct?</label>
 							</span>
 						</>

@@ -21,7 +21,7 @@ class QuizComponent extends React.Component {
 	arrayOfQuestions() {
 		const questionsArray = this.props.quiz.questions
 		const sortedQuestionsArray = questionsArray.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
-		return sortedQuestionsArray.map(question => <QuestionComponent key={question.id} question={question} changeHandler={this.changeHandler} />)
+		return sortedQuestionsArray.map(question => <QuestionComponent key={question.id} question={question} changeHandler={this.changeHandler} quizState={this.state} />)
 	}
 
 	changeHandler = (e) => {
@@ -77,7 +77,7 @@ class QuizComponent extends React.Component {
 		for (let i = 0, l = arrayOfUserQA.length; i < l; i++) {
 			quizAnswers.push(`<li><b>Question:</b> ${Object.keys(arrayOfUserQA[i])[0]}<br>
 				<b>Quiztaker Answer:</b> ${Object.values(arrayOfUserQA[i])[0]}<br>
-				<b>Correct Answer:</b> ${Object.values(arrayOfCorrectQA[i])[0]}</li>`
+				<b>Correct Answer:</b> ${Object.values(arrayOfCorrectQA[i])[0]}</li><br>`
 			)
 		}
 
