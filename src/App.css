@@ -1,23 +1,22 @@
 #app {
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 110px 1fr;
+	grid-template-rows: 110px 1fr 50px;
 	grid-column-gap: 0px;
 	grid-row-gap: 0px;
 	height: 100vh;
-	overflow-x: hidden;
 }
 
-#nav { grid-area: 1 / 1 / 2 / 2; }
-#main { grid-area: 2 / 1 / 3 / 2; }
-#footer { grid-area: 3 / 1 / 4 / 2; }
+#nav-div { grid-area: 1 / 1 / 2 / 2; }
+#main-div { grid-area: 2 / 1 / 3 / 2; }
+#footer-div { grid-area: 3 / 1 / 4 / 2; }
 
-#logo {
+#logo-div {
 	position: fixed;
 	left: 0;
 }
 
-#nav {
+#nav-div {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -27,31 +26,45 @@
 	background-color: #121212;
 }
 
-#nav Button {
+#nav-button-div {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-left: 200px;
+	margin-right: 200px;
+	height: 110px;
+}
+
+#nav-div Button {
 	margin: 5px;
 }
 
-#nav a {
+#nav-div a {
 	text-decoration: none;
 }
 
-#main {
+#main-div {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 100vw;
+	padding-top: 20px;
+	padding-bottom: 20px;
 	background-color: #1e1e1e;
 	color: rgba(255, 255, 255, 0.87);
 }
 
-#footer {
+#main-div a {
+	text-decoration: none;
+	color: rgba(255, 255, 255, 0.87);
+}
+
+#footer-div {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	position: sticky;
 	bottom: 0;
-	height: 50px;
 	background-color: #121212;
 	color: rgba(255, 255, 255, 0.87);
 }
@@ -78,6 +91,14 @@ h3 {
 	justify-content: center;
 }
 
+.div-aligned-row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
 .form-aligned {
 	text-align: center;
 }
@@ -91,7 +112,6 @@ h3 {
 }
 
 .input-span-sole {
-	margin-top: 15px;
 	margin-bottom: 15px;
 }
 
@@ -99,3 +119,23 @@ h3 {
 	margin-top: 30px !important;
 }
 
+.answer-radio {
+	margin: 10px;
+}
+
+.card {
+	position: relative;
+	width: 200px;
+	height: 300px;
+	margin: 10px;
+	background-color: #2e2e2e !important;
+	box-shadow: 3px 3px 3px 3px #3a3a3a !important;
+	border-radius: 5% !important;
+	text-align: center;
+}
+
+.card-button-span {
+	position: absolute;
+	bottom: 15px;
+	right: 30px;
+}

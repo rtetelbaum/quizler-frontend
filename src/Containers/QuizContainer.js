@@ -2,6 +2,8 @@ import React from 'react'
 import { deleteUserQuiz } from '../Redux/actions'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Button } from 'primereact/button'
+import { Card } from 'primereact/card'
 
 function QuizContainer(props) {
 
@@ -15,13 +17,13 @@ function QuizContainer(props) {
 		const sortedQuizzesArray = userQuizzesArray.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
 
 		return sortedQuizzesArray.map(quiz =>
-			<div key={quiz.id}>
-				<Link to={`/quizzes/${quiz.id}`}><h3>Title: {quiz.title} </h3></Link>
-				
-				<p>Subject: {quiz.subject}</p>
-				
-				<button type="button" onClick={() => deleteQuizHandler(quiz.id)}>Delete Quiz</button>
-			</div>
+			<Card
+				className="card"
+				title={quiz.title}
+				subTitle={quiz.subject}
+				header={<Link to={`/quizzes/${quiz.id}`}><img alt="Card" src='/logo200x100.png' /></Link>}
+				footer={<span className="card-button-span"><Button className="p-button-raised p-button-rounded p-button-secondary" icon="pi pi-trash" type="button" label="Delete Quiz" onClick={() => deleteQuizHandler(quiz.id)} /></span>}>
+			</Card>
 		)
 	}
 
@@ -30,23 +32,26 @@ function QuizContainer(props) {
 			?
 			props.user.id
 				?
-				<div>
-					<h1>Quizmaker {props.user.email}'s Saved Quizzes</h1>
-					{
-						arrayOfQuizzes().length === 0
-							?
-							<p>You have no saved quizzes, please create one.</p>
-							:
-							arrayOfQuizzes()
-					}
+				<div className="div-aligned">
+					<h1 className="p-component">Quizmaker {props.user.email}</h1>
+					<h2 className="p-component">Saved Quizzes</h2>
+					<div className="div-aligned-row">
+						{
+							arrayOfQuizzes().length === 0
+								?
+								<h3 className="p-component">You have no saved quizzes, please create one.</h3>
+								:
+								arrayOfQuizzes()
+						}
+					</div>
 				</div>
 				:
 				<div>
-					<h3>Please log in.</h3>
+					<h1 className="p-component">Please log in.</h1>
 				</div>
 			:
 			<div>
-				<h3>Please log in.</h3>
+				<h1 className="p-component">Please log in.</h1>
 			</div>
 	)
 }

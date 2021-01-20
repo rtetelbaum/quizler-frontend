@@ -86,14 +86,14 @@ class LogInComponent extends React.Component {
 
 						</div>
 						:
-						<div>
+						<div className="div-aligned">
 							<ProgressSpinner />
-							<h2 className="p-component">Loading...</h2>
+							<h2 className="p-component">Loading Log In...</h2>
 						</div>
 					:
-					<div>
+					<div className="div-aligned">
 						<ProgressSpinner />
-						<h2 className="p-component">Loading...</h2>
+						<h2 className="p-component">Loading Log In...</h2>
 					</div>
 		)
 	}

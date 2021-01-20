@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { deleteQuizAnswer } from '../Redux/actions'
+import { RadioButton } from 'primereact/radiobutton'
 
 function AnswerComponent(props) {
 
@@ -17,12 +18,13 @@ function AnswerComponent(props) {
 		<div>
 			{props.user
 				?
-				<input type="radio" name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} />
+				<RadioButton name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} />
 				:
-				<input type="radio" name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} />
+				<div className="answer-radio">
+					<RadioButton name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} />
+					<label htmlFor={props.answer.answer}> {props.answer.answer}</label>
+				</div>
 			}
-
-			<label htmlFor={props.answer.answer}>{props.answer.answer}</label>
 
 			{props.user
 				?

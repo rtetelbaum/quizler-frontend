@@ -4,6 +4,7 @@ import EditQuestionComponent from './EditQuestionComponent'
 import CreateAnswerComponent from './CreateAnswerComponent'
 import { deleteQuizQuestion, setEditQClicked, setEditQID } from '../Redux/actions'
 import { connect } from 'react-redux'
+import { ProgressSpinner } from 'primereact/progressspinner'
 
 class QuestionComponent extends React.Component {
 
@@ -31,8 +32,8 @@ class QuestionComponent extends React.Component {
 		return (
 			this.props.question
 				?
-				<li>
-					{this.props.question.question}
+				<li className="p-component">
+					<b>{this.props.question.question}</b>
 					{this.props.user
 						?
 						<div>
@@ -58,7 +59,10 @@ class QuestionComponent extends React.Component {
 					<br />
 				</li>
 				:
-				<h3>Loading questions...</h3>
+				<div className="div-aligned">
+					<ProgressSpinner />
+					<h3 className="p-component">Loading questions...</h3>
+				</div>
 		)
 	}
 }

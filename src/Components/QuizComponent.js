@@ -8,6 +8,7 @@ import CreateQuestionComponent from './CreateQuestionComponent'
 import emailjs from 'emailjs-com'
 import { withRouter } from 'react-router-dom'
 import { Button } from 'primereact/button'
+import { ProgressSpinner } from 'primereact/progressspinner'
 
 class QuizComponent extends React.Component {
 
@@ -28,8 +29,11 @@ class QuizComponent extends React.Component {
 	}
 
 	validateEmail = (takerEmail) => {
-		var mailformat = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
-		if (takerEmail.match(mailformat)) {
+		const mailformat = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+
+		if (takerEmail === null) {
+			alert("Email cannot be blank.")
+		} else if (takerEmail.match(mailformat)) {
 			this.emailQuizResults()
 		} else {
 			alert("You have entered an invalid email address.")
@@ -106,10 +110,10 @@ class QuizComponent extends React.Component {
 		return (
 			this.props.quiz
 				?
-				<div>
-					<h1 className="p-component">Quiz by Quizmaker: {this.props.quiz.quizmaker}</h1>
-					<h3 className="p-component">Title: {this.props.quiz.title}</h3>
-					<p className="p-component">Subject: {this.props.quiz.subject}</p>
+				<div className="div-aligned">
+					<h1 className="p-component"><b><u>Quiz by Quizmaker</u>:</b> {this.props.quiz.quizmaker}</h1>
+					<h3 className="p-component"><b><u>Title</u>:</b> {this.props.quiz.title}</h3>
+					<h3 className="p-component"><b><u>Subject</u>:</b> {this.props.quiz.subject}</h3>
 					{this.props.user ? <EmailQuizComponent senderEmail={this.props.user.email} url={this.props.match.url} /> : null}
 					{this.props.user ? <CreateQuestionComponent /> : null}
 					<ol>
@@ -125,7 +129,10 @@ class QuizComponent extends React.Component {
 					}
 				</div>
 				:
-				<h3>Loading quiz...</h3>
+				<div className="div-aligned">
+					<ProgressSpinner />
+					<h3 className="p-component">Loading quiz...</h3>
+				</div>
 		)
 	}
 }

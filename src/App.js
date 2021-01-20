@@ -30,7 +30,7 @@ class App extends React.Component {
 
 				<NavComponent />
 
-				<div id="main">
+				<div id="main-div">
 					<Switch>
 						<Route path="/home" component={HomeComponent} />
 						<Route path="/signup" component={SignUpComponent} />
