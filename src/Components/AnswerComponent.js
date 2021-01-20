@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { deleteQuizAnswer } from '../Redux/actions'
 import { RadioButton } from 'primereact/radiobutton'
+import { Button } from 'primereact/button'
 
 function AnswerComponent(props) {
 
@@ -15,21 +16,24 @@ function AnswerComponent(props) {
 	}
 
 	return (
-		<div>
+		<div className="div-aligned-row">
 			{props.user
 				?
-				<RadioButton name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} />
+				<div className="answer-radio">
+					<RadioButton name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} />
+					<label className="answer-margin" htmlFor={props.answer.answer}>{props.answer.answer}</label>
+				</div>
 				:
 				<div className="answer-radio">
 					<RadioButton name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} />
-					<label htmlFor={props.answer.answer}> {props.answer.answer}</label>
+					<label className="answer-margin" htmlFor={props.answer.answer}>{props.answer.answer}</label>
 				</div>
 			}
 
 			{props.user
 				?
 				<>
-					<button type="button" onClick={() => deleteAnswerHandler(props.answer.id)}>Delete Answer</button>
+					<Button className="p-button-raised p-button-rounded p-button-secondary" type="button" label="Delete Answer" icon="pi pi-trash" onClick={() => deleteAnswerHandler(props.answer.id)} />
 					{props.answer.correct ? "(Correct answer)" : null}
 				</>
 				:

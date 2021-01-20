@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { patchQuizQuestion, setEditQClicked } from '../Redux/actions'
+import { InputText } from 'primereact/inputtext'
+import { Button } from 'primereact/button'
 
 class EditQuestionComponent extends React.Component {
 
@@ -28,8 +30,11 @@ class EditQuestionComponent extends React.Component {
 	render() {
 		return (
 			<form onSubmit={this.submitHandler}>
-				<input type="text" name="question" placeholder={this.props.questionObj.question} value={this.state.question} onChange={this.changeHandler} required />
-				<button type="button">Submit Edit</button>
+				<span className="p-float-label">
+					<InputText type="text" name="question" value={this.state.question} onChange={this.changeHandler} required />
+					<label htmlFor="question">{this.props.questionObj.question}</label>
+					<Button className="p-button-raised p-button-rounded" type="submit" label="Submit Edit" icon="pi pi-chevron-circle-right" />
+				</span>
 			</form>
 		)
 	}

@@ -91,12 +91,18 @@ h3 {
 	justify-content: center;
 }
 
-.div-aligned-row {
+.div-aligned-row-wrap {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
+}
+
+.div-aligned-row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .form-aligned {
@@ -123,6 +129,10 @@ h3 {
 	margin: 10px;
 }
 
+.answer-margin {
+	margin-left: 10px;
+}
+
 .card {
 	position: relative;
 	width: 200px;
@@ -138,4 +148,11 @@ h3 {
 	position: absolute;
 	bottom: 15px;
 	right: 30px;
+}
+
+.form-row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 }

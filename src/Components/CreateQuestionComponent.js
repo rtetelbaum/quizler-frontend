@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { postQuizQuestion } from '../Redux/actions'
+import { InputText } from 'primereact/inputtext'
+import { Button } from 'primereact/button'
 
 class CreateQuestionComponent extends React.Component {
 	state = {
@@ -15,22 +17,25 @@ class CreateQuestionComponent extends React.Component {
 
 	submitHandler = (e) => {
 		e.preventDefault()
-		
+
 		const questionObj = {
 			question: this.state.question,
 			quiz_id: this.props.quiz.id
 		}
-		
+
 		this.props.postQuizQuestion(questionObj)
-		
+
 		this.setState({ question: "" })
 	}
 
 	render() {
 		return (
 			<form onSubmit={this.submitHandler}>
-				<input type="text" name="question" placeholder="New Question" value={this.state.question} onChange={this.changeHandler} required />
-				<button type="submit">Add Question</button>
+				<span className="p-float-label">
+					<InputText type="text" name="question" value={this.state.question} onChange={this.changeHandler} required />
+					<label htmlFor="email">New Question</label>
+					<Button className="p-button-raised p-button-rounded" type="submit" label="Add Question" icon="pi pi-plus-circle" />
+				</span>
 			</form>
 		)
 	}

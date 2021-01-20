@@ -1,6 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { postQuizAnswer } from '../Redux/actions'
+import { InputText } from 'primereact/inputtext'
+import { Button } from 'primereact/button'
+import { Checkbox } from 'primereact/checkbox'
 
 class CreateAnswerComponent extends React.Component {
 	state = {
@@ -40,20 +43,22 @@ class CreateAnswerComponent extends React.Component {
 	render() {
 		return (
 			<div>
-				<form onSubmit={this.submitHandler}>
-					<input type="text" name="answer" placeholder="New Answer" value={this.state.answer} onChange={this.answerChangeHandler} required />
-
+				<form className="form-row" onSubmit={this.submitHandler}>
+					<span className="p-float-label">
+						<InputText type="text" name="answer" value={this.state.answer} onChange={this.answerChangeHandler} required />
+						<label htmlFor="answer">New Answer</label>
+					</span>
 					{this.props.question.answers.find(answer => answer.correct === true)
 						?
 						null
 						:
 						<>
-							<input type="checkbox" name="correct" value="correct" onChange={this.checkboxChangeHandler} />
+							<Checkbox type="checkbox" value="correct" name="correct" onChange={this.checkboxChangeHandler}></Checkbox>
 							<label htmlFor="correct">Correct?</label>
 						</>
 					}
 
-					<button type="submit">Add Answer</button>
+					<Button className="p-button-raised p-button-rounded" type="submit" label="Add Answer" icon="pi pi-plus-circle" />
 				</form>
 			</div>
 		)

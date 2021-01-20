@@ -19,8 +19,8 @@ function QuizContainer(props) {
 		return sortedQuizzesArray.map(quiz =>
 			<Card
 				className="card"
-				title={quiz.title}
-				subTitle={quiz.subject}
+				title={<Link to={`/quizzes/${quiz.id}`}>{quiz.title}</Link>}
+				subTitle={<Link to={`/quizzes/${quiz.id}`}>{quiz.subject}</Link>}
 				header={<Link to={`/quizzes/${quiz.id}`}><img alt="Card" src='/logo200x100.png' /></Link>}
 				footer={<span className="card-button-span"><Button className="p-button-raised p-button-rounded p-button-secondary" icon="pi pi-trash" type="button" label="Delete Quiz" onClick={() => deleteQuizHandler(quiz.id)} /></span>}>
 			</Card>
@@ -35,7 +35,7 @@ function QuizContainer(props) {
 				<div className="div-aligned">
 					<h1 className="p-component">Quizmaker {props.user.email}</h1>
 					<h2 className="p-component">Saved Quizzes</h2>
-					<div className="div-aligned-row">
+					<div className="div-aligned-row-wrap">
 						{
 							arrayOfQuizzes().length === 0
 								?

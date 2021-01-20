@@ -5,6 +5,7 @@ import CreateAnswerComponent from './CreateAnswerComponent'
 import { deleteQuizQuestion, setEditQClicked, setEditQID } from '../Redux/actions'
 import { connect } from 'react-redux'
 import { ProgressSpinner } from 'primereact/progressspinner'
+import { Button } from 'primereact/button'
 
 class QuestionComponent extends React.Component {
 
@@ -47,8 +48,8 @@ class QuestionComponent extends React.Component {
 								:
 								null
 							}
-							<button type="button" onClick={() => this.editQHandler()}>Edit Question</button>
-							<button type="button" onClick={() => this.deleteQuestionHandler(this.props.question.id)}>Delete Question</button>
+							<Button className="p-button-raised p-button-rounded" type="button" label="Edit Question" icon="pi pi-pencil" onClick={() => this.editQHandler()} />
+							<Button className="p-button-raised p-button-rounded p-button-secondary" type="button" label="Delete Question" icon="pi pi-trash" onClick={() => this.deleteQuestionHandler(this.props.question.id)} />
 							<br />
 							<CreateAnswerComponent question={this.props.question} />
 						</div>
