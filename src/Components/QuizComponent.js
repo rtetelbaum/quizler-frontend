@@ -116,9 +116,11 @@ class QuizComponent extends React.Component {
 					<h3 className="p-component"><b><u>Subject</u>:</b> {this.props.quiz.subject}</h3>
 					{this.props.user ? <EmailQuizComponent senderEmail={this.props.user.email} url={this.props.match.url} /> : null}
 					{this.props.user ? <CreateQuestionComponent /> : null}
-					<ol>
-						{this.arrayOfQuestions()}
-					</ol>
+					<div className="div-aligned-ol">
+						<ol>
+							{this.arrayOfQuestions()}
+						</ol>
+					</div>
 					{!this.props.user ? <TakerEmailComponent /> : null}
 					{
 						!this.props.user

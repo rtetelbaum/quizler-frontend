@@ -29,11 +29,13 @@ class EditQuestionComponent extends React.Component {
 
 	render() {
 		return (
-			<form onSubmit={this.submitHandler}>
+			<form className="row-margin-no-left-bottom-extra-top" onSubmit={this.submitHandler}>
 				<span className="p-float-label">
 					<InputText type="text" name="question" value={this.state.question} onChange={this.changeHandler} required />
-					<label htmlFor="question">{this.props.questionObj.question}</label>
-					<Button className="p-button-raised p-button-rounded" type="submit" label="Submit Edit" icon="pi pi-chevron-circle-right" />
+					<label htmlFor="question">Edit Question</label>
+					<span className="button-margin-left">
+						<Button className="p-button-raised p-button-rounded" type="submit" label="Submit Edit" icon="pi pi-chevron-circle-right" />
+					</span>
 				</span>
 			</form>
 		)

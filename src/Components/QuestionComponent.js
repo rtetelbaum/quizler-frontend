@@ -33,32 +33,40 @@ class QuestionComponent extends React.Component {
 		return (
 			this.props.question
 				?
-				<li className="p-component">
-					<b>{this.props.question.question}</b>
-					{this.props.user
-						?
-						<div>
-							{this.props.editQID
-								?
-								this.props.editQClicked && this.props.editQID === this.props.question.id
+				<div className="question-div">
+					<li className="li-margin-bottom">
+						<b>{this.props.question.question}</b>
+						{this.props.user
+							?
+							<div>
+								{this.props.editQID
 									?
-									<div><EditQuestionComponent questionObj={this.props.question} /><br /></div>
+									this.props.editQClicked && this.props.editQID === this.props.question.id
+										?
+										<div><EditQuestionComponent questionObj={this.props.question} /><br /></div>
+										:
+										null
 									:
 									null
-								:
-								null
-							}
-							<Button className="p-button-raised p-button-rounded" type="button" label="Edit Question" icon="pi pi-pencil" onClick={() => this.editQHandler()} />
-							<Button className="p-button-raised p-button-rounded p-button-secondary" type="button" label="Delete Question" icon="pi pi-trash" onClick={() => this.deleteQuestionHandler(this.props.question.id)} />
-							<br />
-							<CreateAnswerComponent question={this.props.question} />
-						</div>
-						:
-						null
-					}
-					{this.arrayOfAnswers()}
-					<br />
-				</li>
+								}
+								<div className="row-margin-no-left-bottom">
+									<span>
+										<Button className="p-button-raised p-button-rounded" type="button" label="Edit Question" icon="pi pi-pencil" onClick={() => this.editQHandler()} />
+										<span className="button-margin-left">
+											<Button className="p-button-raised p-button-rounded p-button-secondary" type="button" label="Delete Question" icon="pi pi-trash" onClick={() => this.deleteQuestionHandler(this.props.question.id)} />
+										</span>
+									</span>
+								</div>
+								<br />
+								<CreateAnswerComponent question={this.props.question} />
+							</div>
+							:
+							null
+						}
+						{this.arrayOfAnswers()}
+						<br />
+					</li>
+				</div>
 				:
 				<div className="div-aligned">
 					<ProgressSpinner />

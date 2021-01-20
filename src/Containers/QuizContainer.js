@@ -18,6 +18,7 @@ function QuizContainer(props) {
 
 		return sortedQuizzesArray.map(quiz =>
 			<Card
+				key={quiz.id}
 				className="card"
 				title={<Link to={`/quizzes/${quiz.id}`}>{quiz.title}</Link>}
 				subTitle={<Link to={`/quizzes/${quiz.id}`}>{quiz.subject}</Link>}

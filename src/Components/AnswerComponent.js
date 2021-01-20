@@ -19,25 +19,23 @@ function AnswerComponent(props) {
 		<div className="div-aligned-row">
 			{props.user
 				?
-				<div className="answer-radio">
-					<RadioButton name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} />
-					<label className="answer-margin" htmlFor={props.answer.answer}>{props.answer.answer}</label>
-				</div>
-				:
-				<div className="answer-radio">
-					<RadioButton name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} />
-					<label className="answer-margin" htmlFor={props.answer.answer}>{props.answer.answer}</label>
-				</div>
-			}
-
-			{props.user
-				?
 				<>
-					<Button className="p-button-raised p-button-rounded p-button-secondary" type="button" label="Delete Answer" icon="pi pi-trash" onClick={() => deleteAnswerHandler(props.answer.id)} />
-					{props.answer.correct ? "(Correct answer)" : null}
+					<div className="answer-radio">
+						<RadioButton name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} />
+						<label className="answer-margin" htmlFor={props.answer.answer}>{props.answer.answer}</label>
+					</div>
+					<span className="button-margin-left">
+						{props.answer.correct ? <i className="pi pi-check-square"> Correct Answer</i> : null}
+					</span>
+					<span className="delete-answer-button">
+						<Button className="p-button-raised p-button-rounded p-button-secondary" type="button" label="Delete Answer" icon="pi pi-trash" onClick={() => deleteAnswerHandler(props.answer.id)} />
+					</span>
 				</>
 				:
-				null
+				<div className="answer-radio">
+					<RadioButton name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} />
+					<label className="answer-margin" htmlFor={props.answer.answer}>{props.answer.answer}</label>
+				</div>
 			}
 		</div>
 	)

@@ -43,7 +43,7 @@ class CreateAnswerComponent extends React.Component {
 	render() {
 		return (
 			<div>
-				<form className="form-row" onSubmit={this.submitHandler}>
+				<form className="form-row row-margin-no-left" onSubmit={this.submitHandler}>
 					<span className="p-float-label">
 						<InputText type="text" name="answer" value={this.state.answer} onChange={this.answerChangeHandler} required />
 						<label htmlFor="answer">New Answer</label>
@@ -53,12 +53,15 @@ class CreateAnswerComponent extends React.Component {
 						null
 						:
 						<>
-							<Checkbox type="checkbox" value="correct" name="correct" onChange={this.checkboxChangeHandler}></Checkbox>
-							<label htmlFor="correct">Correct?</label>
+							<span className="button-margin-left">
+								<Checkbox type="checkbox" value="correct" name="correct" onChange={this.checkboxChangeHandler}></Checkbox>
+								<label htmlFor="correct"> Correct?</label>
+							</span>
 						</>
 					}
-
-					<Button className="p-button-raised p-button-rounded" type="submit" label="Add Answer" icon="pi pi-plus-circle" />
+					<span className="button-margin-left">
+						<Button className="p-button-raised p-button-rounded" type="submit" label="Add Answer" icon="pi pi-plus-circle" />
+					</span>
 				</form>
 			</div>
 		)
