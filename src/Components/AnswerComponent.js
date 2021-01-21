@@ -18,7 +18,7 @@ function AnswerComponent(props) {
 	const selectedAnswer = props.quizState[props.question.question]
 
 	return (
-		<div className="div-aligned-row">
+		<div className="div-aligned-row fade-in-2">
 			{props.user
 				?
 				<>

@@ -33,7 +33,7 @@ class QuestionComponent extends React.Component {
 		return (
 			this.props.question
 				?
-				<div className="question-div">
+				<div className="question-div fade-in-2">
 					<li className="li-margin-bottom">
 						<b>{this.props.question.question}</b>
 						{this.props.user

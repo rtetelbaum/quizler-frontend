@@ -29,7 +29,7 @@ class EditQuestionComponent extends React.Component {
 
 	render() {
 		return (
-			<form className="row-margin-no-left-bottom-extra-top" onSubmit={this.submitHandler}>
+			<form className="row-margin-no-left-bottom-extra-top  fade-in-2" onSubmit={this.submitHandler}>
 				<span className="p-float-label">
 					<InputText type="text" name="question" value={this.state.question} onChange={this.changeHandler} required />
 					<label htmlFor="question">Edit Question</label>

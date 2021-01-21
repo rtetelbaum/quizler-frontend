@@ -33,7 +33,7 @@ function QuizContainer(props) {
 			?
 			props.user.id
 				?
-				<div className="div-aligned">
+				<div className="div-aligned fade-in-2">
 					<h1 className="p-component">Quizmaker {props.user.email}</h1>
 					<h2 className="p-component">Saved Quizzes</h2>
 					<div className="div-aligned-row-wrap">
@@ -47,11 +47,11 @@ function QuizContainer(props) {
 					</div>
 				</div>
 				:
-				<div>
+				<div className="fade-in-2">
 					<h1 className="p-component">Please log in.</h1>
 				</div>
 			:
-			<div>
+			<div className="fade-in-2">
 				<h1 className="p-component">Please log in.</h1>
 			</div>
 	)
