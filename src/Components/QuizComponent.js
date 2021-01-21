@@ -7,7 +7,7 @@ import TakerEmailComponent from './TakerEmailComponent'
 import CreateQuestionComponent from './CreateQuestionComponent'
 import emailjs from 'emailjs-com'
 import { withRouter } from 'react-router-dom'
-import { Button } from 'primereact/button'
+// import { Button } from 'primereact/button'
 import { ProgressSpinner } from 'primereact/progressspinner'
 
 class QuizComponent extends React.Component {
@@ -26,6 +26,11 @@ class QuizComponent extends React.Component {
 
 	changeHandler = (e) => {
 		this.setState({ [e.target.name]: e.target.value })
+	}
+
+	submitHandler = (e, takerEmail) => {
+		e.preventDefault()
+		this.validateEmail(takerEmail)
 	}
 
 	validateEmail = (takerEmail) => {
@@ -121,14 +126,14 @@ class QuizComponent extends React.Component {
 							{this.arrayOfQuestions()}
 						</ol>
 					</div>
-					{!this.props.user ? <TakerEmailComponent /> : null}
-					{
+					{!this.props.user ? <TakerEmailComponent submitHandler={this.submitHandler} /> : null}
+					{/* {
 						!this.props.user
 							?
 							<Button className="p-button-raised p-button-rounded button-margin-bottom" type="button" label="Submit & Email to Quizmaker" onClick={() => this.validateEmail(this.props.takerEmail)} />
 							:
 							null
-					}
+					} */}
 				</div>
 				:
 				<div className="div-aligned fade-in-2">

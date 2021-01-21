@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { setTakerEmail } from '../Redux/actions'
 import { InputText } from 'primereact/inputtext'
+import { Button } from 'primereact/button'
 
 class TakerEmailComponent extends React.Component {
 
@@ -16,14 +17,21 @@ class TakerEmailComponent extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<form className="form-aligned" onSubmit={(e) => this.props.submitHandler(e, this.props.takerEmail)}>
 				<span className="p-input-icon-left p-float-label input-span-sole">
 					<i className="pi pi-envelope" />
 					<InputText type="email" name="email" value={this.state.email} onChange={this.changeHandler} />
 					<label htmlFor="Quiztaker Email">Your Email</label>
-				</span>
-			</div>
+				</span><br />
+				<Button className="p-button-raised p-button-rounded button-margin-bottom" type="submit" label="Submit & Email to Quizmaker" />
+			</form>
 		)
+	}
+}
+
+function msp(state) {
+	return {
+		takerEmail: state.takerEmail
 	}
 }
 
@@ -33,4 +41,4 @@ function mdp(dispatch) {
 	}
 }
 
-export default connect(null, mdp)(TakerEmailComponent)
+export default connect(msp, mdp)(TakerEmailComponent)
