@@ -18,12 +18,17 @@ class TakerEmailComponent extends React.Component {
 	render() {
 		return (
 			<form className="form-aligned" onSubmit={(e) => this.props.submitHandler(e, this.props.takerEmail)}>
+
 				<span className="p-input-icon-left p-float-label input-span-sole">
 					<i className="pi pi-envelope" />
-					<InputText type="email" name="email" value={this.state.email} onChange={this.changeHandler} />
+					<InputText className="input-width" type="email" name="email" value={this.state.email} onChange={this.changeHandler} />
 					<label htmlFor="Quiztaker Email">Your Email</label>
 				</span><br />
-				<Button className="p-button-raised p-button-rounded button-margin-bottom" type="submit" label="Submit & Email to Quizmaker" />
+
+				<span>
+					<Button className="p-button-raised p-button-rounded button-margin-bottom" type="submit" label="Submit & Email to Quizmaker" />
+				</span>
+
 			</form>
 		)
 	}

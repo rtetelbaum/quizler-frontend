@@ -31,11 +31,11 @@ class CreateQuestionComponent extends React.Component {
 	render() {
 		return (
 			<form  className="row-margin" onSubmit={this.submitHandler}>
-				<span className="p-float-label">
-					<InputText type="text" name="question" value={this.state.question} onChange={this.changeHandler} required />
+				<span className="p-float-label label-span-width">
+					<InputText className="input-width" type="text" name="question" value={this.state.question} onChange={this.changeHandler} required />
 					<label htmlFor="email">New Question</label>
 					<span className="button-margin-left">
-						<Button className="p-button-raised p-button-rounded" type="submit" label="Add Question" icon="pi pi-plus-circle" />
+						<Button className="p-button-raised p-button-rounded button-width" type="submit" label="Add Question" icon="pi pi-plus-circle" />
 					</span>
 				</span>
 			</form>

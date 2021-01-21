@@ -127,13 +127,6 @@ class QuizComponent extends React.Component {
 						</ol>
 					</div>
 					{!this.props.user ? <TakerEmailComponent submitHandler={this.submitHandler} /> : null}
-					{/* {
-						!this.props.user
-							?
-							<Button className="p-button-raised p-button-rounded button-margin-bottom" type="button" label="Submit & Email to Quizmaker" onClick={() => this.validateEmail(this.props.takerEmail)} />
-							:
-							null
-					} */}
 				</div>
 				:
 				<div className="div-aligned fade-in-2">

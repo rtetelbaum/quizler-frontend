@@ -39,7 +39,7 @@ class CreateAnswerComponent extends React.Component {
 			<div>
 				<form className="form-row row-margin-no-left" onSubmit={this.submitHandler}>
 					<span className="p-float-label">
-						<InputText type="text" name="answer" value={this.state.answer} onChange={this.answerChangeHandler} required />
+						<InputText className="input-width" type="text" name="answer" value={this.state.answer} onChange={this.answerChangeHandler} required />
 						<label htmlFor="answer">New Answer</label>
 					</span>
 					{this.props.question.answers.find(answer => answer.correct === true)

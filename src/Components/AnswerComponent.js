@@ -34,7 +34,7 @@ function AnswerComponent(props) {
 					</span>
 				</>
 				:
-				<div className="answer-radio">
+				<div className="answer-radio-no-user">
 					<RadioButton name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} checked={props.answer.answer === selectedAnswer} />
 					<label className="answer-margin" htmlFor={props.answer.answer}>{props.answer.answer}</label>
 				</div>

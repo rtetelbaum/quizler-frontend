@@ -66,11 +66,11 @@ class EmailQuizComponent extends React.Component {
 				<p>To send to more than one recipient, separate addresses with a comma, e.g. 'john@doe.com, jane@doe.com'</p>
 				<form className="row-margin" onSubmit={this.submitHandler}>
 
-					<span className="p-float-label">
-						<InputText type="text" name="email" value={this.state.email} onChange={this.changeHandler} required />
+					<span className="p-float-label label-span-width">
+						<InputText className="input-width" type="text" name="email" value={this.state.email} onChange={this.changeHandler} required />
 						<label htmlFor="email">Quiz Recipient Email(s)</label>
 						<span className="button-margin-left">
-							<Button className="p-button-raised p-button-rounded" type="submit" label="Email Quiz" icon="pi pi-envelope" />
+							<Button className="p-button-raised p-button-rounded button-width" type="submit" label="Email Quiz" icon="pi pi-envelope" />
 						</span>
 					</span>
 
