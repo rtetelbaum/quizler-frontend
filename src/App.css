@@ -145,6 +145,10 @@ h3 {
 	margin-left: 10px;
 }
 
+.answer-correct {
+	margin-right: 10px;
+}
+
 .card {
 	position: relative;
 	width: 200px;

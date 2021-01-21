@@ -27,7 +27,7 @@ function AnswerComponent(props) {
 						<label className="answer-margin" htmlFor={props.answer.answer}>{props.answer.answer}</label>
 					</div>
 					<span className="button-margin-left">
-						{props.answer.correct ? <i className="pi pi-check-square"> Correct Answer</i> : null}
+						{props.answer.correct ? <i className="pi pi-check-square answer-correct"> Correct Answer</i> : null}
 					</span>
 					<span className="delete-answer-button">
 						<Button className="p-button-raised p-button-rounded p-button-secondary" type="button" label="Delete Answer" icon="pi pi-trash" onClick={() => deleteAnswerHandler(props.answer.id)} />
