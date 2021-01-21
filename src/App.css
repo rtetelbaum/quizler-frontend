@@ -20,7 +20,6 @@
 
 #nav-div {
 	display: flex;
-	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	position: fixed;
@@ -32,7 +31,6 @@
 
 #nav-button-div {
 	display: flex;
-	flex-direction: row;
 	align-items: center;
 	height: 110px;
 }
@@ -105,7 +103,6 @@ h3 {
 
 .div-aligned-row-wrap {
 	display: flex;
-	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
@@ -113,7 +110,6 @@ h3 {
 
 .div-aligned-row {
 	display: flex;
-	flex-direction: row;
 	align-items: center;
 }
 
@@ -180,7 +176,6 @@ h3 {
 
 .form-row {
 	display: flex;
-	flex-direction: row;
 	align-items: center;
 }
 
@@ -227,3 +222,59 @@ h3 {
 .p-checkbox .p-checkbox-box {
 	border: 1px solid rgba(255, 255, 255, 0.87) !important;
 }
+
+.review-row {
+	display: flex;
+}
+
+.review {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 20px;
+	font-size: 0.75em;
+}
+
+.review img {
+	width: 75px;
+}
+
+.review p {
+	width: 75px;
+}
+
+/* Fade-in start */
+
+.fade-in {
+	animation: fadeIn ease 5s;
+	-webkit-animation: fadeIn ease 5s;
+	-moz-animation: fadeIn ease 5s;
+	-o-animation: fadeIn ease 5s;
+	-ms-animation: fadeIn ease 5s;
+	}
+	@keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}
+	}
+	
+	@-moz-keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}
+	}
+	
+	@-webkit-keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}
+	}
+	
+	@-o-keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}
+	}
+	
+	@-ms-keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}
+	}
+
+/* Fade-in end */

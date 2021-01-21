@@ -1,5 +1,10 @@
 Quizler: an app to create multiple choice quizzes, email a link to 
-the quiz, and receive an email with the taker's score.
+the quiz, and receive an email with the taker's score and report.
+
+Accompanying Back End: https://github.com/rtetelbaum/quizler-backend
+
+CSS fade-in class code from:
+https://medium.com/cloud-native-the-gathering/how-to-use-css-to-fade-in-and-fade-out-html-text-and-pictures-f45c11364f08
 
 Copyright (C) 2021 Roman Tetelbaum
 
