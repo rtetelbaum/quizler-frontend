@@ -25,7 +25,7 @@ function HomeComponent() {
 
 				<div className="review">
 					<img src='/GQ.png' alt='gq' />
-					<p>"Sexiest app 2027!"</p>
+					<p>"Sexiest app of 2027!"</p>
 					<p><b>-GQ</b></p>
 				</div>
 
