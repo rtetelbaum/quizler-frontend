@@ -11,28 +11,26 @@
 #main-div { grid-area: 2 / 1 / 3 / 2; }
 #footer-div { grid-area: 3 / 1 / 4 / 2; }
 
-#logo-div {
-	position: fixed;
-	left: 0;
-	background-color: #121212;
-	z-index: 2;
-}
-
 #nav-div {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	position: fixed;
-	width: 100%;
 	top: 0;
 	background-color: #121212;
 	z-index: 1;
+	width: 100vw;
+	height: 110px;
 }
 
-#nav-button-div {
+#logo-div {
 	display: flex;
 	align-items: center;
-	height: 110px;
+	justify-content: center;
+	position: fixed;
+	left: 0;
+	background-color: #121212;
+	z-index: 2;
 }
 
 #nav-div Button {
@@ -68,7 +66,7 @@
 	bottom: 0;
 	background-color: #121212;
 	color: rgba(255, 255, 255, 0.87);
-	z-index: 0;
+	z-index: 1;
 }
 
 h1 {
