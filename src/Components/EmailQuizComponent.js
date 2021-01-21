@@ -24,14 +24,16 @@ class EmailQuizComponent extends React.Component {
 	}
 
 	validateAnswers = () => {
+		const qLength = this.props.questions.length
+
 		const qNoAnswers = this.props.questions.filter(question => question.answers.length === 0)
 		
 		const qWithAnswers = this.props.questions.filter(question => question.answers.length > 0)
 
 		const qNoCorrectAnswers = qWithAnswers.filter(question => !question.answers.some(answer => answer.correct === true))
 
-		if (qNoAnswers.length > 0 || qNoCorrectAnswers.length > 0) {
-			alert("Please make sure all questions have at least one correct answer before sending a quiz.")
+		if (qLength < 1 || qNoAnswers.length > 0 || qNoCorrectAnswers.length > 0) {
+			alert("Please make sure the quiz isn't empty and all questions have at least one correct answer before emailing.")
 		} else {
 			this.emailQuiz()
 		}
