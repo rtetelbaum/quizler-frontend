@@ -36,7 +36,7 @@ class CreateQuizComponent extends React.Component {
 			this.props.user
 				?
 				this.props.user.id ?
-					<div className="div-aligned">
+					<div className="div-aligned fade-in-2">
 
 						<h2 className="p-component">Create Quiz</h2>
 
