@@ -101,6 +101,7 @@ h3 {
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
+	width: 75%;
 }
 
 .div-aligned-row {
