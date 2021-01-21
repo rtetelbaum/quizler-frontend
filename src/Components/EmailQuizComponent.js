@@ -18,9 +18,23 @@ class EmailQuizComponent extends React.Component {
 	submitHandler = (e) => {
 		e.preventDefault()
 
-		this.emailQuiz()
+		this.validateAnswers()
 
 		this.setState({ email: "" })
+	}
+
+	validateAnswers = () => {
+		const qNoAnswers = this.props.questions.filter(question => question.answers.length === 0)
+		
+		const qWithAnswers = this.props.questions.filter(question => question.answers.length > 0)
+
+		const qNoCorrectAnswers = qWithAnswers.filter(question => !question.answers.some(answer => answer.correct === true))
+
+		if (qNoAnswers.length > 0 || qNoCorrectAnswers.length > 0) {
+			alert("Please make sure all questions have at least one correct answer before sending a quiz.")
+		} else {
+			this.emailQuiz()
+		}
 	}
 
 	emailQuiz = () => {
