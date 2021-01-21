@@ -2,7 +2,7 @@ import React from 'react'
 
 function HomeComponent() {
 	return (
-		<div className="div-aligned fade-in-5">
+		<div className="div-aligned fade-in-2">
 			<h1 className="p-component">Welcome to Quizler!</h1>
 			<p className="home-p">
 				Quizler allows you to create multiple choice quizzes, email a link to the quiz to anyone, 
