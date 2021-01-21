@@ -19,37 +19,44 @@ function HomeComponent() {
 
 				<div className="review">
 					<img src='/SpaceX.jpg' alt='spacex' />
-					<p>"First quiz app our astronauts used on Mars. Buy Tesla stock!"<br /><b>-Elon Musk</b></p>
+					<p>"First quiz app our astronauts used on Mars. Buy Tesla stock!"</p>
+					<p><b>-Elon Musk</b></p>
 				</div>
 
 				<div className="review">
 					<img src='/GQ.png' alt='gq' />
-					<p>"Sexiest app 2027!"<br /><b>-GQ</b></p>
+					<p>"Sexiest app 2027!"</p>
+					<p><b>-GQ</b></p>
 				</div>
 
 				<div className="review">
 					<img src='/Harvard.png' alt='harvard' />
-					<p>"All of our students are required to use Quizler or face expulsion!"<br /><b>-Harvard</b></p>
+					<p>"All of our students are required to use Quizler or face expulsion!"</p>
+					<p><b>-Harvard</b></p>
 				</div>
 
 				<div className="review">
 					<img src='/Flatiron.jpg' alt='flatiron' />
-					<p>"From our top graduate of all time!"<br /><b>-Flatiron School</b></p>
+					<p>"From our top graduate of all time!"</p>
+					<p><b>-Flatiron School</b></p>
 				</div>
 
 				<div className="review">
 					<img src='/Microsoft.png' alt='microsoft' />
-					<p>"Stop asking me for a review! How did you get this number?"<br /><b>-Bill Gates</b></p>
+					<p>"Stop asking me for a review! How did you get this number?"</p>
+					<p><b>-Bill Gates</b></p>
 				</div>
 
 				<div className="review">
 					<img src='/Time.png' alt='time' />
-					<p>"App of the Year 2031!"<br /><b>-Time Magazine</b></p>
+					<p>"App of the Year 2031!"</p>
+					<p><b>-Time Magazine</b></p>
 				</div>
 
 				<div className="review">
 					<img src='/CNET.png' alt='cnet' />
-					<p>"#1 unranked quiz app out there!"<br /><b>-CNET</b></p>
+					<p>"#1 unranked quiz app out there!"</p>
+					<p><b>-CNET</b></p>
 				</div>
 
 			</div>

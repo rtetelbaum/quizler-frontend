@@ -225,6 +225,7 @@ h3 {
 
 .review-row {
 	display: flex;
+	margin-top: 20px;
 }
 
 .review {
@@ -237,6 +238,7 @@ h3 {
 
 .review img {
 	width: 75px;
+	margin-bottom: 10px;
 }
 
 .review p {
