@@ -245,36 +245,45 @@ h3 {
 
 /* Fade-in start */
 
-.fade-in {
+.fade-in-5 {
 	animation: fadeIn ease 5s;
 	-webkit-animation: fadeIn ease 5s;
 	-moz-animation: fadeIn ease 5s;
 	-o-animation: fadeIn ease 5s;
 	-ms-animation: fadeIn ease 5s;
-	}
-	@keyframes fadeIn {
-	0% {opacity:0;}
-	100% {opacity:1;}
-	}
+}
+
+.fade-in-2 {
+	animation: fadeIn ease 2s;
+	-webkit-animation: fadeIn ease 2s;
+	-moz-animation: fadeIn ease 2s;
+	-o-animation: fadeIn ease 2s;
+	-ms-animation: fadeIn ease 2s;
+}
 	
-	@-moz-keyframes fadeIn {
+@keyframes fadeIn {
 	0% {opacity:0;}
 	100% {opacity:1;}
-	}
+}
 	
-	@-webkit-keyframes fadeIn {
+@-moz-keyframes fadeIn {
 	0% {opacity:0;}
 	100% {opacity:1;}
-	}
+}
 	
-	@-o-keyframes fadeIn {
+@-webkit-keyframes fadeIn {
 	0% {opacity:0;}
 	100% {opacity:1;}
-	}
+}
 	
-	@-ms-keyframes fadeIn {
+@-o-keyframes fadeIn {
 	0% {opacity:0;}
 	100% {opacity:1;}
-	}
+}
+	
+@-ms-keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}
+}
 
 /* Fade-in end */

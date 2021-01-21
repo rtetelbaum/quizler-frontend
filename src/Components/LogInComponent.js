@@ -58,13 +58,16 @@ class LogInComponent extends React.Component {
 					?
 					<Redirect to="/quizzes" />
 					:
-					<h3>Loading...</h3>
+					<div className="div-aligned">
+						<ProgressSpinner />
+						<h2 className="p-component">Loading Log In...</h2>
+					</div>
 				:
 				this.props.users
 					?
 					Object.keys(this.props.users).length > 0
 						?
-						<div className="div-aligned">
+						<div className="div-aligned fade-in-2">
 
 							<h2 className="p-component">Log In</h2>
 

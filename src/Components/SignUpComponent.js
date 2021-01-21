@@ -29,7 +29,7 @@ class SignUpComponent extends React.Component {
 
 	render() {
 		return (
-			<div className="div-aligned">
+			<div className="div-aligned fade-in-2">
 
 				{this.props.user ? this.props.user.id ? <Redirect to="/quizzes" /> : null : null}
 
