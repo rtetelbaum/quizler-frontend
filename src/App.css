@@ -217,6 +217,10 @@ h3 {
 	margin-left: 15px;
 }
 
+.button-margin-bottom {
+	margin-bottom: 40px !important;
+}
+
 .home-p {
 	width: 600px;
 }

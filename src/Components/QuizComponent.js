@@ -125,7 +125,7 @@ class QuizComponent extends React.Component {
 					{
 						!this.props.user
 							?
-							<Button className="p-button-raised p-button-rounded" type="button" label="Submit & Email to Quizmaker" onClick={() => this.validateEmail(this.props.takerEmail)} />
+							<Button className="p-button-raised p-button-rounded button-margin-bottom" type="button" label="Submit & Email to Quizmaker" onClick={() => this.validateEmail(this.props.takerEmail)} />
 							:
 							null
 					}
