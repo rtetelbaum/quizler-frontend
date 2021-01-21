@@ -24,9 +24,6 @@
 }
 
 #logo-div {
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	position: fixed;
 	left: 0;
 	background-color: #121212;
