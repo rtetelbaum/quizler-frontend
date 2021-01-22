@@ -15,6 +15,7 @@ import LogInComponent from './Components/LogInComponent'
 import QuizContainer from './Containers/QuizContainer'
 import CreateQuizComponent from './Components/CreateQuizComponent'
 import QuizComponent from './Components/QuizComponent'
+import NotFoundComponent from './Components/NotFoundComponent'
 
 class App extends React.Component {
 
@@ -32,13 +33,15 @@ class App extends React.Component {
 
 				<div id="main-div">
 					<Switch>
-						<Route path="/home" component={HomeComponent} />
-						<Route path="/signup" component={SignUpComponent} />
-						<Route path="/login" component={LogInComponent} />
-						<Route path="/quizzes/create" component={CreateQuizComponent} />
+						<Route exact path="/home" component={HomeComponent} />
+						<Route exact path="/signup" component={SignUpComponent} />
+						<Route exact path="/login" component={LogInComponent} />
+						<Route exact path="/quizzes/create" component={CreateQuizComponent} />
 						<Route exact path="/quizzes/:id" component={QuizComponent} />
-						<Route path="/quizzes" component={QuizContainer} />
-						<Route path="/"><Redirect to="/home" /></Route>
+						<Route exact path="/quizzes" component={QuizContainer} />
+						<Route exact path="/404" component={NotFoundComponent} />
+						<Route exact path="/"><Redirect to="/home" /></Route>
+						<Route path="*" component={NotFoundComponent} />
 					</Switch>
 				</div>
 

@@ -1,20 +1,21 @@
 import {
 	POST_USER,
 	GET_USER,
-	GET_USERS,
 	SET_USER,
 	LOG_OUT_USER,
 	POST_USER_QUIZ,
 	DELETE_USER_QUIZ,
+	GET_USERS,
 	GET_QUIZ,
 	POST_QUIZ_QUESTION,
-	SET_TAKER_EMAIL,
 	DELETE_QUIZ_QUESTION,
 	PATCH_QUIZ_QUESTION,
-	SET_EDIT_Q_CLICKED,
-	SET_EDIT_Q_ID,
 	POST_QUIZ_ANSWER,
-	DELETE_QUIZ_ANSWER
+	DELETE_QUIZ_ANSWER,
+	GET_QUIZZES,
+	SET_TAKER_EMAIL,
+	SET_EDIT_Q_CLICKED,
+	SET_EDIT_Q_ID
 } from './actionTypes'
 
 const BASE_URL = "http://localhost:4000"
@@ -53,16 +54,6 @@ export function getUser(userID) {
 			.then(r => r.json())
 			.then(userObj => {
 				dispatch({ type: GET_USER, payload: userObj })
-			})
-	}
-}
-
-export function getUsers() {
-	return function (dispatch) {
-		fetch(`${BASE_URL}/api/v1/users`)
-			.then(r => r.json())
-			.then(userObjs => {
-				dispatch({ type: GET_USERS, payload: userObjs })
 			})
 	}
 }
@@ -117,6 +108,16 @@ export function deleteUserQuiz(quizID) {
 					dispatch({ type: DELETE_USER_QUIZ, payload: quizID })
 					alert("Quiz deleted.")
 				}
+			})
+	}
+}
+
+export function getUsers() {
+	return function (dispatch) {
+		fetch(`${BASE_URL}/api/v1/users`)
+			.then(r => r.json())
+			.then(userObjs => {
+				dispatch({ type: GET_USERS, payload: userObjs })
 			})
 	}
 }
@@ -191,24 +192,6 @@ export function patchQuizQuestion(questionObj, questionID) {
 	}
 }
 
-export function setTakerEmail(takerEmail) {
-	return function (dispatch) {
-		dispatch({ type: SET_TAKER_EMAIL, payload: takerEmail })
-	}
-}
-
-export function setEditQClicked(isClicked) {
-	return function (dispatch) {
-		dispatch({ type: SET_EDIT_Q_CLICKED, payload: isClicked })
-	}
-}
-
-export function setEditQID(questionID) {
-	return function (dispatch) {
-		dispatch({ type: SET_EDIT_Q_ID, payload: questionID })
-	}
-}
-
 export function postQuizAnswer(answerObj) {
 	return function (dispatch) {
 		fetch(`${BASE_URL}/api/v1/answers`, {
@@ -245,5 +228,33 @@ export function deleteQuizAnswer(questionAnswerID) {
 					alert("Answer deleted.")
 				}
 			})
+	}
+}
+
+export function getQuizzes() {
+	return function (dispatch) {
+		fetch(`${BASE_URL}/api/v1/quizzes`)
+			.then(r => r.json())
+			.then(quizObjs => {
+				dispatch({ type: GET_QUIZZES, payload: quizObjs })
+			})
+	}
+}
+
+export function setTakerEmail(takerEmail) {
+	return function (dispatch) {
+		dispatch({ type: SET_TAKER_EMAIL, payload: takerEmail })
+	}
+}
+
+export function setEditQClicked(isClicked) {
+	return function (dispatch) {
+		dispatch({ type: SET_EDIT_Q_CLICKED, payload: isClicked })
+	}
+}
+
+export function setEditQID(questionID) {
+	return function (dispatch) {
+		dispatch({ type: SET_EDIT_Q_ID, payload: questionID })
 	}
 }

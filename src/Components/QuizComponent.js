@@ -1,21 +1,35 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getQuiz } from '../Redux/actions'
+import { getQuiz, getQuizzes } from '../Redux/actions'
 import QuestionComponent from './QuestionComponent'
 import EmailQuizComponent from './EmailQuizComponent'
 import TakerEmailComponent from './TakerEmailComponent'
 import CreateQuestionComponent from './CreateQuestionComponent'
 import emailjs from 'emailjs-com'
-import { withRouter } from 'react-router-dom'
-// import { Button } from 'primereact/button'
+import { withRouter, Redirect } from 'react-router-dom'
 import { ProgressSpinner } from 'primereact/progressspinner'
 
 class QuizComponent extends React.Component {
 
-	state = {}
+	state = {
+		tempQuizID: null,
+		redirect: false
+	}
 
 	componentDidMount() {
-		this.props.getQuiz(this.props.match.params.id)
+		this.props.getQuizzes()
+	}
+
+	componentDidUpdate() {
+		const quizIDS = this.props.quizzes ? this.props.quizzes.map(quiz => quiz.id) : null
+		if (quizIDS && !this.state.tempQuizID) {
+			if (quizIDS.includes(parseInt(this.props.match.params.id))) {
+				this.props.getQuiz(this.props.match.params.id)
+				this.setState({ tempQuizID: this.props.match.params.id })
+			} else {
+				this.setState({ redirect: true })
+			}
+		}
 	}
 
 	arrayOfQuestions() {
@@ -112,41 +126,47 @@ class QuizComponent extends React.Component {
 	}
 
 	render() {
-		return (
-			this.props.quiz
-				?
-				<div className="div-aligned fade-in-2">
-					<h1 className="p-component"><b>Quiz by Quizmaker:</b> {this.props.quiz.quizmaker}</h1>
-					<h3 className="p-component"><b>Title:</b> {this.props.quiz.title}</h3>
-					<h3 className="p-component"><b>Subject:</b> {this.props.quiz.subject}</h3>
-					{this.props.user ? <EmailQuizComponent questions={this.props.quiz.questions} senderEmail={this.props.user.email} url={this.props.match.url} /> : null}
-					{this.props.user ? <CreateQuestionComponent /> : null}
-					<div className="div-aligned-ol">
-						<ol>
-							{this.arrayOfQuestions()}
-						</ol>
+		if (this.state.redirect) {
+			return <Redirect to="/404" />
+		} else {
+			return (
+				this.props.quiz
+					?
+					<div className="div-aligned fade-in-2">
+						<h1 className="p-component"><b>Quiz by Quizmaker:</b> {this.props.quiz.quizmaker}</h1>
+						<h3 className="p-component"><b>Title:</b> {this.props.quiz.title}</h3>
+						<h3 className="p-component"><b>Subject:</b> {this.props.quiz.subject}</h3>
+						{this.props.user ? <EmailQuizComponent questions={this.props.quiz.questions} senderEmail={this.props.user.email} url={this.props.match.url} /> : null}
+						{this.props.user ? <CreateQuestionComponent /> : null}
+						<div className="div-aligned-ol">
+							<ol>
+								{this.arrayOfQuestions()}
+							</ol>
+						</div>
+						{!this.props.user ? <TakerEmailComponent submitHandler={this.submitHandler} /> : null}
 					</div>
-					{!this.props.user ? <TakerEmailComponent submitHandler={this.submitHandler} /> : null}
-				</div>
-				:
-				<div className="div-aligned fade-in-2">
-					<ProgressSpinner />
-					<h3 className="p-component">Loading quiz...</h3>
-				</div>
-		)
+					:
+					<div className="div-aligned">
+						<ProgressSpinner />
+						<h3 className="p-component">Loading quiz...</h3>
+					</div>
+			)
+		}
 	}
 }
 
 function msp(state) {
 	return {
-		user: state.user,
+		quizzes: state.quizzes,
 		quiz: state.quiz,
+		user: state.user,
 		takerEmail: state.takerEmail
 	}
 }
 
 function mdp(dispatch) {
 	return {
+		getQuizzes: () => dispatch(getQuizzes()),
 		getQuiz: (quizId) => dispatch(getQuiz(quizId))
 	}
 }
