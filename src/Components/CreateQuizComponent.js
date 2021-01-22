@@ -37,7 +37,6 @@ class CreateQuizComponent extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.apiQuiz)
 		return (
 			this.props.user
 				?
