@@ -15,7 +15,8 @@ import {
 	GET_QUIZZES,
 	SET_TAKER_EMAIL,
 	SET_EDIT_Q_CLICKED,
-	SET_EDIT_Q_ID
+	SET_EDIT_Q_ID,
+	GET_API_QUIZ
 } from './actionTypes'
 
 const BASE_URL = "http://localhost:4000"
@@ -256,5 +257,15 @@ export function setEditQClicked(isClicked) {
 export function setEditQID(questionID) {
 	return function (dispatch) {
 		dispatch({ type: SET_EDIT_Q_ID, payload: questionID })
+	}
+}
+
+export function getApiQuiz(endpoint) {
+	return function (dispatch) {
+		fetch(`${endpoint}`)
+			.then(r => r.json())
+			.then(quizObj => {
+				dispatch({ type: GET_API_QUIZ, payload: quizObj })
+			})
 	}
 }

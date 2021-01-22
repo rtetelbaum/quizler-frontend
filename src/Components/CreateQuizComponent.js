@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { postUserQuiz } from '../Redux/actions'
+import { getApiQuiz, postUserQuiz } from '../Redux/actions'
 import { InputText } from 'primereact/inputtext'
 import { Button } from 'primereact/button'
 
@@ -31,7 +31,13 @@ class CreateQuizComponent extends React.Component {
 		})
 	}
 
+	testApiHandler = () => {
+		const endpoint = `https://quizapi.io/api/v1/questions?apiKey=${process.env.REACT_APP_QUIZ_API_KEY}&category=devops&difficulty=Easy&limit=10`
+		this.props.getApiQuiz(endpoint)
+	}
+
 	render() {
+		console.log(this.props.apiQuiz)
 		return (
 			this.props.user
 				?
@@ -56,6 +62,8 @@ class CreateQuizComponent extends React.Component {
 							<Button className="p-button-raised p-button-rounded user-button" type="submit" label="Create Quiz" icon="pi pi-pencil" />
 						</form>
 
+						<Button className="p-button-raised p-button-rounded" type="button" label="Test Quiz API" onClick={() => this.testApiHandler()} />
+
 					</div>
 					:
 					<div>
@@ -71,13 +79,15 @@ class CreateQuizComponent extends React.Component {
 
 function msp(state) {
 	return {
-		user: state.user
+		user: state.user,
+		apiQuiz: state.apiQuiz
 	}
 }
 
 function mdp(dispatch, ownProps) {
 	return {
-		postQuiz: quizObj => dispatch(postUserQuiz(quizObj, ownProps))
+		postQuiz: quizObj => dispatch(postUserQuiz(quizObj, ownProps)),
+		getApiQuiz: endpoint => dispatch(getApiQuiz(endpoint))
 	}
 }
 

@@ -7,7 +7,8 @@ const defaultState = {
 	quizzes: null,
 	takerEmail: null,
 	editQClicked: false,
-	editQID: null
+	editQID: null,
+	apiQuiz: null
 }
 
 function userReducer(prevState = defaultState.user, action) {
@@ -111,6 +112,15 @@ function editQIDReducer(prevState = defaultState.editQID, action) {
 	}
 }
 
+function apiQuizReducer(prevState = defaultState.apiQuiz, action) {
+	switch (action.type) {
+		case "GET_API_QUIZ":
+			return action.payload
+		default:
+			return prevState
+	}
+}
+
 const rootReducer = combineReducers({
 	user: userReducer,
 	users: usersReducer,
@@ -118,7 +128,8 @@ const rootReducer = combineReducers({
 	quizzes: quizzesReducer,
 	takerEmail: takerEmailReducer,
 	editQClicked: editQClickedReducer,
-	editQID: editQIDReducer
+	editQID: editQIDReducer,
+	apiQuiz: apiQuizReducer
 })
 
 export default rootReducer
