@@ -13,7 +13,8 @@ class QuizComponent extends React.Component {
 
 	state = {
 		tempQuizID: null,
-		redirect: false
+		redirect: false,
+		userAnswers: {}
 	}
 
 	componentDidMount() {
@@ -35,11 +36,11 @@ class QuizComponent extends React.Component {
 	arrayOfQuestions() {
 		const questionsArray = this.props.quiz.questions
 		const sortedQuestionsArray = questionsArray.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
-		return sortedQuestionsArray.map(question => <QuestionComponent key={question.id} question={question} changeHandler={this.changeHandler} quizState={this.state} />)
+		return sortedQuestionsArray.map(question => <QuestionComponent key={question.id} question={question} changeHandler={this.changeHandler} quizState={this.state.userAnswers} />)
 	}
 
 	changeHandler = (e) => {
-		this.setState({ [e.target.name]: e.target.value })
+		this.setState(prevState => ({userAnswers: { ...prevState.userAnswers, [e.target.name]: e.target.value }}))
 	}
 
 	submitHandler = (e, takerEmail) => {
@@ -61,7 +62,7 @@ class QuizComponent extends React.Component {
 
 	emailQuizResults = () => {
 		const numQuestions = this.props.quiz.questions.length
-
+		
 		const quizQA = this.props.quiz.questions
 
 		const sortedQuizQA = quizQA.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
@@ -74,7 +75,7 @@ class QuizComponent extends React.Component {
 			return rObj
 		})
 
-		const userQA = Object.entries(this.state)
+		const userQA = Object.entries(this.state.userAnswers)
 
 		const arrayOfUserQA = userQA.map(qa => {
 			let rObj = {}
