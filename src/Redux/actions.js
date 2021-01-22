@@ -87,7 +87,7 @@ export function postUserQuiz(quizObj, ownProps) {
 				if (quizObj.id) {
 					dispatch({ type: POST_USER_QUIZ, payload: quizObj })
 					alert("Quiz created.")
-					ownProps.history.push('/quizzes')
+					ownProps.history.push(`/quizzes/${quizObj.id}`)
 				} else {
 					alert('Oops... something went wrong. Please try again.')
 				}
