@@ -68,6 +68,12 @@
 	box-shadow: 0 -8px 4px -4px rgba(77, 165, 230, 0.6);
 }
 
+.footer-logo {
+	height: 32px;
+	width: 32px;
+	margin-left: 10px;
+}
+
 h1 {
   font-size: 2em !important;
   margin-bottom: 0.67em !important;
