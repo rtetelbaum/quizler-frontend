@@ -94,9 +94,9 @@ class QuizComponent extends React.Component {
 
 		const quizAnswers = []
 
-		for (let i = 0, l = arrayOfUserQA.length; i < l; i++) {
-			quizAnswers.push(`<li><b>Question:</b> ${Object.keys(arrayOfUserQA[i])[0]}<br>
-				<b>Quiztaker Answer:</b> ${Object.values(arrayOfUserQA[i])[0]}<br>
+		for (let i = 0, l = arrayOfCorrectQA.length; i < l; i++) {
+			quizAnswers.push(`<li><b>Question:</b> ${Object.keys(arrayOfCorrectQA[i])[0]}<br>
+				<b>Quiztaker Answer:</b> ${arrayOfUserQA[i] ? Object.values(arrayOfUserQA[i])[0] : "Not Answered"}<br>
 				<b>Correct Answer:</b> ${Object.values(arrayOfCorrectQA[i])[0]}</li><br>`
 			)
 		}
