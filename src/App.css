@@ -137,6 +137,10 @@ h3 {
 	margin-bottom: 15px;
 }
 
+.input-span-search {
+	margin: 30px !important;
+}
+
 .label-span-width {
 	width: 500px;
 }
