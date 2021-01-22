@@ -33,7 +33,7 @@ class EmailQuizComponent extends React.Component {
 		const qNoCorrectAnswers = qWithAnswers.filter(question => !question.answers.some(answer => answer.correct === true))
 
 		if (qLength < 1 || qNoAnswers.length > 0 || qNoCorrectAnswers.length > 0) {
-			alert("Please make sure the quiz isn't empty and all questions have at least one correct answer before emailing.")
+			alert("Please make sure the quiz isn't empty and all questions have a correct answer before emailing.")
 		} else {
 			this.emailQuiz()
 		}
