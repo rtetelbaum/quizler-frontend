@@ -10,7 +10,7 @@ function NavComponent(props) {
 		<div id="nav-div">
 
 			<div id="logo-div">
-				<Link to="/home"><img src="/logo200x100.png" alt="logo" /></Link>
+				<Link to="/home"><img src="/Quizler.png" alt="logo" /></Link>
 			</div>
 
 			<Link to="/home"><Button type="button" label="Home" icon="pi pi-home" className="p-button-raised p-button-rounded" /></Link>

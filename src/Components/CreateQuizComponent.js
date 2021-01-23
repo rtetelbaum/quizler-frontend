@@ -4,37 +4,59 @@ import { withRouter } from 'react-router-dom'
 import { getApiQuiz, postUserQuiz } from '../Redux/actions'
 import { InputText } from 'primereact/inputtext'
 import { Button } from 'primereact/button'
+import { Dropdown } from 'primereact/dropdown'
 
 class CreateQuizComponent extends React.Component {
 
 	state = {
-		quizmaker: this.props.user ? this.props.user.email : null,
-		title: "",
-		subject: "",
-		user_id: this.props.user ? this.props.user.id : null
+		newQuiz: {
+			quizmaker: this.props.user ? this.props.user.email : null,
+			title: "",
+			subject: "",
+			user_id: this.props.user ? this.props.user.id : null
+		},
+		quizApiCategory: "",
+		quizApiNumberOfQuestions: ""
 	}
 
 	submitHandler = (e) => {
 		e.preventDefault()
-
-		this.props.postQuiz(this.state)
-
-		this.setState({
-			title: "",
-			subject: ""
-		})
+		this.props.postQuiz(this.state.newQuiz)
 	}
 
 	changeHandler = (e) => {
-		this.setState({
-			[e.target.name]: e.target.value
-		})
+		this.setState(prevState => ({ newQuiz: { ...prevState.newQuiz, [e.target.name]: e.target.value } }))
 	}
 
-	testApiHandler = () => {
-		const endpoint = `https://quizapi.io/api/v1/questions?apiKey=${process.env.REACT_APP_QUIZ_API_KEY}&category=devops&difficulty=Easy&limit=10`
+	setCategory = (value) => {
+		this.setState({ quizApiCategory: value })
+	}
+
+	setNumberOfQuestions = (value) => {
+		this.setState({ quizApiNumberOfQuestions: value })
+	}
+
+	makeApiQuiz = () => {
+		const endpoint = `https://quizapi.io/api/v1/questions?apiKey=${process.env.REACT_APP_QUIZ_API_KEY}&category=${this.state.quizApiCategory}&limit=${this.state.quizApiNumberOfQuestions}`
 		this.props.getApiQuiz(endpoint)
 	}
+
+	quizApiCategories = [
+		{ label: 'Bash', value: 'bash' },
+		{ label: 'DevOps', value: 'devops' },
+		{ label: 'Docker', value: 'docker' },
+		{ label: 'Linux', value: 'linux' },
+		{ label: 'SQL', value: 'sql' },
+		{ label: 'Various Coding', value: 'code' },
+		{ label: 'WordPress CMS', value: 'cms' }
+	]
+
+	quizApiNumberOfQuestions = [
+		{ label: '5', value: '5' },
+		{ label: '10', value: '10' },
+		{ label: '15', value: '15' },
+		{ label: '20', value: '20' }
+	]
 
 	render() {
 		return (
@@ -43,34 +65,39 @@ class CreateQuizComponent extends React.Component {
 				this.props.user.id ?
 					<div className="div-aligned fade-in-2">
 
-						<h2 className="p-component">Create Quiz</h2>
+						<h2 className="p-component">Create a Custom Quiz</h2>
 
 						<form className="form-aligned" onSubmit={this.submitHandler}>
 							<span className="p-input-icon-left p-float-label user-form-span-first">
 								<i className="pi pi-bars" />
-								<InputText type="text" name="title" value={this.state.title} onChange={this.changeHandler} required />
+								<InputText type="text" name="title" value={this.state.newQuiz.title} onChange={this.changeHandler} required />
 								<label htmlFor="email">Title</label>
 							</span>
 							<br />
 							<span className="p-input-icon-left p-float-label user-form-span-last">
 								<i className="pi pi-bars" />
-								<InputText type="text" name="subject" value={this.state.subject} onChange={this.changeHandler} required />
+								<InputText type="text" name="subject" value={this.state.newQuiz.subject} onChange={this.changeHandler} required />
 								<label htmlFor="subject">Subject</label>
 							</span>
 							<br />
 							<Button className="p-button-raised p-button-rounded user-button" type="submit" label="Create Quiz" icon="pi pi-pencil" />
 						</form>
 
-						<Button className="p-button-raised p-button-rounded" type="button" label="Test Quiz API" onClick={() => this.testApiHandler()} />
+						<div>
+							<h2 className="p-component">Create a Technical Quiz from<a href="https://quizapi.io/" target="_blank" rel="noreferrer"><img src="/QuizAPI.png" alt="QuizAPI" className="inline-image"/></a></h2>
+							<Dropdown value={this.state.quizApiCategory} options={this.quizApiCategories} onChange={(e) => this.setCategory(e.value)} placeholder="Select Category" />
+							<Dropdown value={this.state.quizApiNumberOfQuestions} options={this.quizApiNumberOfQuestions} onChange={(e) => this.setNumberOfQuestions(e.value)} placeholder="Select Number of Questions" />
+							<Button className="p-button-raised p-button-rounded" type="button" label="Create Quiz" onClick={() => this.makeApiQuiz()} icon="pi pi-pencil"/>
+						</div>
 
 					</div>
 					:
 					<div>
-						<h2 className="p-component">Please log in.</h2>
+						<h2 className="p-component fade-in-2">Please log in.</h2>
 					</div>
 				:
 				<div>
-					<h2 className="p-component">Please log in.</h2>
+					<h2 className="p-component fade-in-2">Please log in.</h2>
 				</div>
 		)
 	}

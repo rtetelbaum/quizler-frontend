@@ -33,7 +33,7 @@ class QuizContainer extends React.Component {
 				className="card"
 				title={<Link to={`/quizzes/${quiz.id}`}>{quiz.title}</Link>}
 				subTitle={<Link to={`/quizzes/${quiz.id}`}>{quiz.subject}</Link>}
-				header={<Link to={`/quizzes/${quiz.id}`}><img alt="Card" src='/logo200x100.png' /></Link>}
+				header={<Link to={`/quizzes/${quiz.id}`}><img alt="Card" src='/Quizler.png' /></Link>}
 				footer={<span className="card-button-span"><Button className="p-button-raised p-button-rounded p-button-secondary" icon="pi pi-trash" type="button" label="Delete Quiz" onClick={() => this.deleteQuizHandler(quiz.id)} /></span>}>
 			</Card>
 		)
@@ -66,12 +66,12 @@ class QuizContainer extends React.Component {
 						</div>
 					</div>
 					:
-					<div className="fade-in-2">
-						<h1 className="p-component">Please log in.</h1>
+					<div>
+						<h1 className="p-component fade-in-2">Please log in.</h1>
 					</div>
 				:
-				<div className="fade-in-2">
-					<h1 className="p-component">Please log in.</h1>
+				<div>
+					<h1 className="p-component fade-in-2">Please log in.</h1>
 				</div>
 		)
 	}
