@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getQuiz, getQuizzes } from '../Redux/actions'
+import { getQuiz, getQuizzes, postQuizQuestion } from '../Redux/actions'
 import QuestionComponent from './QuestionComponent'
 import EmailQuizComponent from './EmailQuizComponent'
 import TakerEmailComponent from './TakerEmailComponent'
@@ -14,7 +14,8 @@ class QuizComponent extends React.Component {
 	state = {
 		tempQuizID: null,
 		redirect: false,
-		userAnswers: {}
+		userAnswers: {},
+		questionsCreated: false
 	}
 
 	componentDidMount() {
@@ -22,6 +23,12 @@ class QuizComponent extends React.Component {
 	}
 
 	componentDidUpdate() {
+		if (this.props.apiQuiz && this.state.tempQuizID && !this.state.questionsCreated) {
+			if (this.props.apiQuiz.length > 0) {
+				this.createApiQuestions()
+			}
+		}
+		
 		const quizIDS = this.props.quizzes ? this.props.quizzes.map(quiz => quiz.id) : null
 		if (quizIDS && !this.state.tempQuizID) {
 			if (quizIDS.includes(parseInt(this.props.match.params.id))) {
@@ -33,6 +40,17 @@ class QuizComponent extends React.Component {
 		}
 	}
 
+	createApiQuestions() {
+		this.props.apiQuiz.forEach(question => {
+			const questionObj = {
+				question: question.question,
+				quiz_id: this.state.tempQuizID
+			}
+			this.props.postQuizQuestion(questionObj)
+		})
+		this.setState({ questionsCreated: true })
+	}
+
 	arrayOfQuestions() {
 		const questionsArray = this.props.quiz.questions
 		const sortedQuestionsArray = questionsArray.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
@@ -40,7 +58,7 @@ class QuizComponent extends React.Component {
 	}
 
 	changeHandler = (e) => {
-		this.setState(prevState => ({userAnswers: { ...prevState.userAnswers, [e.target.name]: e.target.value }}))
+		this.setState(prevState => ({ userAnswers: { ...prevState.userAnswers, [e.target.name]: e.target.value } }))
 	}
 
 	submitHandler = (e, takerEmail) => {
@@ -62,7 +80,7 @@ class QuizComponent extends React.Component {
 
 	emailQuizResults = () => {
 		const numQuestions = this.props.quiz.questions.length
-		
+
 		const quizQA = this.props.quiz.questions
 
 		const sortedQuizQA = quizQA.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
@@ -161,14 +179,16 @@ function msp(state) {
 		quizzes: state.quizzes,
 		quiz: state.quiz,
 		user: state.user,
-		takerEmail: state.takerEmail
+		takerEmail: state.takerEmail,
+		apiQuiz: state.apiQuiz
 	}
 }
 
 function mdp(dispatch) {
 	return {
 		getQuizzes: () => dispatch(getQuizzes()),
-		getQuiz: (quizId) => dispatch(getQuiz(quizId))
+		getQuiz: (quizId) => dispatch(getQuiz(quizId)),
+		postQuizQuestion: (questionObj) => dispatch(postQuizQuestion(questionObj))
 	}
 }
 

@@ -45,7 +45,7 @@ class QuizContainer extends React.Component {
 				?
 				this.props.user.id
 					?
-					<div className="div-aligned fade-in-2">
+					<div className="div-aligned-80 fade-in-2">
 						<h1 className="p-component">Quizmaker {this.props.user.email}</h1>
 						<h2 className="p-component">Saved Quizzes</h2>
 

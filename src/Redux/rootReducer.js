@@ -114,8 +114,12 @@ function editQIDReducer(prevState = defaultState.editQID, action) {
 
 function apiQuizReducer(prevState = defaultState.apiQuiz, action) {
 	switch (action.type) {
-		case "GET_API_QUIZ":
+		case "SET_API_QUIZ":
 			return action.payload
+		case "REMOVE_API_QUIZ":
+			const newApiQuiz = [...prevState]
+			newApiQuiz.shift()
+			return newApiQuiz
 		default:
 			return prevState
 	}
