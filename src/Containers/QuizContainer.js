@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { Button } from 'primereact/button'
 import { Card } from 'primereact/card'
 import { InputText } from 'primereact/inputtext'
+import { confirmDialog } from 'primereact/confirmdialog'
 
 class QuizContainer extends React.Component {
 
@@ -17,7 +18,13 @@ class QuizContainer extends React.Component {
 	}
 
 	deleteQuizHandler = (quizID) => {
-		if (window.confirm("Are you sure you want to delete this quiz?")) { this.props.deleteQuiz(quizID) }
+		confirmDialog({
+			message: 'Are you sure you want to delete this quiz?',
+			header: 'Confirmation',
+			icon: 'pi pi-exclamation-triangle',
+			accept: () => this.props.deleteQuiz(quizID),
+			reject: null
+		})
 	}
 
 	arrayOfQuizzes = () => {

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { deleteQuizAnswer } from '../Redux/actions'
 import { RadioButton } from 'primereact/radiobutton'
 import { Button } from 'primereact/button'
+import { confirmDialog } from 'primereact/confirmdialog'
 
 function AnswerComponent(props) {
 
@@ -12,7 +13,13 @@ function AnswerComponent(props) {
 			answerID: answerID
 		}
 
-		if (window.confirm("Are you sure you want to delete this answer?")) { props.deleteAnswer(questionAnswerID) }
+		confirmDialog({
+			message: 'Are you sure you want to delete this answer?"',
+			header: 'Confirmation',
+			icon: 'pi pi-exclamation-triangle',
+			accept: () => props.deleteAnswer(questionAnswerID),
+			reject: null
+		})
 	}
 
 	const selectedAnswer = props.quizState[props.question.question]

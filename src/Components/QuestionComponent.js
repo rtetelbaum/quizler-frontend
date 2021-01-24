@@ -6,6 +6,7 @@ import { deleteQuizQuestion, setEditQClicked, setEditQID } from '../Redux/action
 import { connect } from 'react-redux'
 import { ProgressSpinner } from 'primereact/progressspinner'
 import { Button } from 'primereact/button'
+import { confirmDialog } from 'primereact/confirmdialog'
 
 class QuestionComponent extends React.Component {
 
@@ -17,7 +18,13 @@ class QuestionComponent extends React.Component {
 	}
 
 	deleteQuestionHandler = (questionID) => {
-		if (window.confirm("Are you sure you want to delete this question?")) { this.props.deleteQuestion(questionID) }
+		confirmDialog({
+			message: 'Are you sure you want to delete this question?',
+			header: 'Confirmation',
+			icon: 'pi pi-exclamation-triangle',
+			accept: () => this.props.deleteQuestion(questionID),
+			reject: null
+		})
 	}
 
 	editQHandler = () => {
