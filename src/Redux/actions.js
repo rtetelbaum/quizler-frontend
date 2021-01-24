@@ -15,9 +15,7 @@ import {
 	GET_QUIZZES,
 	SET_TAKER_EMAIL,
 	SET_EDIT_Q_CLICKED,
-	SET_EDIT_Q_ID,
-	SET_API_QUIZ,
-	REMOVE_API_QUIZ
+	SET_EDIT_Q_ID
 } from './actionTypes'
 
 const BASE_URL = "http://localhost:4000"
@@ -147,9 +145,9 @@ export function postQuizQuestion(questionObj) {
 			.then(questionObj => {
 				if (questionObj.id) {
 					dispatch({ type: POST_QUIZ_QUESTION, payload: questionObj })
-					// alert("Question added.")
+					alert("Question added.")
 				} else {
-					// alert('Oops... something went wrong. Please try again.')
+					alert('Oops... something went wrong. Please try again.')
 				}
 			})
 	}
@@ -207,9 +205,9 @@ export function postQuizAnswer(answerObj) {
 			.then(answerObj => {
 				if (answerObj.id) {
 					dispatch({ type: POST_QUIZ_ANSWER, payload: answerObj })
-					// alert("Answer added.")
+					alert("Answer added.")
 				} else {
-					// alert('Oops... something went wrong. Please try again.')
+					alert('Oops... something went wrong. Please try again.')
 				}
 			})
 	}
@@ -258,17 +256,5 @@ export function setEditQClicked(isClicked) {
 export function setEditQID(questionID) {
 	return function (dispatch) {
 		dispatch({ type: SET_EDIT_Q_ID, payload: questionID })
-	}
-}
-
-export function setApiQuiz(quizObj) {
-	return function (dispatch) {
-		dispatch({ type: SET_API_QUIZ, payload: quizObj })
-	}
-}
-
-export function removeApiQuiz() {
-	return function (dispatch) {
-		dispatch({ type: REMOVE_API_QUIZ, payload: null })
 	}
 }

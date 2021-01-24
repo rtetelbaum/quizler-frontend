@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getQuiz, getQuizzes, postQuizQuestion } from '../Redux/actions'
+import { getQuiz, getQuizzes } from '../Redux/actions'
 import QuestionComponent from './QuestionComponent'
 import EmailQuizComponent from './EmailQuizComponent'
 import TakerEmailComponent from './TakerEmailComponent'
@@ -14,8 +14,7 @@ class QuizComponent extends React.Component {
 	state = {
 		tempQuizID: null,
 		redirect: false,
-		userAnswers: {},
-		questionsCreated: false
+		userAnswers: {}
 	}
 
 	componentDidMount() {
@@ -23,12 +22,6 @@ class QuizComponent extends React.Component {
 	}
 
 	componentDidUpdate() {
-		if (this.props.apiQuiz && this.state.tempQuizID && !this.state.questionsCreated) {
-			if (this.props.apiQuiz.length > 0) {
-				this.createApiQuestions()
-			}
-		}
-		
 		const quizIDS = this.props.quizzes ? this.props.quizzes.map(quiz => quiz.id) : null
 		if (quizIDS && !this.state.tempQuizID) {
 			if (quizIDS.includes(parseInt(this.props.match.params.id))) {
@@ -38,17 +31,6 @@ class QuizComponent extends React.Component {
 				this.setState({ redirect: true })
 			}
 		}
-	}
-
-	createApiQuestions() {
-		this.props.apiQuiz.forEach(question => {
-			const questionObj = {
-				question: question.question,
-				quiz_id: this.state.tempQuizID
-			}
-			this.props.postQuizQuestion(questionObj)
-		})
-		this.setState({ questionsCreated: true })
 	}
 
 	arrayOfQuestions() {
@@ -179,16 +161,14 @@ function msp(state) {
 		quizzes: state.quizzes,
 		quiz: state.quiz,
 		user: state.user,
-		takerEmail: state.takerEmail,
-		apiQuiz: state.apiQuiz
+		takerEmail: state.takerEmail
 	}
 }
 
 function mdp(dispatch) {
 	return {
 		getQuizzes: () => dispatch(getQuizzes()),
-		getQuiz: (quizId) => dispatch(getQuiz(quizId)),
-		postQuizQuestion: (questionObj) => dispatch(postQuizQuestion(questionObj))
+		getQuiz: (quizId) => dispatch(getQuiz(quizId))
 	}
 }
 

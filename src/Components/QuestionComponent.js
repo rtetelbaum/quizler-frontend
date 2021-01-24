@@ -2,35 +2,12 @@ import React from 'react'
 import AnswerComponent from './AnswerComponent'
 import EditQuestionComponent from './EditQuestionComponent'
 import CreateAnswerComponent from './CreateAnswerComponent'
-import { deleteQuizQuestion, setEditQClicked, setEditQID, postQuizAnswer, removeApiQuiz } from '../Redux/actions'
+import { deleteQuizQuestion, setEditQClicked, setEditQID } from '../Redux/actions'
 import { connect } from 'react-redux'
 import { ProgressSpinner } from 'primereact/progressspinner'
 import { Button } from 'primereact/button'
 
 class QuestionComponent extends React.Component {
-
-	componentDidMount() {
-		if (this.props.apiQuiz) {
-			if (this.props.apiQuiz.length > 0) {
-				this.createApiAnswers()
-			}
-		}
-	}
-
-	createApiAnswers() {
-		const answersObj = this.props.apiQuiz[0].answers
-		Object.entries(answersObj).forEach(([key,value]) => {
-			if (value !== null) {
-				const answerObj = {
-					answer: value,
-					correct: false,
-					question_id: this.props.question.id
-				}
-				this.props.postQuizAnswer(answerObj)
-			}
-		})
-		this.props.removeApiQuiz()
-	}
 
 	arrayOfAnswers() {
 		const thisQuestion = this.props.question
@@ -103,8 +80,7 @@ function msp(state) {
 	return {
 		user: state.user,
 		editQClicked: state.editQClicked,
-		editQID: state.editQID,
-		apiQuiz: state.apiQuiz
+		editQID: state.editQID
 	}
 }
 
@@ -112,9 +88,7 @@ function mdp(dispatch) {
 	return {
 		deleteQuestion: (questionID) => dispatch(deleteQuizQuestion(questionID)),
 		setEditQClicked: (isClicked) => dispatch(setEditQClicked(isClicked)),
-		setEditQID: (questionID) => dispatch(setEditQID(questionID)),
-		postQuizAnswer: (answerObj) => dispatch(postQuizAnswer(answerObj)),
-		removeApiQuiz: () => dispatch(removeApiQuiz())
+		setEditQID: (questionID) => dispatch(setEditQID(questionID))
 	}
 }
 
