@@ -296,6 +296,21 @@ h3 {
 	width: 100px;
 }
 
+.swal2-styled.swal2-confirm {
+	background-color: rgb(77, 165, 230) !important;
+	color: #000 !important;
+}
+
+.swal2-popup {
+	background: #1e1e1e !important;
+	border: 1px solid #383838 !important;
+	border-radius: 3px !important;
+}
+
+.swal2-title {
+	color: rgba(255, 255, 255, 0.87) !important;
+}
+
 /* Fade-in start */
 
 .fade-in-2 {

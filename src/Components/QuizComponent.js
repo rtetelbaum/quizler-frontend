@@ -8,6 +8,7 @@ import CreateQuestionComponent from './CreateQuestionComponent'
 import emailjs from 'emailjs-com'
 import { withRouter, Redirect } from 'react-router-dom'
 import { ProgressSpinner } from 'primereact/progressspinner'
+import Swal from 'sweetalert2'
 
 class QuizComponent extends React.Component {
 
@@ -52,11 +53,11 @@ class QuizComponent extends React.Component {
 		const mailformat = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
 
 		if (takerEmail === null) {
-			alert("Email cannot be blank.")
+			Swal.fire("Email cannot be blank.")
 		} else if (takerEmail.match(mailformat)) {
 			this.emailQuizResults()
 		} else {
-			alert("You have entered an invalid email address.")
+			Swal.fire("You have entered an invalid email address.")
 		}
 	}
 
@@ -117,11 +118,11 @@ class QuizComponent extends React.Component {
 		emailjs.send('service_fcfonus', 'template_ej9tm39', templateParams, process.env.REACT_APP_EMAILJS_USERID)
 			.then(function (response) {
 				console.log('SUCCESS!', response.status, response.text)
-				alert(`Quiz results successfully sent to ${quizmaker}.`)
+				Swal.fire(`Quiz results successfully sent to ${quizmaker}.`)
 				pushHome()
 			}, function (error) {
 				console.log('FAILED...', error)
-				alert('Oops... something went wrong. Please try again.')
+				Swal.fire('Oops... something went wrong. Please try again.')
 			})
 
 	}

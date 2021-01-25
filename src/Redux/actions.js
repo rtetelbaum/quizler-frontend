@@ -17,6 +17,7 @@ import {
 	SET_EDIT_Q_CLICKED,
 	SET_EDIT_Q_ID
 } from './actionTypes'
+import Swal from 'sweetalert2'
 
 const BASE_URL = "http://localhost:4000"
 
@@ -33,15 +34,15 @@ export function postUser(userObj, ownProps) {
 			.then(userObj => {
 				if (userObj.id) {
 					dispatch({ type: POST_USER, payload: userObj })
-					alert("Account created successfully! Please log in.")
+					Swal.fire("Account created successfully! Please log in.")
 					ownProps.history.push('/login')
 				} else if (userObj.exception) {
 					if (userObj.exception.includes("Email has already been taken")) {
-						alert("Email has already been taken.")
+						Swal.fire("Email has already been taken.")
 					} else if (userObj.exception.includes("Email can't be blank")) {
-						alert("Email can't be blank.")
+						Swal.fire("Email can't be blank.")
 					} else if (userObj.exception.includes("Password can't be blank")) {
-						alert("Password can't be blank.")
+						Swal.fire("Password can't be blank.")
 					}
 				}
 			})
@@ -68,7 +69,7 @@ export function logOutUser() {
 	return function (dispatch) {
 		localStorage.removeItem('userID')
 		dispatch({ type: LOG_OUT_USER })
-		alert("Logged out.")
+		Swal.fire("Logged out.")
 	}
 }
 
@@ -85,10 +86,10 @@ export function postUserQuiz(quizObj, ownProps) {
 			.then(quizObj => {
 				if (quizObj.id) {
 					dispatch({ type: POST_USER_QUIZ, payload: quizObj })
-					alert("Quiz created.")
+					Swal.fire("Quiz created.")
 					ownProps.history.push(`/quizzes/${quizObj.id}`)
 				} else {
-					alert('Oops... something went wrong. Please try again.')
+					Swal.fire('Oops... something went wrong. Please try again.')
 				}
 			})
 	}
@@ -106,7 +107,6 @@ export function deleteUserQuiz(quizID) {
 			.then(data => {
 				if (Object.keys(data).length === 0) {
 					dispatch({ type: DELETE_USER_QUIZ, payload: quizID })
-					alert("Quiz deleted.")
 				}
 			})
 	}
@@ -145,9 +145,9 @@ export function postQuizQuestion(questionObj) {
 			.then(questionObj => {
 				if (questionObj.id) {
 					dispatch({ type: POST_QUIZ_QUESTION, payload: questionObj })
-					alert("Question added.")
+					Swal.fire("Question added.")
 				} else {
-					alert('Oops... something went wrong. Please try again.')
+					Swal.fire('Oops... something went wrong. Please try again.')
 				}
 			})
 	}
@@ -165,7 +165,6 @@ export function deleteQuizQuestion(questionID) {
 			.then(data => {
 				if (Object.keys(data).length === 0) {
 					dispatch({ type: DELETE_QUIZ_QUESTION, payload: questionID })
-					alert("Question deleted.")
 				}
 			})
 	}
@@ -184,9 +183,9 @@ export function patchQuizQuestion(questionObj, questionID) {
 			.then(questionObj => {
 				if (questionObj.id) {
 					dispatch({ type: PATCH_QUIZ_QUESTION, payload: questionObj })
-					alert("Question edited.")
+					Swal.fire("Question edited.")
 				} else {
-					alert('Oops... something went wrong. Please try again.')
+					Swal.fire('Oops... something went wrong. Please try again.')
 				}
 			})
 	}
@@ -205,9 +204,9 @@ export function postQuizAnswer(answerObj) {
 			.then(answerObj => {
 				if (answerObj.id) {
 					dispatch({ type: POST_QUIZ_ANSWER, payload: answerObj })
-					alert("Answer added.")
+					Swal.fire("Answer added.")
 				} else {
-					alert('Oops... something went wrong. Please try again.')
+					Swal.fire('Oops... something went wrong. Please try again.')
 				}
 			})
 	}
@@ -225,7 +224,6 @@ export function deleteQuizAnswer(questionAnswerID) {
 			.then(data => {
 				if (Object.keys(data).length === 0) {
 					dispatch({ type: DELETE_QUIZ_ANSWER, payload: (questionAnswerID) })
-					alert("Answer deleted.")
 				}
 			})
 	}

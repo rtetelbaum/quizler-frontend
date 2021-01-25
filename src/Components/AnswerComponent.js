@@ -13,11 +13,15 @@ function AnswerComponent(props) {
 			answerID: answerID
 		}
 
+		const accept = () => {
+			props.deleteAnswer(questionAnswerID)
+		}
+
 		confirmDialog({
 			message: 'Are you sure you want to delete this answer?"',
 			header: 'Confirmation',
 			icon: 'pi pi-exclamation-triangle',
-			accept: () => props.deleteAnswer(questionAnswerID),
+			accept: accept,
 			reject: null
 		})
 	}

@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import { InputText } from 'primereact/inputtext'
 import { Button } from 'primereact/button'
 import { ProgressSpinner } from 'primereact/progressspinner'
+import Swal from 'sweetalert2'
 
 class LogInComponent extends React.Component {
 	state = {
@@ -28,7 +29,7 @@ class LogInComponent extends React.Component {
 		if (Object.keys(this.props.users).length > 0) {
 			this.findUser()
 		} else {
-			alert("Something went wrong, please try again.")
+			Swal.fire("Something went wrong, please try again.")
 		}
 
 		this.setState({
@@ -41,12 +42,12 @@ class LogInComponent extends React.Component {
 		const foundUser = this.props.users.find(user => user.email === this.state.email)
 
 		if (!foundUser) {
-			alert("Email and/or password incorrect. Please try again.")
+			Swal.fire("Email and/or password incorrect. Please try again.")
 		} else if (foundUser.password === this.state.password) {
 			localStorage.setItem('userID', foundUser.id)
 			this.props.setUser(foundUser)
 		} else {
-			alert("Email and/or password incorrect. Please try again.")
+			Swal.fire("Email and/or password incorrect. Please try again.")
 		}
 	}
 

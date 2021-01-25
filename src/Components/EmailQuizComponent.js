@@ -2,6 +2,7 @@ import React from 'react'
 import emailjs from 'emailjs-com'
 import { InputText } from 'primereact/inputtext'
 import { Button } from 'primereact/button'
+import Swal from 'sweetalert2'
 
 class EmailQuizComponent extends React.Component {
 
@@ -33,7 +34,7 @@ class EmailQuizComponent extends React.Component {
 		const qNoCorrectAnswers = qWithAnswers.filter(question => !question.answers.some(answer => answer.correct === true))
 
 		if (qLength < 1 || qNoAnswers.length > 0 || qNoCorrectAnswers.length > 0) {
-			alert("Please make sure the quiz isn't empty and all questions have a correct answer before emailing.")
+			Swal.fire("Please make sure the quiz isn't empty and all questions have a correct answer before emailing.")
 		} else {
 			this.emailQuiz()
 		}
@@ -55,10 +56,10 @@ class EmailQuizComponent extends React.Component {
 		emailjs.send('service_fcfonus', 'template_3cu6wee', templateParams, process.env.REACT_APP_EMAILJS_USERID)
 			.then(function (response) {
 				console.log('SUCCESS!', response.status, response.text)
-				alert(`Quiz invitation successfully sent to ${quiztakerEmail}.`)
+				Swal.fire(`Quiz invitation successfully sent to ${quiztakerEmail}.`)
 			}, function (error) {
 				console.log('FAILED...', error)
-				alert('Oops... something went wrong. Please try again. Make sure you entered email address(es) correctly.')
+				Swal.fire('Oops... something went wrong. Please try again. Make sure you entered email address(es) correctly.')
 			})
 	}
 
