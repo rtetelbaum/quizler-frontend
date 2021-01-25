@@ -118,7 +118,7 @@ class QuizComponent extends React.Component {
 		emailjs.send('service_fcfonus', 'template_ej9tm39', templateParams, process.env.REACT_APP_EMAILJS_USERID)
 			.then(function (response) {
 				console.log('SUCCESS!', response.status, response.text)
-				Swal.fire(`Quiz results successfully sent to ${quizmaker}.`)
+				Swal.fire(`Your score: ${score}. Results successfully sent to ${quizmaker}.`)
 				pushHome()
 			}, function (error) {
 				console.log('FAILED...', error)
