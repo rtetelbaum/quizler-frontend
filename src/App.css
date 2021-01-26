@@ -119,11 +119,6 @@ h3 {
 	flex-wrap: wrap;
 }
 
-.div-aligned-row {
-	display: flex;
-	align-items: center;
-}
-
 .div-aligned-answer {
 	display: flex;
 	flex-direction: column;
@@ -201,8 +196,8 @@ h3 {
 
 .card {
 	position: relative;
-	width: 16vw;
-	height: 24vw;
+	width: 14vw;
+	height: 21vw;
 	margin: 15px;
 	background-color: #2e2e2e !important;
 	box-shadow: 2px 2px 2px 2px rgba(0, 143, 148, 0.75) !important;
@@ -213,19 +208,19 @@ h3 {
 
 .card Button {
 	width: 12vw;
-	font-size: 1.2vw;
+	font-size: 1.1vw;
 }
 
 .pi-trash {
-	font-size: 1.2vw !important;
+	font-size: 1.1vw !important;
 }
 
 .p-card-title {
-	font-size: 1.4vw !important;
+	font-size: 1.3vw !important;
 }
 
 .p-card-subtitle {
-	font-size: 1.1vw !important;
+	font-size: 1vw !important;
 }
 
 .card:hover {
@@ -330,10 +325,6 @@ h3 {
 
 .review p {
 	width: 75px;
-}
-
-.inline-image {
-	width: 100px;
 }
 
 .swal2-styled.swal2-confirm {
