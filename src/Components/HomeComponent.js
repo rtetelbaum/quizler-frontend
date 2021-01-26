@@ -32,7 +32,7 @@ function HomeComponent() {
 				<div className="review">
 					<img src='/Harvard.png' alt='harvard' />
 					<p>"All of our students are required to use Quizler or face expulsion!"</p>
-					<p><b>-Harvard</b></p>
+					<p><b>-Harvard University</b></p>
 				</div>
 
 				<div className="review">
