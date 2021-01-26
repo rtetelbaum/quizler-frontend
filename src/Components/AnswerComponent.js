@@ -29,7 +29,7 @@ function AnswerComponent(props) {
 	const selectedAnswer = props.quizState[props.question.question]
 
 	return (
-		<div className="div-aligned-row fade-in-2">
+		<div className="div-aligned-answer fade-in-2">
 			{props.user
 				?
 				<>
@@ -37,7 +37,7 @@ function AnswerComponent(props) {
 						<RadioButton name={props.question.question} value={props.answer.answer} onChange={props.changeHandler} checked={props.answer.answer === selectedAnswer} />
 						<label className="answer-margin" htmlFor={props.answer.answer}>{props.answer.answer}</label>
 					</div>
-					<span className="button-margin-left">
+					<span className="correct-margin-left">
 						{props.answer.correct ? <i className="pi pi-check-square answer-correct"> Correct Answer</i> : null}
 					</span>
 					<span className="delete-answer-button">

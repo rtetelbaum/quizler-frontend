@@ -124,8 +124,15 @@ h3 {
 	align-items: center;
 }
 
+.div-aligned-answer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
 .delete-answer-button {
-	margin-left: auto;
+	margin: 10px;
+	margin-left: 40px;
 }
 
 .form-aligned {
@@ -171,12 +178,17 @@ h3 {
 }
 
 .answer-radio {
+	display: flex;
+  flex-direction: row;
 	margin: 10px;
-	width: 300px;
+	word-wrap: break-word;
 }
 
 .answer-radio-no-user {
+	display: flex;
+  flex-direction: row;
 	margin: 10px;
+	word-wrap: break-word;
 }
 
 .answer-margin {
@@ -189,14 +201,31 @@ h3 {
 
 .card {
 	position: relative;
-	width: 200px;
-	height: 300px;
+	width: 16vw;
+	height: 24vw;
 	margin: 15px;
 	background-color: #2e2e2e !important;
 	box-shadow: 2px 2px 2px 2px rgba(0, 143, 148, 0.75) !important;
 	border-radius: 5% !important;
 	text-align: center;
 	transition: all .5s ease-in-out;
+}
+
+.card Button {
+	width: 12vw;
+	font-size: 1.2vw;
+}
+
+.pi-trash {
+	font-size: 1.2vw !important;
+}
+
+.p-card-title {
+	font-size: 1.4vw !important;
+}
+
+.p-card-subtitle {
+	font-size: 1.1vw !important;
 }
 
 .card:hover {
@@ -207,7 +236,7 @@ h3 {
 	background-color: #2e2e2e;
 	box-shadow: 2px 2px 2px 2px rgba(77, 165, 230, 0.75);
 	border-radius: 2% !important;
-	padding: 30px;
+	padding: 40px 40px 15px 45px;
 	margin-bottom: 40px;
 	margin-right: 40px;
 	transition: all .5s ease-in-out;
@@ -220,7 +249,8 @@ h3 {
 .card-button-span {
 	position: absolute;
 	bottom: 15px;
-	right: 30px;
+	left: 0px;
+	right: 0px;
 }
 
 .form-row {
@@ -254,6 +284,10 @@ h3 {
 
 .button-margin-left {
 	margin-left: 15px;
+}
+
+.correct-margin-left {
+	margin-left: 57px;
 }
 
 .button-margin-bottom {
