@@ -19,7 +19,7 @@ import {
 } from './actionTypes'
 import Swal from 'sweetalert2'
 
-const BASE_URL = "http://localhost:4000"
+const BASE_URL = "https://quizlerbackend.herokuapp.com"
 
 export function postUser(userObj, ownProps) {
 	return function (dispatch) {

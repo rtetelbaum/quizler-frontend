@@ -11,12 +11,12 @@ import { BrowserRouter as Router } from 'react-router-dom'
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
-	// <React.StrictMode>
+	<React.StrictMode>
 		<Router>
 			<Provider store={store}>
 				<App />
 			</Provider>
 		</Router>,
-	// </React.StrictMode>,
+	</React.StrictMode>,
 	document.getElementById('root')
 )

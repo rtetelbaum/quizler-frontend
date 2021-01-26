@@ -128,7 +128,7 @@ class QuizComponent extends React.Component {
 
 		const pushHome = () => { this.props.history.push('/home') }
 
-		emailjs.send('service_fcfonus', 'template_ej9tm39', templateParams, process.env.REACT_APP_EMAILJS_USERID)
+		emailjs.send('service_fcfonus', 'template_ej9tm39', templateParams, 'user_YURUYwTaCWnST7CBoFniH')
 			.then(function (response) {
 				console.log('SUCCESS!', response.status, response.text)
 				Swal.fire(`Your score: ${score}. Results successfully sent to ${quizMakerName} at ${quizMakerEmail}.`)

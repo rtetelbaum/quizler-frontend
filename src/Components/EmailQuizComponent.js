@@ -41,7 +41,7 @@ class EmailQuizComponent extends React.Component {
 	}
 
 	emailQuiz = () => {
-		const BASE_URL = "http://localhost:3000"
+		const BASE_URL = "https://quizler.netlify.app"
 
 		const templateParams = {
 			makerName: this.props.makerName,
@@ -54,7 +54,7 @@ class EmailQuizComponent extends React.Component {
 
 		if (this.state.email) { quiztakerEmail = this.state.email }
 
-		emailjs.send('service_fcfonus', 'template_3cu6wee', templateParams, process.env.REACT_APP_EMAILJS_USERID)
+		emailjs.send('service_fcfonus', 'template_3cu6wee', templateParams, 'user_YURUYwTaCWnST7CBoFniH')
 			.then(function (response) {
 				console.log('SUCCESS!', response.status, response.text)
 				Swal.fire(`Quiz invitation successfully sent to ${quiztakerEmail}.`)
