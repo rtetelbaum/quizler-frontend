@@ -44,9 +44,9 @@ class QuizComponent extends React.Component {
 		this.setState(prevState => ({ userAnswers: { ...prevState.userAnswers, [e.target.name]: e.target.value } }))
 	}
 
-	submitHandler = (e, takerEmail) => {
+	submitHandler = (e, quizTaker) => {
 		e.preventDefault()
-		this.validateEmail(takerEmail)
+		this.validateEmail(quizTaker.email)
 	}
 
 	validateEmail = (takerEmail) => {
@@ -96,29 +96,42 @@ class QuizComponent extends React.Component {
 		const quizAnswers = []
 
 		for (let i = 0, l = arrayOfCorrectQA.length; i < l; i++) {
-			quizAnswers.push(`<li><b>Question:</b> ${Object.keys(arrayOfCorrectQA[i])[0]}<br>
-				<b>Quiztaker Answer:</b> ${arrayOfUserQA[i] ? Object.values(arrayOfUserQA[i])[0] : "Not Answered"}<br>
-				<b>Correct Answer:</b> ${Object.values(arrayOfCorrectQA[i])[0]}</li><br>`
+			quizAnswers.push(
+				`
+				<li>
+					<b>Question:</b><br>
+					<textarea rows="3" cols="50" readonly='true'>${Object.keys(arrayOfCorrectQA[i])[0]}</textarea><br>
+					<b>Quiztaker Answer:</b><br>
+					<textarea rows="3" cols="50" readonly='true'>${arrayOfUserQA[i] ? Object.values(arrayOfUserQA[i])[0] : "Not Answered"}</textarea><br>
+					<b>Correct Answer:</b><br>
+					<textarea rows="3" cols="50"readonly='true'>${Object.values(arrayOfCorrectQA[i])[0]}</textarea>
+				</li><br>
+				`
 			)
 		}
 
 		const templateParams = {
-			senderEmail: this.props.takerEmail,
-			recipientEmail: this.props.quiz.quizmaker,
+			takerEmail: this.props.quizTaker.email,
+			takerName: this.props.quizTaker.name,
+			recipientEmail: this.props.quiz.quizmaker_email,
 			title: this.props.quiz.title,
 			score: score,
 			quiz: quizAnswers.join('')
 		}
 
-		let quizmaker
-		if (this.props.quiz) { quizmaker = this.props.quiz.quizmaker }
+		let quizMakerName
+		let quizMakerEmail
+		if (this.props.quiz) { 
+			quizMakerName = this.props.quiz.quizmaker_name
+			quizMakerEmail = this.props.quiz.quizmaker_email
+		}
 
 		const pushHome = () => { this.props.history.push('/home') }
 
 		emailjs.send('service_fcfonus', 'template_ej9tm39', templateParams, process.env.REACT_APP_EMAILJS_USERID)
 			.then(function (response) {
 				console.log('SUCCESS!', response.status, response.text)
-				Swal.fire(`Your score: ${score}. Results successfully sent to ${quizmaker}.`)
+				Swal.fire(`Your score: ${score}. Results successfully sent to ${quizMakerName} at ${quizMakerEmail}.`)
 				pushHome()
 			}, function (error) {
 				console.log('FAILED...', error)
@@ -135,10 +148,14 @@ class QuizComponent extends React.Component {
 				this.props.quiz
 					?
 					<div className="div-aligned fade-in-2">
-						<h1 className="p-component"><b>Quiz by Quizmaker:</b> {this.props.quiz.quizmaker}</h1>
+						<h1 className="p-component"><b>Quiz by QuizMaker:</b> {this.props.quiz.quizmaker_name}</h1>
 						<h3 className="p-component"><b>Title:</b> {this.props.quiz.title}</h3>
 						<h3 className="p-component"><b>Subject:</b> {this.props.quiz.subject}</h3>
-						{this.props.user ? <EmailQuizComponent questions={this.props.quiz.questions} senderEmail={this.props.user.email} url={this.props.match.url} /> : null}
+						{this.props.user
+							?
+							<EmailQuizComponent questions={this.props.quiz.questions} makerEmail={this.props.user.email} makerName={this.props.user.first_name + " " + this.props.user.last_name} url={this.props.match.url} />
+							: null
+						}
 						{this.props.user ? <CreateQuestionComponent /> : null}
 						<div className="div-aligned-ol">
 							<ol>
@@ -162,7 +179,7 @@ function msp(state) {
 		quizzes: state.quizzes,
 		quiz: state.quiz,
 		user: state.user,
-		takerEmail: state.takerEmail
+		quizTaker: state.quizTaker
 	}
 }
 

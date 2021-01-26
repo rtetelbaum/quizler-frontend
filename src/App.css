@@ -132,12 +132,18 @@ h3 {
 	text-align: center;
 }
 
-.user-form-span-first {
+.user-form-span {
 	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 .user-form-span-last {
 	margin-top: 30px;
+}
+
+.input-span-last {
+	margin-top: 15px;
+	margin-bottom: 30px;
 }
 
 .input-span-sole {
@@ -161,7 +167,7 @@ h3 {
 }
 
 .user-button {
-	margin-top: 30px !important;
+	margin-top: 15px !important;
 }
 
 .answer-radio {

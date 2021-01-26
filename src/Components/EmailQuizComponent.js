@@ -44,7 +44,8 @@ class EmailQuizComponent extends React.Component {
 		const BASE_URL = "http://localhost:3000"
 
 		const templateParams = {
-			senderEmail: this.props.senderEmail,
+			makerName: this.props.makerName,
+			makerEmail: this.props.makerEmail,
 			recipientEmail: this.state.email,
 			link: `${BASE_URL}${this.props.url}`
 		}

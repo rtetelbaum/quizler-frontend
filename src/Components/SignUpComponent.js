@@ -9,6 +9,8 @@ class SignUpComponent extends React.Component {
 
 	state = {
 		email: "",
+		first_name: "",
+		last_name: "",
 		password: ""
 	}
 
@@ -23,6 +25,8 @@ class SignUpComponent extends React.Component {
 		this.props.postUser(this.state)
 		this.setState({
 			email: "",
+			first_name: "",
+			last_name: "",
 			password: ""
 		})
 	}
@@ -36,13 +40,28 @@ class SignUpComponent extends React.Component {
 				<h2 className="p-component">Sign Up</h2>
 
 				<form className="form-aligned" onSubmit={this.submitHandler}>
-					<span className="p-input-icon-left p-float-label user-form-span-first">
+					<span className="p-input-icon-left p-float-label user-form-span">
 						<i className="pi pi-envelope" />
 						<InputText type="email" name="email" value={this.state.email} onChange={this.changeHandler} required />
 						<label htmlFor="email">Email</label>
 					</span>
 					<br />
-					<span className="p-input-icon-left p-float-label user-form-span-last">
+
+					<span className="p-input-icon-left p-float-label user-form-span">
+						<i className="pi pi-user-edit" />
+						<InputText type="text" name="first_name" value={this.state.first_name} onChange={this.changeHandler} required />
+						<label htmlFor="First Name">First Name</label>
+					</span>
+					<br />
+
+					<span className="p-input-icon-left p-float-label user-form-span">
+						<i className="pi pi-user-edit" />
+						<InputText type="text" name="last_name" value={this.state.last_name} onChange={this.changeHandler} required />
+						<label htmlFor="Last Name">Last Name</label>
+					</span>
+					<br />
+
+					<span className="p-input-icon-left p-float-label user-form-span">
 						<i className="pi pi-eye-slash" />
 						<InputText type="password" name="password" value={this.state.password} onChange={this.changeHandler} required />
 						<label htmlFor="password">Password</label>

@@ -13,7 +13,7 @@ import {
 	POST_QUIZ_ANSWER,
 	DELETE_QUIZ_ANSWER,
 	GET_QUIZZES,
-	SET_TAKER_EMAIL,
+	SET_QUIZ_TAKER,
 	SET_EDIT_Q_CLICKED,
 	SET_EDIT_Q_ID
 } from './actionTypes'
@@ -239,9 +239,9 @@ export function getQuizzes() {
 	}
 }
 
-export function setTakerEmail(takerEmail) {
+export function setQuizTaker(quizTaker) {
 	return function (dispatch) {
-		dispatch({ type: SET_TAKER_EMAIL, payload: takerEmail })
+		dispatch({ type: SET_QUIZ_TAKER, payload: quizTaker })
 	}
 }
 

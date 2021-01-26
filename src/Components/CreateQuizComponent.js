@@ -9,7 +9,8 @@ class CreateQuizComponent extends React.Component {
 
 	state = {
 		newQuiz: {
-			quizmaker: this.props.user ? this.props.user.email : null,
+			quizmaker_name: this.props.user ? this.props.user.first_name + " " + this.props.user.last_name : null,
+			quizmaker_email: this.props.user ? this.props.user.email : null,
 			title: "",
 			subject: "",
 			user_id: this.props.user ? this.props.user.id : null
@@ -32,7 +33,7 @@ class CreateQuizComponent extends React.Component {
 				this.props.user.id ?
 					<div className="div-aligned fade-in-2">
 
-						<h2 className="p-component">Create a Custom Quiz</h2>
+						<h2 className="p-component">Create a Quiz</h2>
 
 						<form className="form-aligned" onSubmit={this.submitHandler}>
 							<span className="p-input-icon-left p-float-label user-form-span-first">

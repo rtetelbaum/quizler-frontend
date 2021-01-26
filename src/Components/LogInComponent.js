@@ -73,13 +73,13 @@ class LogInComponent extends React.Component {
 							<h2 className="p-component">Log In</h2>
 
 							<form className="form-aligned" onSubmit={this.submitHandler}>
-								<span className="p-input-icon-left p-float-label user-form-span-first">
+								<span className="p-input-icon-left p-float-label user-form-span">
 									<i className="pi pi-envelope" />
 									<InputText type="email" name="email" value={this.state.email} onChange={this.changeHandler} required />
 									<label htmlFor="email">Email</label>
 								</span>
 								<br />
-								<span className="p-input-icon-left p-float-label user-form-span-last">
+								<span className="p-input-icon-left p-float-label user-form-span">
 									<i className="pi pi-eye-slash" />
 									<InputText type="password" name="password" value={this.state.password} onChange={this.changeHandler} required />
 									<label htmlFor="password">Password</label>
