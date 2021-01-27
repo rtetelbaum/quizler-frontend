@@ -36,13 +36,13 @@ class CreateQuizComponent extends React.Component {
 						<h2 className="p-component">Create a Quiz</h2>
 
 						<form className="form-aligned" onSubmit={this.submitHandler}>
-							<span className="p-input-icon-left p-float-label user-form-span-first">
+							<span className="p-input-icon-left p-float-label user-form-span">
 								<i className="pi pi-bars" />
 								<InputText type="text" name="title" value={this.state.newQuiz.title} onChange={this.changeHandler} required />
 								<label htmlFor="email">Title</label>
 							</span>
 							<br />
-							<span className="p-input-icon-left p-float-label user-form-span-last">
+							<span className="p-input-icon-left p-float-label user-form-span">
 								<i className="pi pi-bars" />
 								<InputText type="text" name="subject" value={this.state.newQuiz.subject} onChange={this.changeHandler} required />
 								<label htmlFor="subject">Subject</label>
